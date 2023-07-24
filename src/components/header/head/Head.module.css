@@ -1,0 +1,43 @@
+.wrapper {
+    background-color: hotpink;
+    padding: 50px 0;
+}
+.title {
+    font-size: 25px;
+    background-color: aquamarine;
+}
+h1{
+    margin: 0;
+}
+.title__wrapper {
+    margin: 100px 0;
+}
+.header {
+    display: flex;
+    justify-content: space-around;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid brown;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.img__container {
+    border: 1px solid brown;
+    width: 280px;
+    min-height: 270px;
+    background-color: darkblue;
+}
+@media (min-width: 280px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (min-width: 760px) {
+    .header {
+        flex-direction: row;
+    }
+}
