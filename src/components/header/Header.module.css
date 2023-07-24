@@ -19,14 +19,23 @@
     padding: 0;
 }
 @media (min-width: 280px) {
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+@media (min-width: 360px) {
     .header {
         justify-content: center;
     }
+    .menu {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 0;
+    }
 }
 @media (min-width: 760px) {
-    .header {
-
-    }
     .menu {
         justify-content: end;
         gap: 10px;
