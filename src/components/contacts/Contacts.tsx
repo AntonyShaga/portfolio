@@ -37,7 +37,7 @@ export const Contacts: React.FC<PropsForContactstype> = (
                 <form className={style.form}>
                     {input}
                     <SimpleTextArea callbackValue={callbackValueTextAreaValue} value={contacts.contactsTextArea}/>
-                    <SimpleButton title={contacts.contactsButton}/>
+                    <SimpleButton name={contacts.contactsButton} onClick={()=>{}}/>
                 </form>
             </div>
         </div>

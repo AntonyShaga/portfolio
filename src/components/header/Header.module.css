@@ -4,8 +4,11 @@
     padding: 5px;
     width:100%;
 }
+.item {
+    list-style: none;
+}
 .wrapper {
-    background-color: aqua;
+    background-color: #EDF7FA;
 }
 .container {
     max-width: 1200px;

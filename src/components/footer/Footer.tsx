@@ -1,16 +1,13 @@
 import React from 'react';
-import {FooterType} from "../../redax/redax";
 import {Title} from "../title/Title";
 import style from './Footer.module.css'
 
-type PropsForFooterType = {
-    footer:FooterType
-}
-export const Footer = (props:PropsForFooterType) => {
+
+export const Footer = () => {
     return (
         <footer className={style.wrapper}>
             <div className={style.container}>
-                <Title title={props.footer.titleFooter}/>
+                <Title title={"Anton Shaga"}/>
                 <div className={style.footer__box__container}>
                     <div className={style.footer__box}>
                         <div className={style.box}></div>
@@ -21,7 +18,7 @@ export const Footer = (props:PropsForFooterType) => {
                 </div>
 
                 <div className={style.foter__info}>
-                    {props.footer.footer}
+                    {"Все права защищены"}
                 </div>
             </div>
         </footer>

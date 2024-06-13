@@ -1,23 +1,17 @@
 import React from 'react';
-import {HeaderListItem} from "./header list item/HeaderListItem";
-import {PortfolioArrayType} from "../../redax/redax";
 import style from './Header.module.css'
 import {Head} from "./head/Head";
+import {SimpleButton} from "../button/SimpleButton";
 
-type PropsForHeaderType = {
-    hederMenu: PortfolioArrayType
-}
-export const Header: React.FC<PropsForHeaderType> = (
-    {
-        hederMenu
-    }
-) => {
-    let list = hederMenu.navList.navButton.map(el => <HeaderListItem key={el.id} title={el.title}/>)
+export const Header = () => {
     return (
         <header className={style.wrapper}>
             <div className={`${style.header} ${style.container}`}>
                 <ul className={style.menu}>
-                    {list}
+                    <li className={style.item}><SimpleButton name={'Главная'} onClick={() => {}}/></li>
+                    <li className={style.item}><SimpleButton name={'Скилы'} onClick={() => {}}/></li>
+                    <li className={style.item}><SimpleButton name={'Работы'} onClick={() => {}}/></li>
+                    <li className={style.item}><SimpleButton name={'Контакты'} onClick={() => {}}/></li>
                 </ul>
             </div>
             <Head/>

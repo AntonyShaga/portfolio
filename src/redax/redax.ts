@@ -1,15 +1,6 @@
 import {v1} from "uuid";
 
 export const portfolioArray: PortfolioArrayType = {
-    navList: {
-        navTitle: "Мои работы",
-        navButton: [
-            {id: v1(), title: "Главная"},
-            {id: v1(), title: "Скилы"},
-            {id: v1(), title: "Работы"},
-            {id: v1(), title: "Контакты"}
-        ]
-    },
     mySkills: {
         mySkillsTitle: "Мои скиллы",
         mySkillsArray: [
@@ -52,29 +43,15 @@ export const portfolioArray: PortfolioArrayType = {
         contactsTitle: "Контакты",
         contactsButton: "Отправить"
     },
-    footer:{
-        titleFooter: "Anton Shaga",
-        footer: "Все права защищены"
-    }
 
 }
 export type PortfolioArrayType = {
-    navList: NavListType
     mySkills: MySkillsType
     myWorks: MyWorksType
     hireMe: HireMeType
     contacts: ContactsType
-    footer:FooterType
 }
 
-export type NavListType = {
-    navTitle: string
-    navButton: Array<NavButtonType>
-}
-export type NavButtonType = {
-    title: string
-    id: string
-}
 export type MySkillsType = {
     mySkillsTitle: string
     mySkillsArray: Array<MySkillsArrayType>
@@ -117,10 +94,6 @@ export type ContactsType = {
 export type ContactsArrayType = {
     id: string
     inputValue: string
-}
-export type FooterType = {
-    titleFooter:string
-    footer:string
 }
 export type ActionType =
     OnChangeInputValueType | OnChangeTextAreaValueType

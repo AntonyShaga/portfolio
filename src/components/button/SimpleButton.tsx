@@ -1,19 +1,17 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
 import style from './SimpleButton.module.css'
+
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement>
 
-type SimpleButtonPropsType = DefaultButtonPropsType & {
-    title: string
+type Props = DefaultButtonPropsType & {
+    name: string
+    onClick: () => void
 }
-export const SimpleButton: React.FC<SimpleButtonPropsType> = (
-    {
-        title
-    }
-) => {
+export const SimpleButton = ({name, onClick}: Props) => {
     return (
-        <button className={style.button} >
-            {title}
-        </button>
+        <>
+            <button className={style.button} onClick={onClick}>{name}</button>
+        </>
     );
 };

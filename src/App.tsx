@@ -20,9 +20,9 @@ function App() {
 
     return (
         <div className={'container'}>
-            <Header hederMenu={portfolioArray}/>
+            <Header />
             <Main main={portfolioArray} callbackValueInput={callbackValueInput} callbackValueTextarea={callbackValueTextarea}/>
-            <Footer footer={portfolioArray.footer}/>
+            <Footer/>
         </div>
     );
 }
