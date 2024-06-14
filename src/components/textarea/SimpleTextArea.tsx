@@ -1,18 +1,12 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './SimpleTextArea.module.css'
-type DefaultTextAreaPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement>
 
-type PropsForSimpleTextAreaType = Omit<DefaultTextAreaPropsType, 'type'> & {
+type Props =  {
     value: string
     callbackValue: (e: string) => void
 }
-export const SimpleTextArea:React.FC<PropsForSimpleTextAreaType> = (
-    {
-        value,
-        callbackValue
-    }
-) => {
+export const SimpleTextArea = (props:Props) => {
+    const {value,callbackValue} = props
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         callbackValue(e.currentTarget.value)
     }

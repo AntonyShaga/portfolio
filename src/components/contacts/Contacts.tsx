@@ -6,28 +6,23 @@ import style from './Contacts.module.css'
 import {SimpleButton} from "../button/SimpleButton";
 import {SimpleTextArea} from "../textarea/SimpleTextArea";
 
-type PropsForContactstype = {
+type Props = {
     contacts: ContactsType
     callbackValueInput: (value: string, id: string) => void
-    callbackValueTextarea:(value:string)=>void
+    callbackValueTextarea: (value: string) => void
 }
-export const Contacts: React.FC<PropsForContactstype> = (
-    {
-        contacts,
-        callbackValueInput,
-        callbackValueTextarea,
-    }
-) => {
+export const Contacts = (props: Props) => {
+    const {callbackValueInput, callbackValueTextarea, contacts} = props
     const callbackValue = (e: string, id: string) => {
         callbackValueInput(e, id)
         console.log(id)
     }
-    const callbackValueTextAreaValue = (value:string) => {
+    const callbackValueTextAreaValue = (value: string) => {
         callbackValueTextarea(value)
     }
 
-    let input = contacts.contactsArray.map(el => <SimpleInput key={el.id} callbackValue={callbackValue} id={el.id}
-                                                              value={el.inputValue}/>)
+    let input = contacts.contactsArray
+        .map(el => <SimpleInput key={el.id} callbackValue={callbackValue} id={el.id} value={el.inputValue}/>)
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -37,7 +32,7 @@ export const Contacts: React.FC<PropsForContactstype> = (
                 <form className={style.form}>
                     {input}
                     <SimpleTextArea callbackValue={callbackValueTextAreaValue} value={contacts.contactsTextArea}/>
-                    <SimpleButton name={contacts.contactsButton} onClick={()=>{}}/>
+                    <SimpleButton onClick={() => {}}>{contacts.contactsButton}</SimpleButton>
                 </form>
             </div>
         </div>

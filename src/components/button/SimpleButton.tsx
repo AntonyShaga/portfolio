@@ -5,13 +5,13 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
     HTMLButtonElement>
 
 type Props = DefaultButtonPropsType & {
-    name: string
     onClick: () => void
+    children: React.ReactNode
 }
-export const SimpleButton = ({name, onClick}: Props) => {
+export const SimpleButton = ({children, onClick}: Props) => {
     return (
         <>
-            <button className={style.button} onClick={onClick}>{name}</button>
+            <button className={style.button} onClick={onClick}>{children}</button>
         </>
     );
 };

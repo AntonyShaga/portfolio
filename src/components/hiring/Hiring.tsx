@@ -9,7 +9,7 @@ export const Hiring = () => {
             <div className={style.container}>
                 <Title title={"Рассматриваю варианты удаленной работы"}/>
                 <div className={style.hiring}>
-                    <SimpleButton name={"Нанять меня"} onClick={()=>{}}/>
+                    <SimpleButton onClick={()=>{}}>{"Нанять меня"}</SimpleButton>
                 </div>
             </div>
         </div>

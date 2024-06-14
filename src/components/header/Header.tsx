@@ -8,10 +8,10 @@ export const Header = () => {
         <header className={style.wrapper}>
             <div className={`${style.header} ${style.container}`}>
                 <ul className={style.menu}>
-                    <li className={style.item}><SimpleButton name={'Главная'} onClick={() => {}}/></li>
-                    <li className={style.item}><SimpleButton name={'Скилы'} onClick={() => {}}/></li>
-                    <li className={style.item}><SimpleButton name={'Работы'} onClick={() => {}}/></li>
-                    <li className={style.item}><SimpleButton name={'Контакты'} onClick={() => {}}/></li>
+                    <li className={style.item}><SimpleButton  onClick={() => {}}>{'Главная'}</SimpleButton></li>
+                    <li className={style.item}><SimpleButton  onClick={() => {}}>{'Скилы'}</SimpleButton></li>
+                    <li className={style.item}><SimpleButton  onClick={() => {}}>{'Работы'}</SimpleButton></li>
+                    <li className={style.item}><SimpleButton  onClick={() => {}}>{'Контакты'}</SimpleButton></li>
                 </ul>
             </div>
             <Head/>

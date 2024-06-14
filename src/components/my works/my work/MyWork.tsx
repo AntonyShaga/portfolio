@@ -20,7 +20,7 @@ export const MyWork: React.FC<PropsForMyWork> = (
         <div className={style.my__work__container}>
             <div>
                 <img src={myWorkPhoto.url} alt=""/>
-                <SimpleButton name={myWorksButton} onClick={()=>{}}/>
+                <SimpleButton onClick={()=>{}}>{myWorksButton}</SimpleButton>
             </div>
             <MyWorkDescription myWorkDescription={myWorkDescription}/>
         </div>
