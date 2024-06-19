@@ -18,7 +18,7 @@ export const MySkills: React.FC<PropsForMySkillsType> = (
         <div className={style.wrapper}>
             <div className={style.container}>
                 <div>
-                    <Title title={mySkills.mySkillsTitle}/>
+                    <Title as={'h2'}>{mySkills.mySkillsTitle}</Title>
                 </div>
                 <div className={style.skills__container}>
                     {skill}

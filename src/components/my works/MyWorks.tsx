@@ -17,7 +17,7 @@ export const MyWorks: React.FC<PropsForMyWorks> = (
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
-                <Title title={myWorks.title}/>
+                <Title as={'h2'}>{myWorks.title}</Title>
                 <div className={style.my__works__container}>
                     {myWork}
                 </div>

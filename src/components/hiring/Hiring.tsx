@@ -7,7 +7,7 @@ export const Hiring = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
-                <Title title={"Рассматриваю варианты удаленной работы"}/>
+                <Title as={'h2'}>{"Рассматриваю варианты удаленной работы"}</Title>
                 <div className={style.hiring}>
                     <SimpleButton onClick={()=>{}}>{"Нанять меня"}</SimpleButton>
                 </div>

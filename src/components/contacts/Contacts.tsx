@@ -27,7 +27,7 @@ export const Contacts = (props: Props) => {
         <div className={style.wrapper}>
             <div className={style.container}>
                 <div>
-                    <Title title={contacts.contactsTitle}/>
+                    <Title as={'h2'}>{contacts.contactsTitle}</Title>
                 </div>
                 <form className={style.form}>
                     {input}

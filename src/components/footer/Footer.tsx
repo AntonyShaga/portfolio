@@ -7,7 +7,7 @@ export const Footer = () => {
     return (
         <footer className={style.wrapper}>
             <div className={style.container}>
-                <Title title={"Anton Shaga"}/>
+                <Title as={'h2'}>{"Anton Shaga"}</Title>
                 <div className={style.footer__box__container}>
                     <div className={style.footer__box}>
                         <div className={style.box}></div>

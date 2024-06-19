@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {ComponentPropsWithoutRef, ElementType, ReactNode} from 'react';
 import style from "../my skills/MySkills.module.css";
 
-type ForTitleType = {
-    title: string
-}
-export const Title: React.FC<ForTitleType> = (
-    {
-        title
-    }
-) => {
+type Props<T extends ElementType = 'h1'> = {
+    as?: T
+    className?:string
+    children: ReactNode
+} & ComponentPropsWithoutRef<T>
+
+export const Title =<T extends ElementType = 'h1'> (props: Props<T>) => {
+    const {children,as: Component = 'h1' ,className} = props
     return (
-        <h2 className={style.title}>
-            {title}
-        </h2>
+        <Component className={!className ? style.title : className}>
+            {children}
+        </Component>
     );
 };
