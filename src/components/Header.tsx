@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const Header = () => {
   return (
@@ -10,7 +11,10 @@ const Header = () => {
           <Link href={"/"}>Мое портфолио</Link>
         </div>
       </div>
+        <ThemeSwitcher/>
     </header>
+
+
   );
 };
 
