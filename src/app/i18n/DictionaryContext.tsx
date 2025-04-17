@@ -11,6 +11,7 @@ export const useDictionary = () => {
     }
     return context;
 };
+
 export const DictionaryProvider = ({
 dict,
 children,

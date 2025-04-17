@@ -120,7 +120,7 @@ const DictionaryProvider = ({ dict, children })=>{
         children: children
     }, void 0, false, {
         fileName: "[project]/src/app/i18n/DictionaryContext.tsx",
-        lineNumber: 22,
+        lineNumber: 23,
         columnNumber: 9
     }, this);
 };
