@@ -16,5 +16,13 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addUtilities }) {
+            addUtilities({
+                ".rounded-1\\/2": {
+                    borderRadius: "50%",
+                },
+            });
+        },
+    ],
 }
