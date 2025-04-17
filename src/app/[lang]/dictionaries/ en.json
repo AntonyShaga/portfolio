@@ -3,10 +3,12 @@
     "title": "Welcome",
     "button": "Click me"
   },
- "header": {
-   "logo": "MyPortfolio",
-   "about": "About Me",
-   "projects": "Projects",
-   "contact": "Contact"
- }
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  }
 }
