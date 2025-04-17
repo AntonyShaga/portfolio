@@ -1,27 +1,23 @@
 module.exports = {
 
-"[project]/src/app/favicon.ico (static in ecmascript)": ((__turbopack_context__) => {
+"[project]/src/app/favicon.ico (static in ecmascript)": (() => {{
 
-var { g: global, __dirname } = __turbopack_context__;
-{
-__turbopack_context__.v("/_next/static/media/favicon.45db1c09.ico");}}),
-"[project]/src/app/favicon.ico.mjs { IMAGE => \"[project]/src/app/favicon.ico (static in ecmascript)\" } [app-rsc] (structured image object, ecmascript)": ((__turbopack_context__) => {
-"use strict";
+throw new Error("An error occurred while generating the chunk item [project]/src/app/favicon.ico (static in ecmascript)\n\nCaused by:\n- StaticAsset::path: not found\n\nDebug info:\n- An error occurred while generating the chunk item [project]/src/app/favicon.ico (static in ecmascript)\n- Execution of <StaticUrlJsChunkItem as EcmascriptChunkItem>::content failed\n- Execution of <StaticOutputAsset as OutputAsset>::path failed\n- StaticAsset::path: not found");
 
-var { g: global, __dirname } = __turbopack_context__;
-{
-__turbopack_context__.s({
-    "default": (()=>__TURBOPACK__default__export__)
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$favicon$2e$ico__$28$static__in__ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/favicon.ico (static in ecmascript)");
-;
-const __TURBOPACK__default__export__ = {
-    src: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$favicon$2e$ico__$28$static__in__ecmascript$29$__["default"],
-    width: 256,
-    height: 256
-};
 }}),
+"[project]/src/app/favicon.ico.mjs { IMAGE => \"[project]/src/app/favicon.ico (static in ecmascript)\" } [app-rsc] (structured image object, ecmascript)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const e = new Error(`Could not parse module '[project]/src/app/favicon.ico.mjs'
+
+Input image not found
+
+Debug info:
+- Execution of <StructuredImageFileSource as Asset>::content failed
+- Execution of get_meta_data failed
+- Input image not found`);
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 
 };
-
-//# sourceMappingURL=src_app_a4430781._.js.map

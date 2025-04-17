@@ -2,13 +2,17 @@
 
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import {useDictionary} from "@/app/i18n/DictionaryContext";
 
 const Header = () => {
-  return (
+
+    const dict = useDictionary();
+
+    return (
     <header className="flex justify-center items-center">
       <div>
         <div>
-          <Link href={"/"}>Мое портфолио</Link>
+          <Link href={"/"}>{dict.wer}</Link>
         </div>
       </div>
         <ThemeSwitcher/>
