@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "../../style/globals.css"
 import {ThemeProvider} from "next-themes";
-import LanguageSwitcher from "@/components/language-switcher";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 
@@ -38,7 +37,6 @@ export default async function RootLayout({
       >
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <DictionaryProvider dict={dict}>
-              <LanguageSwitcher currentLang={lang} />
               {children}
           </DictionaryProvider>
       </ThemeProvider>

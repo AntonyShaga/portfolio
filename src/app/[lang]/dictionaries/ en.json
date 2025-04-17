@@ -3,5 +3,10 @@
     "title": "Welcome",
     "button": "Click me"
   },
-  "wer": "My Portfolio"
+ "header": {
+   "logo": "MyPortfolio",
+   "about": "About Me",
+   "projects": "Projects",
+   "contact": "Contact"
+ }
 }

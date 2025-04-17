@@ -4,6 +4,6 @@ module.exports = {
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-__turbopack_context__.v(JSON.parse("{\"home\":{\"title\":\"Добро пожаловать\",\"button\":\"Нажми меня\"},\"wer\":\"Мое портфолио\"}"));}}),
+__turbopack_context__.v(JSON.parse("{\"home\":{\"title\":\"Добро пожаловать\",\"button\":\"Нажми меня\"},\"header\":{\"logo\":\"МоёПортфолио\",\"about\":\"Обо мне\",\"projects\":\"Проекты\",\"contact\":\"Контакты\"}}"));}}),
 
 };
