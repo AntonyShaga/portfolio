@@ -32,7 +32,7 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
                     {lang.toUpperCase()}
                 </button>
             ))}
-            {isPending && <span className="ml-2 animate-pulse">Loading...</span>}
+           {/* {isPending && <span className="ml-2 animate-pulse">Loading...</span>}*/}
         </div>
     );
 }

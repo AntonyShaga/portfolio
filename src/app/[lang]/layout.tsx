@@ -36,7 +36,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <DictionaryProvider dict={dict}>
+          <DictionaryProvider  dict={dict}>
               {children}
           </DictionaryProvider>
       </ThemeProvider>
