@@ -14,12 +14,15 @@ const Header = () => {
     const lang = params.lang as string;
     const navItems = getNavItems(dict)
     return (
-    <header className="w-full px-6 py-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-        <div className="container px-4 md:px-6 py-4">
+    <header className="fixed flex justify-center top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div className="container mx-auto px-4 md:px-6 py-4">
             <div className="flex items-center justify-between">
-                <div className="hidden md:flex items-center space-x-6">
-                    <Link className="hover:opacity-80 transition" href={`/${lang}`}>{dict.header.logo}</Link>
-                </div>
+                <Link href="#" className="flex items-center space-x-2">
+                    <span className="h-8 w-8 bg-black text-white rounded-md flex items-center justify-center">
+                         <span className="font-bold">{dict.header.logo}</span>
+                    </span>
+                    <span className="font-bold text-lg">{dict.header.name}</span>
+                </Link>
                 <nav className="hidden md:flex gap-6 text-sm font-medium">
                     {
                         navItems.map((item, index) => (

@@ -1,9 +1,7 @@
 {
-  "home": {
-    "title": "Welcome",
-    "button": "Click me"
-  },
   "header": {
+    "logo": "AS",
+    "name": "Anton Shaga",
     "home": "Home",
     "about": "About",
     "projects": "Projects",
