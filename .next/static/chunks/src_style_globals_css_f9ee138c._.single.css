@@ -60,6 +60,7 @@
   :root, :host {
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+    --color-red-50: oklch(97.1% .013 17.38);
     --color-red-100: oklch(93.6% .032 17.717);
     --color-red-200: oklch(88.5% .062 18.334);
     --color-red-300: oklch(80.8% .114 19.571);
@@ -108,7 +109,9 @@
     --color-gray-900: oklch(21% .034 264.665);
     --color-neutral-100: oklch(97% 0 0);
     --color-neutral-200: oklch(92.2% 0 0);
+    --color-neutral-400: oklch(70.8% 0 0);
     --color-neutral-800: oklch(26.9% 0 0);
+    --color-neutral-900: oklch(20.5% 0 0);
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
@@ -822,6 +825,10 @@
     background-color: var(--color-neutral-200);
   }
 
+  .bg-neutral-400 {
+    background-color: var(--color-neutral-400);
+  }
+
   .bg-red-300 {
     background-color: var(--color-red-300);
   }
@@ -1189,15 +1196,13 @@
   }
 
   @media (width >= 48rem) {
-    .md\:inline {
-      display: inline;
-    }
-  }
-
-  @media (width >= 48rem) {
     .md\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
     }
+  }
+
+  .dark\:rounded-md:where(.dark, .dark *) {
+    border-radius: var(--radius-md);
   }
 
   .dark\:border-gray-700:where(.dark, .dark *) {
@@ -1210,6 +1215,14 @@
 
   .dark\:bg-gray-800:where(.dark, .dark *) {
     background-color: var(--color-gray-800);
+  }
+
+  .dark\:bg-neutral-800:where(.dark, .dark *) {
+    background-color: var(--color-neutral-800);
+  }
+
+  .dark\:bg-neutral-900:where(.dark, .dark *) {
+    background-color: var(--color-neutral-900);
   }
 
   .dark\:bg-transparent:where(.dark, .dark *) {

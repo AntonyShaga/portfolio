@@ -81,7 +81,7 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
                 className={`flex items-center justify-between gap-2 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black min-w-[8rem] ${
-                    isOpen ? ' cursor-default' : 'hover:bg-gray-200 cursor-pointer'
+                    isOpen ? ' cursor-default' : 'hover:bg-gray-200 cursor-pointer dark:hover:bg-neutral-800'
                 }`}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
@@ -106,17 +106,17 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        className="absolute right-0 mt-2  bg-white  rounded-md shadow-lg z-10"
+                        className="absolute right-0 mt-2 dark:rounded-md   rounded-md  shadow-lg z-10"
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
                         transition={{ duration: 0.15 }}
                     >
-                        <ul className="p-[10px]" role="listbox" tabIndex={-1} >
+                        <ul className="p-[10px] dark:bg-neutral-900 dark:rounded-md dark:text-white" role="listbox" tabIndex={-1} >
                             {languages.map((lang) => (
-                                <li className={`flex items-center gap-2 px-2 py-2 rounded-md transition hover:bg-gray-200 cursor-pointer  ${
+                                <li className={`flex items-center gap-2 px-2 py-2 rounded-md transition dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-800 cursor-pointer  ${
                                     lang.code === currentLang
-                                        ? 'bg-gray-200 '
+                                        ? 'bg-gray-200  dark:bg-neutral-800'
                                         : 'hover:bg-gray-50 text-gray-900'
                                 }`} key={lang.code}>
                                     <button
