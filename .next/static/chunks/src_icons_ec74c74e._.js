@@ -6,7 +6,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_icons_SunIcon_tsx_539a9f94._.js",
+  "static/chunks/src_icons_d18e2ec9._.js",
   "static/chunks/src_icons_SunIcon_tsx_fac6fa7f._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/icons/SunIcon.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -19,7 +19,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_icons_MoonIcon_tsx_94b33e47._.js",
+  "static/chunks/src_icons_64ea9ed5._.js",
   "static/chunks/src_icons_MoonIcon_tsx_fac6fa7f._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -32,7 +32,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_icons_SunIcon_tsx_2974ead4._.js",
+  "static/chunks/src_icons_915b4683._.js",
   "static/chunks/src_icons_SunIcon_tsx_32b20bca._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/icons/SunIcon.tsx [app-client] (ecmascript)");
@@ -45,7 +45,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_icons_MoonIcon_tsx_bfd75f49._.js",
+  "static/chunks/src_icons_5659e735._.js",
   "static/chunks/src_icons_MoonIcon_tsx_32b20bca._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript)");
