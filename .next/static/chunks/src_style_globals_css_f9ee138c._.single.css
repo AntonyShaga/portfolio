@@ -972,20 +972,8 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-neutral-100:hover {
-      background-color: var(--color-neutral-100);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-neutral-200:hover {
       background-color: var(--color-neutral-200);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-transparent:hover {
-      background-color: #0000;
     }
   }
 
@@ -1034,10 +1022,6 @@
     background-color: var(--color-black);
   }
 
-  .dark\:bg-gray-100:where(.dark, .dark *) {
-    background-color: var(--color-gray-100);
-  }
-
   .dark\:bg-gray-800:where(.dark, .dark *) {
     background-color: var(--color-gray-800);
   }
@@ -1067,20 +1051,8 @@
   }
 
   @media (hover: hover) {
-    .dark\:hover\:bg-neutral-100:where(.dark, .dark *):hover {
-      background-color: var(--color-neutral-100);
-    }
-  }
-
-  @media (hover: hover) {
     .dark\:hover\:bg-neutral-800:where(.dark, .dark *):hover {
       background-color: var(--color-neutral-800);
-    }
-  }
-
-  @media (hover: hover) {
-    .dark\:hover\:bg-transparent:where(.dark, .dark *):hover {
-      background-color: #0000;
     }
   }
 }

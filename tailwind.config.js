@@ -6,10 +6,6 @@ module.exports = {
     ],
     theme: {
         extend: {
-            backgroundImage: {
-                'moon-icon': "url('/icons/MoonIcon.svg')",
-                'sun-icon': "url('/icons/SunIcon.svg')",
-            },
             colors: {
                 background: "rgb(var(--background))",
                 foreground: "rgb(var(--foreground))",
