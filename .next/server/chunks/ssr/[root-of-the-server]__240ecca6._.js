@@ -37,26 +37,78 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$them
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-ssr] (ecmascript)");
+;
+;
 'use client';
 ;
 ;
 ;
 ;
-const SunIcon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["lazy"])(()=>__turbopack_context__.r("[project]/src/icons/SunIcon.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_context__.i));
-const MoonIcon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["lazy"])(()=>__turbopack_context__.r("[project]/src/icons/MoonIcon.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_context__.i));
+;
+const SunIcon = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(async ()=>{}, {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/icons/SunIcon.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    ssr: false,
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
+            fileName: "[project]/src/components/ThemeSwitcher.tsx",
+            lineNumber: 14,
+            columnNumber: 24
+        }, this)
+});
+const MoonIcon = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(async ()=>{}, {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    ssr: false,
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
+            fileName: "[project]/src/components/ThemeSwitcher.tsx",
+            lineNumber: 21,
+            columnNumber: 24
+        }, this)
+});
 const FallbackIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "h-6 w-6 rounded-full animate-pulse bg-cover bg-center bg-[url('/icons/MoonIcon.svg')] dark:bg-[url('/icons/SunIcon.svg')]"
     }, void 0, false, {
         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-        lineNumber: 16,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
+const ANIMATION_PROPS = {
+    initial: {
+        opacity: 0,
+        rotate: -90,
+        scale: 0.7
+    },
+    animate: {
+        opacity: 1,
+        rotate: 0,
+        scale: 1
+    },
+    exit: {
+        opacity: 0,
+        rotate: 90,
+        scale: 0.7
+    },
+    transition: {
+        duration: 0.3
+    }
+};
 function ThemeSwitcher() {
     const { setTheme, resolvedTheme } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTheme"])();
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isAnimating, setIsAnimating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setMounted(true);
+        void Promise.all([
+            __turbopack_context__.r("[project]/src/icons/SunIcon.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_context__.i),
+            __turbopack_context__.r("[project]/src/icons/MoonIcon.tsx [app-ssr] (ecmascript, async loader)")(__turbopack_context__.i)
+        ]);
     }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         let timer;
@@ -90,73 +142,45 @@ function ThemeSwitcher() {
         "aria-live": "polite",
         "aria-disabled": !mounted,
         tabIndex: !mounted ? -1 : 0,
-        onClick: handleClick,
+        onClick: !mounted ? undefined : handleClick,
         onKeyDown: handleKeyDown,
-        className: `h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'}`,
+        className: `h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'} `,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
             mode: "wait",
             initial: false,
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
                 suppressHydrationWarning: true,
-                initial: {
-                    opacity: 0,
-                    rotate: -90,
-                    scale: 0.7
-                },
-                animate: {
-                    opacity: 1,
-                    rotate: 0,
-                    scale: 1
-                },
-                exit: {
-                    opacity: 0,
-                    rotate: 90,
-                    scale: 0.7
-                },
-                transition: {
-                    duration: 0.3
-                },
+                ...ANIMATION_PROPS,
                 children: !mounted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 85,
-                    columnNumber: 25
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
-                    fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
-                        fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 87,
-                        columnNumber: 45
-                    }, void 0),
-                    children: isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SunIcon, {
-                        className: "h-6 w-6 transition duration-300"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 89,
-                        columnNumber: 33
-                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MoonIcon, {
-                        className: "h-6 w-6 transition duration-300"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 91,
-                        columnNumber: 33
-                    }, this)
+                    lineNumber: 102,
+                    columnNumber: 33
+                }, this) : isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SunIcon, {
+                    className: "h-6 w-6"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 87,
-                    columnNumber: 25
+                    lineNumber: 102,
+                    columnNumber: 62
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MoonIcon, {
+                    className: "h-6 w-6"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ThemeSwitcher.tsx",
+                    lineNumber: 102,
+                    columnNumber: 95
                 }, this)
             }, mounted ? resolvedTheme : 'placeholder', false, {
                 fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                lineNumber: 76,
+                lineNumber: 97,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ThemeSwitcher.tsx",
-            lineNumber: 75,
+            lineNumber: 96,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-        lineNumber: 56,
+        lineNumber: 77,
         columnNumber: 9
     }, this);
 }

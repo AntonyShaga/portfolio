@@ -10,7 +10,7 @@ import React from 'react';
             fill="none"
             stroke="currentColor"
             strokeWidth="1"
-    {...props} // Передаем все пропсы для управления стилями
+    {...props}
     >
     <g fill="none" stroke="currentColor" strokeWidth="1">
         <circle cx="12" cy="12" r="3.5" />

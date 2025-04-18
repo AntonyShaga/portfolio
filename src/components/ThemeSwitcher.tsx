@@ -1,20 +1,37 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-import { AnimatePresence, motion } from 'framer-motion';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import {useTheme} from 'next-themes';
+import {AnimatePresence, motion} from 'framer-motion';
+import {useEffect, useState} from 'react';
+import dynamic, {DynamicOptions} from 'next/dynamic';
 
-const SunIcon = lazy(() => import('../icons/SunIcon')) as React.ComponentType<{
-    className?: string;
-}>;
+type DynamicIconOptions = DynamicOptions<{ className?: string }>;
 
-const MoonIcon = lazy(() => import('../icons/MoonIcon')) as React.ComponentType<{
-    className?: string;
-}>;
+const SunIcon = dynamic(
+    () => import('../icons/SunIcon').then((mod) => mod.default),
+    {
+        ssr: false,
+        loading: () => <FallbackIcon />,
+    } as DynamicIconOptions
+) ;
+
+const MoonIcon = dynamic(() => import('../icons/MoonIcon').then((mod) => mod.default),
+    {
+        ssr: false,
+        loading: () => <FallbackIcon />,
+    } as DynamicIconOptions
+) ;
 
 const FallbackIcon = () => (
     <div className="h-6 w-6 rounded-full animate-pulse bg-cover bg-center bg-[url('/icons/MoonIcon.svg')] dark:bg-[url('/icons/SunIcon.svg')]" />
 );
+
+const ANIMATION_PROPS = {
+    initial: { opacity: 0, rotate: -90, scale: 0.7 },
+    animate: { opacity: 1, rotate: 0, scale: 1 },
+    exit: { opacity: 0, rotate: 90, scale: 0.7 },
+    transition: { duration: 0.3 }
+};
 
 export default function ThemeSwitcher() {
     const { setTheme, resolvedTheme } = useTheme();
@@ -23,6 +40,10 @@ export default function ThemeSwitcher() {
 
     useEffect(() => {
         setMounted(true);
+        void Promise.all([
+            import('../icons/SunIcon'),
+            import('../icons/MoonIcon')
+        ]);
     }, []);
 
     useEffect(() => {
@@ -66,32 +87,19 @@ export default function ThemeSwitcher() {
             aria-live="polite"
             aria-disabled={!mounted}
             tabIndex={!mounted ? -1 : 0}
-            onClick={handleClick}
+            onClick={!mounted ? undefined : handleClick}
             onKeyDown={handleKeyDown}
             className={`h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${
                 isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
-            }`}
+            } `}
         >
             <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                     key={mounted ? resolvedTheme : 'placeholder'}
                     suppressHydrationWarning
-                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                    transition={{ duration: 0.3 }}
+                    {...ANIMATION_PROPS}
                 >
-                    {!mounted ? (
-                        <FallbackIcon />
-                    ) : (
-                        <Suspense fallback={<FallbackIcon />}>
-                            {isDark ? (
-                                <SunIcon className="h-6 w-6 transition duration-300" />
-                            ) : (
-                                <MoonIcon className="h-6 w-6 transition duration-300" />
-                            )}
-                        </Suspense>
-                    )}
+                    {!mounted ? <FallbackIcon /> : (isDark ? <SunIcon className="h-6 w-6"/> : <MoonIcon className="h-6 w-6"/>)}
                 </motion.span>
             </AnimatePresence>
         </button>

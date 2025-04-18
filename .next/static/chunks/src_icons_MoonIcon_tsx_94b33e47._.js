@@ -38,6 +38,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
+"[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript, next/dynamic entry)": ((__turbopack_context__) => {
+
+var { g: global, __dirname } = __turbopack_context__;
+{
+__turbopack_context__.n(__turbopack_context__.i("[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript)"));
+}}),
 }]);
 
-//# sourceMappingURL=src_icons_MoonIcon_tsx_bfd75f49._.js.map
+//# sourceMappingURL=src_icons_MoonIcon_tsx_94b33e47._.js.map
