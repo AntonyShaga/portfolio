@@ -35,13 +35,20 @@ export default function ThemeSwitcher() {
 
     const isDark = mounted && resolvedTheme === 'dark';
 
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const handleClick = () => {
         if (!mounted) return;
         setIsAnimating(true);
         try {
             setTheme(isDark ? 'light' : 'dark');
         } catch (error) {
             console.error('Theme switch failed:', error);
+        }
+    };
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
         }
     };
 
@@ -56,7 +63,11 @@ export default function ThemeSwitcher() {
                         : 'Switch to dark mode'
             }
             aria-busy={isAnimating}
+            aria-live="polite"
+            aria-disabled={!mounted}
+            tabIndex={!mounted ? -1 : 0}
             onClick={handleClick}
+            onKeyDown={handleKeyDown}
             className={`h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${
                 isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
             }`}

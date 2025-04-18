@@ -66,11 +66,21 @@ function ThemeSwitcher() {
             console.error('Theme switch failed:', error);
         }
     };
+    const handleKeyDown = (e)=>{
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         type: "button",
         "aria-label": !mounted ? 'Loading theme...' : isDark ? 'Switch to light mode' : 'Switch to dark mode',
         "aria-busy": isAnimating,
+        "aria-live": "polite",
+        "aria-disabled": !mounted,
+        tabIndex: !mounted ? -1 : 0,
         onClick: handleClick,
+        onKeyDown: handleKeyDown,
         className: `h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'}`,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
             mode: "wait",
@@ -97,45 +107,45 @@ function ThemeSwitcher() {
                 },
                 children: !mounted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 74,
+                    lineNumber: 85,
                     columnNumber: 25
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
                     fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
                         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 76,
+                        lineNumber: 87,
                         columnNumber: 45
                     }, void 0),
                     children: isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SunIcon, {
                         className: "h-6 w-6 transition duration-300"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 78,
+                        lineNumber: 89,
                         columnNumber: 33
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MoonIcon, {
                         className: "h-6 w-6 transition duration-300"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                        lineNumber: 80,
+                        lineNumber: 91,
                         columnNumber: 33
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 76,
+                    lineNumber: 87,
                     columnNumber: 25
                 }, this)
             }, mounted ? resolvedTheme : 'placeholder', false, {
                 fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                lineNumber: 65,
+                lineNumber: 76,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ThemeSwitcher.tsx",
-            lineNumber: 64,
+            lineNumber: 75,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-        lineNumber: 49,
+        lineNumber: 56,
         columnNumber: 9
     }, this);
 }
