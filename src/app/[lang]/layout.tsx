@@ -4,6 +4,7 @@ import "../../style/globals.css"
 import {ThemeProvider} from "next-themes";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +28,10 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: 'en' | 'ru' }
 }>) {
-    const { lang } = await params
-    const dict = await getDictionary(lang);
+    const dict = await getDictionary(params.lang);
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={params.lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
