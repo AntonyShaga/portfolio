@@ -6,9 +6,9 @@ import {ElementType, JSX, ReactNode} from 'react';
 interface MotionWrapperProps extends MotionProps {
     children: ReactNode;
     as?: keyof JSX.IntrinsicElements;
-    variants?: Variants;  // Тип для variants
-    transition?: Transition;  // Тип для transition
-    className?: string;  // Тип для className
+    variants?: Variants;
+    transition?: Transition;
+    className?: string;
 }
 
 const fadeInUp: Variants = {
@@ -22,7 +22,7 @@ const defaultTransition: Transition = {
 
 const MotionWrapper = ({
                            children,
-                           variants = fadeInUp,  // Используем fadeInUp как дефолтный вариант
+                           variants = fadeInUp,
                            initial = 'initial',
                            animate = 'animate',
                            transition = defaultTransition,
