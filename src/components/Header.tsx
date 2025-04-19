@@ -14,7 +14,7 @@ const Header = () => {
     const lang = params.lang as string;
     const navItems = getNavItems(dict)
     return (
-    <header className="fixed flex justify-center top-0 left-0 right-0 z-50 transition-all duration-300">
+    <header className="fixed flex justify-center top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-6 py-4">
             <div className="flex items-center justify-between">
                 <Link href="#" className="flex items-center space-x-2">
@@ -26,7 +26,7 @@ const Header = () => {
                 <nav className="hidden md:flex gap-6 text-sm font-medium">
                     {
                         navItems.map((item, index) => (
-                            <Link  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                            <Link  className="text-sm text-gray-500 hover:text-neutral-800 dark:hover:text-white font-medium text-muted-foreground hover:text-foreground transition-colors"
                                    key={index}
                                    href={item.href}
                             >

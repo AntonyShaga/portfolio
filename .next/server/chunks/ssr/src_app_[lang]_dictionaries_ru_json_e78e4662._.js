@@ -4,6 +4,6 @@ module.exports = {
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-__turbopack_context__.v(JSON.parse("{\"home\":{\"title\":\"Добро пожаловать\",\"button\":\"Нажми меня\"},\"header\":{\"logo\":\"АШ\",\"name\":\"Антон Шага\",\"home\":\"Главная\",\"about\":\"Обо мне\",\"projects\":\"Проекты\",\"skills\":\"Навыки\",\"experience\":\"Опыт\",\"contact\":\"Контакты\"}}"));}}),
+__turbopack_context__.v(JSON.parse("{\"header\":{\"logo\":\"АШ\",\"name\":\"Антон Шага\",\"home\":\"Главная\",\"about\":\"Обо мне\",\"projects\":\"Проекты\",\"skills\":\"Навыки\",\"experience\":\"Опыт\",\"contact\":\"Контакты\"},\"hero\":{\"name\":\"Антон Шага\",\"title\":\"Фронтенд Разработчик\",\"description\":\"Создаю современные, отзывчивые и производительные веб-приложения с использованием React, Next.js и современных фронтенд-технологий.\",\"contact\":\"Связаться\",\"projects\":\"Мои проекты\"}}"));}}),
 
 };

@@ -76,11 +76,11 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
     return (
         <div
             ref={ref}
-            className="relative   border-transparent hover:border-border"
+            className="relative   border-transparent hover:border-border "
         >
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className={`flex items-center justify-between gap-2 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black min-w-[8rem] ${
+                className={`flex items-center justify-between gap-2 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black min-w-[8rem] transition-all duration-300 ${
                     isOpen ? ' cursor-default' : 'hover:bg-gray-200 cursor-pointer dark:hover:bg-neutral-800'
                 }`}
                 aria-haspopup="listbox"
