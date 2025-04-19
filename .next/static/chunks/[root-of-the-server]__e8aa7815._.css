@@ -791,28 +791,12 @@
     width: 100%;
   }
 
-  .max-w-\[200px\] {
-    max-width: 200px;
-  }
-
-  .max-w-\[400px\] {
-    max-width: 400px;
-  }
-
-  .max-w-\[500px\] {
-    max-width: 500px;
-  }
-
   .max-w-\[600px\] {
     max-width: 600px;
   }
 
   .max-w-\[700px\] {
     max-width: 700px;
-  }
-
-  .max-w-\[800px\] {
-    max-width: 800px;
   }
 
   .min-w-\[8rem\] {
@@ -1524,18 +1508,6 @@
   }
 
   @media (width >= 64rem) {
-    .lg\:grid-cols-\[1fr_500px\] {
-      grid-template-columns: 1fr 500px;
-    }
-  }
-
-  @media (width >= 64rem) {
-    .lg\:grid-cols-\[1fr_600px\] {
-      grid-template-columns: 1fr 600px;
-    }
-  }
-
-  @media (width >= 64rem) {
     .lg\:gap-12 {
       gap: calc(var(--spacing) * 12);
     }
@@ -1550,18 +1522,6 @@
   @media (width >= 80rem) {
     .xl\:grid-cols-\[1fr_600px\] {
       grid-template-columns: 1fr 600px;
-    }
-  }
-
-  @media (width >= 80rem) {
-    .xl\:grid-cols-\[1fr_700px\] {
-      grid-template-columns: 1fr 700px;
-    }
-  }
-
-  @media (width >= 80rem) {
-    .xl\:grid-cols-\[1fr_7300px\] {
-      grid-template-columns: 1fr 7300px;
     }
   }
 
