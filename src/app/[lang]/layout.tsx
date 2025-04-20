@@ -6,6 +6,10 @@ import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
 
+export async function generateStaticParams() {
+    return [{ lang: 'en' }, { lang: 'ru' }];
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,7 +32,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: 'en' | 'ru' }
 }>) {
-    const dict = await getDictionary(params.lang);
+    const dict =  await getDictionary(params.lang);
 
   return (
     <html lang={params.lang} suppressHydrationWarning>
