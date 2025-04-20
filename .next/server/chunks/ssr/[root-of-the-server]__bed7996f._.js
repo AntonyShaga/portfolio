@@ -177,8 +177,10 @@ const metadata = {
 async function RootLayout({ children }) {
     const headersList = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["headers"])();
     const langFromHeader = headersList.get('x-current-locale');
+    console.log(langFromHeader);
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];
+    console.log(lang);
     if (![
         'en',
         'ru'
@@ -200,22 +202,22 @@ async function RootLayout({ children }) {
                     children: children
                 }, void 0, false, {
                     fileName: "[project]/src/app/[lang]/layout.tsx",
-                    lineNumber: 50,
+                    lineNumber: 52,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[lang]/layout.tsx",
-                lineNumber: 49,
+                lineNumber: 51,
                 columnNumber: 7
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/[lang]/layout.tsx",
-            lineNumber: 46,
+            lineNumber: 48,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/[lang]/layout.tsx",
-        lineNumber: 45,
+        lineNumber: 47,
         columnNumber: 5
     }, this);
 }
