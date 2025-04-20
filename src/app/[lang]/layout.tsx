@@ -5,7 +5,8 @@ import {ThemeProvider} from "next-themes";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
-
+import {notFound} from "next/navigation";
+import { headers } from 'next/headers';
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'ru' }];
 }
@@ -27,15 +28,21 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-    params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  params: { lang: 'en' | 'ru' }
-}>) {
-    const dict =  await getDictionary(params.lang);
+}) {
+    const headersList =await  headers();
+    const langFromHeader = headersList.get('x-current-locale');
+    const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
+    const lang = langFromHeader || path?.split('/')[1];
+
+   /* if (!['en', 'ru'].includes(lang || '')) {
+        notFound();
+    }*/
+    const dict =  await getDictionary(lang as 'en' | 'ru');
 
   return (
-    <html lang={params.lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -14,9 +14,9 @@ type Language = {
 const languages: Language[] = [
     { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
     { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
-    { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+   /* { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
     { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
-    { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+    { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },*/
 ];
 
 export default function LanguageSwitcher({ currentLang }: { currentLang: string }) {

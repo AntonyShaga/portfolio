@@ -219,24 +219,6 @@ const languages = [
         name: 'English',
         nativeName: 'English',
         flag: '🇬🇧'
-    },
-    {
-        code: 'de',
-        name: 'German',
-        nativeName: 'Deutsch',
-        flag: '🇩🇪'
-    },
-    {
-        code: 'fr',
-        name: 'French',
-        nativeName: 'Français',
-        flag: '🇫🇷'
-    },
-    {
-        code: 'es',
-        name: 'Spanish',
-        nativeName: 'Español',
-        flag: '🇪🇸'
     }
 ];
 function LanguageSwitcher({ currentLang }) {

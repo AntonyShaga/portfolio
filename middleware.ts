@@ -13,26 +13,32 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // игнорируем public и API
     if (
         pathname.startsWith('/_next') ||
         pathname.startsWith('/api') ||
         PUBLIC_FILE.test(pathname)
     ) {
-        return;
+        return NextResponse.next();
     }
 
-    // уже содержит язык — не редиректим
-    if (locales.some((locale) => pathname.startsWith(`/${locale}`))) {
-        return;
+    // если уже есть язык в пути — ничего не делаем
+    const matchedLocale = locales.find((locale) =>
+        pathname.startsWith(`/${locale}`)
+    );
+    if (matchedLocale) {
+        // добавим заголовок, чтобы layout мог прочитать
+        const response = NextResponse.next();
+        response.headers.set('x-current-locale', matchedLocale);
+        return response;
     }
 
     const locale = getLocale(request);
-    request.nextUrl.pathname = `/${locale}${pathname}`;
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}${pathname}`;
 
-    return NextResponse.redirect(request.nextUrl);
+    return NextResponse.redirect(url);
 }
 
 export const config = {
-    matcher: ['/((?!_next|api|favicon.ico).*)'],
+    matcher: ['/((?!_next|api|favicon.ico|.*\\..*).*)'],
 };

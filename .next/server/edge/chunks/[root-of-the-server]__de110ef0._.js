@@ -41,21 +41,25 @@ function getLocale(request) {
 }
 function middleware(request) {
     const { pathname } = request.nextUrl;
-    // игнорируем public и API
     if (pathname.startsWith('/_next') || pathname.startsWith('/api') || PUBLIC_FILE.test(pathname)) {
-        return;
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
-    // уже содержит язык — не редиректим
-    if (locales.some((locale)=>pathname.startsWith(`/${locale}`))) {
-        return;
+    // если уже есть язык в пути — ничего не делаем
+    const matchedLocale = locales.find((locale)=>pathname.startsWith(`/${locale}`));
+    if (matchedLocale) {
+        // добавим заголовок, чтобы layout мог прочитать
+        const response = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
+        response.headers.set('x-current-locale', matchedLocale);
+        return response;
     }
     const locale = getLocale(request);
-    request.nextUrl.pathname = `/${locale}${pathname}`;
-    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(request.nextUrl);
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}${pathname}`;
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
 }
 const config = {
     matcher: [
-        '/((?!_next|api|favicon.ico).*)'
+        '/((?!_next|api|favicon.ico|.*\\..*).*)'
     ]
 };
 }}),
