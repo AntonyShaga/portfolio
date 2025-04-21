@@ -5,7 +5,7 @@ import {ThemeProvider} from "next-themes";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
-import {notFound} from "next/navigation";
+/*import {notFound} from "next/navigation";*/
 import { headers } from 'next/headers';
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'ru' }];
