@@ -7,7 +7,7 @@ import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
 import {notFound} from "next/navigation";
 import { headers } from 'next/headers';
-export const dynamic = 'force-dynamic'
+
 
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'ru' }];

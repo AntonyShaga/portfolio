@@ -9,17 +9,12 @@ __turbopack_context__.s({
     "default": (()=>ThemeSwitcher)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next-themes/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
 ;
 ;
-;
-var _s = __turbopack_context__.k.signature();
 'use client';
-;
 ;
 ;
 ;
@@ -80,44 +75,6 @@ const ANIMATION_PROPS = {
     }
 };
 function ThemeSwitcher() {
-    _s();
-    const { setTheme, resolvedTheme } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
-    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isAnimating, setIsAnimating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "ThemeSwitcher.useEffect": ()=>{
-            setMounted(true);
-            void Promise.all([
-                __turbopack_context__.r("[project]/src/icons/SunIcon.tsx [app-client] (ecmascript, async loader)")(__turbopack_context__.i),
-                __turbopack_context__.r("[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript, async loader)")(__turbopack_context__.i)
-            ]);
-        }
-    }["ThemeSwitcher.useEffect"], []);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "ThemeSwitcher.useEffect": ()=>{
-            let timer;
-            if (isAnimating) {
-                timer = setTimeout({
-                    "ThemeSwitcher.useEffect": ()=>setIsAnimating(false)
-                }["ThemeSwitcher.useEffect"], 300);
-            }
-            return ({
-                "ThemeSwitcher.useEffect": ()=>clearTimeout(timer)
-            })["ThemeSwitcher.useEffect"];
-        }
-    }["ThemeSwitcher.useEffect"], [
-        isAnimating
-    ]);
-    const isDark = mounted && resolvedTheme === 'dark';
-    const handleClick = ()=>{
-        if (!mounted) return;
-        setIsAnimating(true);
-        try {
-            setTheme(isDark ? 'light' : 'dark');
-        } catch (error) {
-            console.error('Theme switch failed:', error);
-        }
-    };
     const handleKeyDown = (e)=>{
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -142,42 +99,37 @@ function ThemeSwitcher() {
                 ...ANIMATION_PROPS,
                 children: !mounted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FallbackIcon, {}, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 102,
+                    lineNumber: 71,
                     columnNumber: 33
                 }, this) : isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SunIcon, {
                     className: "h-6 w-6"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 102,
+                    lineNumber: 71,
                     columnNumber: 62
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MoonIcon, {
                     className: "h-6 w-6"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                    lineNumber: 102,
+                    lineNumber: 71,
                     columnNumber: 95
                 }, this)
             }, mounted ? resolvedTheme : 'placeholder', false, {
                 fileName: "[project]/src/components/ThemeSwitcher.tsx",
-                lineNumber: 97,
+                lineNumber: 66,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/ThemeSwitcher.tsx",
-            lineNumber: 96,
+            lineNumber: 65,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ThemeSwitcher.tsx",
-        lineNumber: 77,
+        lineNumber: 46,
         columnNumber: 9
     }, this);
 }
-_s(ThemeSwitcher, "lS4rr+6fbYJzd3vSmymMYZFO3ms=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"]
-    ];
-});
 _c3 = ThemeSwitcher;
 var _c, _c1, _c2, _c3;
 __turbopack_context__.k.register(_c, "SunIcon");

@@ -139,7 +139,6 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
     "default": (()=>RootLayout),
-    "dynamic": (()=>dynamic),
     "generateStaticParams": (()=>generateStaticParams),
     "metadata": (()=>metadata)
 });
@@ -161,7 +160,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$head
 ;
 ;
 ;
-const dynamic = 'force-dynamic';
 async function generateStaticParams() {
     return [
         {

@@ -1,11 +1,18 @@
 'use client';
 
-import {useTheme} from 'next-themes';
 import {AnimatePresence, motion} from 'framer-motion';
-import {useEffect, useState} from 'react';
 import dynamic, {DynamicOptions} from 'next/dynamic';
+import {useThemeAnimation} from "@/hooks/useThemeAnimation";
 
 type DynamicIconOptions = DynamicOptions<{ className?: string }>;
+
+const FallbackIcon = () => (
+    <div
+        className="h-6 w-6 rounded-full animate-pulse bg-cover bg-center bg-[url('/icons/MoonIcon.svg')] dark:bg-[url('/icons/SunIcon.svg')]"
+        aria-hidden="true"
+    />
+);
+
 
 const SunIcon = dynamic(
     () => import('../icons/SunIcon').then((mod) => mod.default),
@@ -22,9 +29,6 @@ const MoonIcon = dynamic(() => import('../icons/MoonIcon').then((mod) => mod.def
     } as DynamicIconOptions
 ) ;
 
-const FallbackIcon = () => (
-    <div className="h-6 w-6 rounded-full animate-pulse bg-cover bg-center bg-[url('/icons/MoonIcon.svg')] dark:bg-[url('/icons/SunIcon.svg')]" />
-);
 
 const ANIMATION_PROPS = {
     initial: { opacity: 0, rotate: -90, scale: 0.7 },
@@ -34,45 +38,15 @@ const ANIMATION_PROPS = {
 };
 
 export default function ThemeSwitcher() {
-    const { setTheme, resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-        void Promise.all([
-            import('../icons/SunIcon'),
-            import('../icons/MoonIcon')
-        ]);
-    }, []);
-
-    useEffect(() => {
-        let timer: ReturnType<typeof setTimeout>;
-        if (isAnimating) {
-            timer = setTimeout(() => setIsAnimating(false), 300);
-        }
-        return () => clearTimeout(timer);
-    }, [isAnimating]);
-
-    const isDark = mounted && resolvedTheme === 'dark';
-
-    const handleClick = () => {
-        if (!mounted) return;
-        setIsAnimating(true);
-        try {
-            setTheme(isDark ? 'light' : 'dark');
-        } catch (error) {
-            console.error('Theme switch failed:', error);
-        }
-    };
+const {mounted,isDark,isAnimating,toggleTheme, resolvedTheme} = useThemeAnimation()
 
     const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            handleClick();
+            toggleTheme();
         }
     };
-
     return (
         <button
             type="button"
@@ -87,7 +61,7 @@ export default function ThemeSwitcher() {
             aria-live="polite"
             aria-disabled={!mounted}
             tabIndex={!mounted ? -1 : 0}
-            onClick={!mounted ? undefined : handleClick}
+            onClick={!mounted ? undefined : toggleTheme}
             onKeyDown={handleKeyDown}
             className={`h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${
                 isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
@@ -95,7 +69,7 @@ export default function ThemeSwitcher() {
         >
             <AnimatePresence mode="wait" initial={false}>
                 <motion.span
-                    key={mounted ? resolvedTheme : 'placeholder'}
+                    key={resolvedTheme}
                     suppressHydrationWarning
                     {...ANIMATION_PROPS}
                 >
