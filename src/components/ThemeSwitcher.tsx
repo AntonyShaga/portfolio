@@ -13,7 +13,6 @@ const FallbackIcon = () => (
     />
 );
 
-
 const SunIcon = dynamic(
     () => import('../icons/SunIcon').then((mod) => mod.default),
     {
@@ -28,7 +27,6 @@ const MoonIcon = dynamic(() => import('../icons/MoonIcon').then((mod) => mod.def
         loading: () => <FallbackIcon />,
     } as DynamicIconOptions
 ) ;
-
 
 const ANIMATION_PROPS = {
     initial: { opacity: 0, rotate: -90, scale: 0.7 },
