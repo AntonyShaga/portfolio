@@ -118,10 +118,10 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
                                     lang.code === currentLang
                                         ? 'bg-gray-200  dark:bg-neutral-800'
                                         : 'hover:bg-gray-50 text-gray-900'
-                                }`} key={lang.code}>
+                                }`} onClick={() => handleChange(lang.code)}key={lang.code}>
                                     <button
                                         className={"cursor-pointer"}
-                                        onClick={() => handleChange(lang.code)}
+
                                         role="option"
                                         aria-selected={lang.code === currentLang}
 

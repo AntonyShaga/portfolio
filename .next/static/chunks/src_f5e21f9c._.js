@@ -393,9 +393,9 @@ function LanguageSwitcher({ currentLang }) {
                         tabIndex: -1,
                         children: languages.map((lang)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                 className: `flex items-center gap-2 px-2 py-2 rounded-md transition dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-800 cursor-pointer  ${lang.code === currentLang ? 'bg-gray-200  dark:bg-neutral-800' : 'hover:bg-gray-50 text-gray-900'}`,
+                                onClick: ()=>handleChange(lang.code),
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     className: "cursor-pointer",
-                                    onClick: ()=>handleChange(lang.code),
                                     role: "option",
                                     "aria-selected": lang.code === currentLang,
                                     children: [
