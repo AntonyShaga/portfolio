@@ -3,11 +3,12 @@
 import {useDictionary} from "@/app/i18n/DictionaryContext";
 import Link from "next/link";
 import MotionWrapper from "@/components/ui/MotionWrapper";
-
+import SocialLinks from "@/components/ui/SocialLinks";
 
 
 const Hero = ()=>{
     const dict = useDictionary();
+
     return(
         <section aria-label="Hero section" className="relative h-screen flex items-center justify-center overflow-hidden pt-16"  >
             <div className="container px-4 md:px-6">
@@ -25,43 +26,17 @@ const Hero = ()=>{
                             </MotionWrapper>
                         </div>
                         <MotionWrapper className="flex flex-col gap-2 min-[400px]:flex-row" transition={{delay:0.2}}>
-                            <Link href="#contact" className="flex items-center justify-center h-10 px-8 bg-neutral-900 transition-all duration-300 dark:bg-white dark:text-black text-white rounded-md dark:hover:bg-gray-200 hover:bg-neutral-700 cursor-pointer">
+                            <Link href="#contact" aria-labelledby="contact-heading" className="flex items-center justify-center h-10 px-8 bg-neutral-900 transition-all duration-300 dark:bg-white dark:text-black text-white rounded-md dark:hover:bg-gray-200 hover:bg-neutral-700 cursor-pointer">
                                 {dict.hero.contact}
+                                <h2 id="contact-heading" className="sr-only">Contact Section</h2>
                             </Link>
 
-                            <Link href="#projects" className="flex items-center justify-center h-10 px-8 border rounded-md transition-all duration-300 dark:bg-neutral-900 dark:text-white text-black dark:hover:bg-neutral-700 dark:border-neutral-700 hover:bg-gray-200 cursor-pointer" >
+                            <Link href="#projects" aria-labelledby="projects-heading" className="flex items-center justify-center h-10 px-8 border rounded-md transition-all duration-300 dark:bg-neutral-900 dark:text-white text-black dark:hover:bg-neutral-700 dark:border-neutral-700 hover:bg-gray-200 cursor-pointer" >
                                 {dict.hero.projects}
+                                <h2 id="projects-heading" className="sr-only">Projects Section</h2>
                             </Link>
                         </MotionWrapper>
-                        <MotionWrapper className="flex items-center gap-4 mt-4" transition={{delay:0.3}}>
-                            <a
-                                href="https://github.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-foreground w-2 h-4 bg-amber-500 transition-colors"
-                            >
-
-                                <span className="sr-only">GitHub</span>
-                            </a>
-                            <a
-                                href="https://linkedin.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
-                            >
-
-                                <span className="sr-only">LinkedIn</span>
-                            </a>
-                            <a
-                                href="https://twitter.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
-                            >
-
-                                <span className="sr-only">Twitter</span>
-                            </a>
-                        </MotionWrapper>
+                       <SocialLinks/>
                     </div>
                 </div>
             </div>

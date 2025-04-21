@@ -634,6 +634,10 @@
     display: inline-block;
   }
 
+  .inline-flex {
+    display: inline-flex;
+  }
+
   .table {
     display: table;
   }
@@ -1231,6 +1235,10 @@
     color: var(--color-neutral-200);
   }
 
+  .text-neutral-700 {
+    color: var(--color-neutral-700);
+  }
+
   .text-white {
     color: var(--color-white);
   }
@@ -1415,6 +1423,12 @@
   @media (hover: hover) {
     .hover\:text-neutral-800:hover {
       color: var(--color-neutral-800);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:text-red-500:hover {
+      color: var(--color-red-500);
     }
   }
 
