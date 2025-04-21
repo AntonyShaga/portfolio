@@ -5,8 +5,10 @@ import {ThemeProvider} from "next-themes";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
-/*import {notFound} from "next/navigation";*/
+import {notFound} from "next/navigation";
 import { headers } from 'next/headers';
+export const dynamic = 'force-dynamic'
+
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'ru' }];
 }
@@ -37,9 +39,9 @@ export default async function RootLayout({
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];
     console.log(lang)
-    /*if (!['en', 'ru'].includes(lang || '')) {
+    if (['en', 'ru'].includes(lang || '')) {
         notFound();
-    }*/
+    }
 
     const dict =  await getDictionary(lang as 'en' | 'ru');
 

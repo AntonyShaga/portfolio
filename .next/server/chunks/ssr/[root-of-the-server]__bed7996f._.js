@@ -139,6 +139,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
     "default": (()=>RootLayout),
+    "dynamic": (()=>dynamic),
     "generateStaticParams": (()=>generateStaticParams),
     "metadata": (()=>metadata)
 });
@@ -160,6 +161,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$head
 ;
 ;
 ;
+const dynamic = 'force-dynamic';
 async function generateStaticParams() {
     return [
         {
@@ -181,7 +183,7 @@ async function RootLayout({ children }) {
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];
     console.log(lang);
-    if (![
+    if ([
         'en',
         'ru'
     ].includes(lang || '')) {
@@ -202,22 +204,22 @@ async function RootLayout({ children }) {
                     children: children
                 }, void 0, false, {
                     fileName: "[project]/src/app/[lang]/layout.tsx",
-                    lineNumber: 52,
+                    lineNumber: 54,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[lang]/layout.tsx",
-                lineNumber: 51,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/[lang]/layout.tsx",
-            lineNumber: 48,
+            lineNumber: 50,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/[lang]/layout.tsx",
-        lineNumber: 47,
+        lineNumber: 49,
         columnNumber: 5
     }, this);
 }

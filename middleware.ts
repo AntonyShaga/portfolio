@@ -6,6 +6,7 @@ const defaultLocale = 'en';
 
 function getLocale(request: NextRequest): string {
     const acceptLanguage = request.headers.get('accept-language');
+    console.log(acceptLanguage)
     const lang = acceptLanguage?.split(',')?.[0]?.split('-')[0];
     return locales.includes(lang || '') ? lang! : defaultLocale;
 }
@@ -35,7 +36,7 @@ export function middleware(request: NextRequest) {
     const locale = getLocale(request);
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
-
+    console.log('[middleware] redirecting to:', url.pathname);
     return NextResponse.redirect(url);
 }
 

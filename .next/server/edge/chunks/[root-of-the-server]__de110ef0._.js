@@ -36,6 +36,7 @@ const locales = [
 const defaultLocale = 'en';
 function getLocale(request) {
     const acceptLanguage = request.headers.get('accept-language');
+    console.log(acceptLanguage);
     const lang = acceptLanguage?.split(',')?.[0]?.split('-')[0];
     return locales.includes(lang || '') ? lang : defaultLocale;
 }
@@ -55,6 +56,7 @@ function middleware(request) {
     const locale = getLocale(request);
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
+    console.log('[middleware] redirecting to:', url.pathname);
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
 }
 const config = {
