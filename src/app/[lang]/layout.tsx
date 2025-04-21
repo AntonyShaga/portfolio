@@ -37,9 +37,9 @@ export default async function RootLayout({
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];
     console.log(lang)
-    if (!['en', 'ru'].includes(lang || '')) {
+    /*if (!['en', 'ru'].includes(lang || '')) {
         notFound();
-    }
+    }*/
 
     const dict =  await getDictionary(lang as 'en' | 'ru');
 
