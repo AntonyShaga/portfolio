@@ -28,6 +28,7 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$api$2f$server$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/node_modules/next/dist/esm/api/server.js [middleware-edge] (ecmascript) <module evaluation>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/esm/server/web/spec-extension/response.js [middleware-edge] (ecmascript)");
 ;
+console.log('sd');
 const PUBLIC_FILE = /\.(.*)$/;
 const locales = [
     'en',
@@ -35,33 +36,32 @@ const locales = [
 ];
 const defaultLocale = 'en';
 function getLocale(request) {
+    console.log('sd');
     const acceptLanguage = request.headers.get('accept-language');
-    console.log(acceptLanguage);
     const lang = acceptLanguage?.split(',')?.[0]?.split('-')[0];
     return locales.includes(lang || '') ? lang : defaultLocale;
 }
 function middleware(request) {
+    console.log('Middleware running for:', request.nextUrl.pathname);
     const { pathname } = request.nextUrl;
+    console.log('sd');
+    // игнорируем public и API
     if (pathname.startsWith('/_next') || pathname.startsWith('/api') || PUBLIC_FILE.test(pathname)) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
+        return;
     }
-    // если уже есть язык в пути — ничего не делаем
-    const matchedLocale = locales.find((locale)=>pathname.startsWith(`/${locale}`));
-    if (matchedLocale) {
-        // добавим заголовок, чтобы layout мог прочитать
-        const response = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
-        response.headers.set('x-current-locale', matchedLocale);
-        return response;
+    // уже содержит язык — не редиректим
+    if (locales.some((locale)=>pathname.startsWith(`/${locale}`))) {
+        console.log('sd');
+        return;
     }
+    console.log('sd');
     const locale = getLocale(request);
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}${pathname}`;
-    console.log('[middleware] redirecting to:', url.pathname);
-    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(request.nextUrl);
 }
 const config = {
     matcher: [
-        '/((?!_next|api|favicon.ico|.*\\..*).*)'
+        '/((?!_next|api|favicon.ico).*)'
     ]
 };
 }}),

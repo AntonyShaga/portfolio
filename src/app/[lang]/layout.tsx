@@ -35,11 +35,9 @@ export default async function RootLayout({
 }) {
     const headersList =await  headers();
     const langFromHeader = headersList.get('x-current-locale');
-    console.log(langFromHeader);
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];
-    console.log(lang)
-    if (['en', 'ru'].includes(lang || '')) {
+    if (!['en', 'ru'].includes(lang || '')) {
         notFound();
     }
 
