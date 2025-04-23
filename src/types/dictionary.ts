@@ -8,6 +8,7 @@ export interface Dictionary {
         skills: string;
         experience: string;
         contact: string;
+        resume: string;
     };
     hero: {
         name: string;
@@ -19,5 +20,5 @@ export interface Dictionary {
 }
 export interface NavItem {
     name: string;
-    href: `#${string}`; // Строковый литерал для hash-ссылок
+    href: `#${string}`;
 }

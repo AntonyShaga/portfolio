@@ -3,6 +3,7 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import dynamic, {DynamicOptions} from 'next/dynamic';
 import {useThemeAnimation} from "@/hooks/useThemeAnimation";
+import Button from "@/components/ui/Button";
 
 type DynamicIconOptions = DynamicOptions<{ className?: string }>;
 
@@ -46,7 +47,7 @@ const {mounted,isDark,isAnimating,toggleTheme, resolvedTheme} = useThemeAnimatio
         }
     };
     return (
-        <button
+        <Button
             type="button"
             aria-label={
                 !mounted
@@ -61,9 +62,7 @@ const {mounted,isDark,isAnimating,toggleTheme, resolvedTheme} = useThemeAnimatio
             tabIndex={!mounted ? -1 : 0}
             onClick={!mounted ? undefined : toggleTheme}
             onKeyDown={handleKeyDown}
-            className={`h-8 w-8 flex items-center justify-center rounded-full p-2 transition-colors duration-300 ${
-                isAnimating ? '' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
-            } `}
+            active={isAnimating}
         >
             <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -74,6 +73,6 @@ const {mounted,isDark,isAnimating,toggleTheme, resolvedTheme} = useThemeAnimatio
                     {!mounted ? <FallbackIcon /> : (isDark ? <SunIcon className="h-6 w-6"/> : <MoonIcon className="h-6 w-6"/>)}
                 </motion.span>
             </AnimatePresence>
-        </button>
+        </Button>
     );
 }
