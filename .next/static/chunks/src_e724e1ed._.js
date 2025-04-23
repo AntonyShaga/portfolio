@@ -923,7 +923,11 @@ function DownloadResumeButton() {
     }["DownloadResumeButton.useMemo[locale]"], [
         pathname
     ]);
-    const fileName = locale === 'ru' ? '/resume/Anton-Resume-ru.pdf' : '/resume/Anton-Resume-en.pdf';
+    const fileNames = {
+        en: '/resume/Anton-Resume-en.pdf',
+        ru: '/resume/Anton-Resume-ru.pdf'
+    };
+    const fileName = fileNames[locale] || fileNames.en;
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const handleDownload = async ()=>{
         if (loading) return;
@@ -941,18 +945,16 @@ function DownloadResumeButton() {
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
-            // Немного подождать перед success (чтобы не моргало)
-            setTimeout(()=>{
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(dict.toast.success, {
-                    id: toastId
-                });
-            }, 700);
+            await new Promise((resolve)=>setTimeout(resolve, 700));
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(dict.toast.success, {
+                id: toastId
+            });
         } catch (error) {
-            setTimeout(()=>{
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(dict.toast.error, {
-                    id: toastId
-                });
-            }, 500);
+            await new Promise((resolve)=>setTimeout(resolve, 500));
+            const errorMessage = error instanceof Error ? error.message : dict.toast.downloadError;
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(errorMessage, {
+                id: toastId
+            });
         } finally{
             setLoading(false);
         }
@@ -960,10 +962,11 @@ function DownloadResumeButton() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
         onClick: handleDownload,
         variant: "danger",
+        disabled: loading,
         children: dict.header.resume
     }, void 0, false, {
         fileName: "[project]/src/components/DownloadResumeButton.tsx",
-        lineNumber: 62,
+        lineNumber: 59,
         columnNumber: 9
     }, this);
 }

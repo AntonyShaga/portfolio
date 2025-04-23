@@ -1,12 +1,10 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import {useMemo, useState} from 'react';
+import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import Button from "@/components/ui/Button";
-import {useDictionary} from "@/app/i18n/DictionaryContext";
-
-
+import { useDictionary } from "@/app/i18n/DictionaryContext";
 
 export default function DownloadResumeButton() {
     const pathname = usePathname();
@@ -17,9 +15,12 @@ export default function DownloadResumeButton() {
         return parts[1] || 'en';
     }, [pathname]);
 
-    const fileName = locale === 'ru'
-        ? '/resume/Anton-Resume-ru.pdf'
-        : '/resume/Anton-Resume-en.pdf';
+    const fileNames: Record<string, string> = {
+        en: '/resume/Anton-Resume-en.pdf',
+        ru: '/resume/Anton-Resume-ru.pdf',
+    };
+
+    const fileName = fileNames[locale] || fileNames.en;
 
     const [loading, setLoading] = useState(false);
 
@@ -43,25 +44,22 @@ export default function DownloadResumeButton() {
             a.remove();
             window.URL.revokeObjectURL(url);
 
-            // Немного подождать перед success (чтобы не моргало)
-            setTimeout(() => {
-                toast.success(dict.toast.success, { id: toastId });
-            }, 700);
+            await new Promise(resolve => setTimeout(resolve, 700));
+            toast.success(dict.toast.success, { id: toastId });
         } catch (error) {
-            setTimeout(() => {
-                toast.error(dict.toast.error, { id: toastId });
-            }, 500);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            const errorMessage = error instanceof Error ? error.message : dict.toast.downloadError;
+            toast.error(errorMessage, { id: toastId });
         } finally {
             setLoading(false);
         }
     };
 
-
-
     return (
         <Button
             onClick={handleDownload}
             variant="danger"
+            disabled={loading}
         >
             {dict.header.resume}
         </Button>
