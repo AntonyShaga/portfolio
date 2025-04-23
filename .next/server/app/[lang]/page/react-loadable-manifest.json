@@ -3,14 +3,14 @@
     "id": "[project]/src/icons/MoonIcon.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [
       "static/chunks/src_icons_MoonIcon_tsx_94b33e47._.js",
-      "static/chunks/src_icons_MoonIcon_tsx_bebf2e89._.js"
+      "static/chunks/src_icons_MoonIcon_tsx_0ff0e283._.js"
     ]
   },
   "[project]/src/icons/SunIcon.tsx [app-client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/src/icons/SunIcon.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [
       "static/chunks/src_icons_SunIcon_tsx_539a9f94._.js",
-      "static/chunks/src_icons_SunIcon_tsx_bebf2e89._.js"
+      "static/chunks/src_icons_SunIcon_tsx_0ff0e283._.js"
     ]
   }
 }

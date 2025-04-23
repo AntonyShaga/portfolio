@@ -7,7 +7,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import Nav from "@/components/Header/Nav";
 import {useDictionary} from "@/app/i18n/DictionaryContext";
-import Button from "@/components/ui/Button";
+import DownloadResumeButton from "@/components/DownloadResumeButton";
 
 const Header = () => {
     const dict = useDictionary();
@@ -23,8 +23,8 @@ const Header = () => {
         >
             <div className="container mx-auto px-4 md:px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <Link href={`/${lang}`} aria-label="Homepage" className="flex items-center space-x-2 transition-all duration-300">
-                        <span className="h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center transition-all duration-300">
+                    <Link href={`/${lang}`} aria-label="Homepage" className="flex items-center space-x-2 ">
+                        <span className="h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center ">
                           <span className="font-bold">{dict.header.logo}</span>
                         </span>
                         <span className="font-bold text-lg">{dict.header.name}</span>
@@ -35,11 +35,9 @@ const Header = () => {
                     <div className="flex items-center gap-3">
                         <LanguageSwitcher currentLang={lang} />
                         <ThemeSwitcher />
-                        <Button
-                            variant={"danger"}
-                        >
+                        <DownloadResumeButton>
                             {dict.header.resume}
-                        </Button>
+                        </DownloadResumeButton>
                     </div>
                 </div>
             </div>

@@ -139,40 +139,46 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$buttonStyles$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$url$2d$parse$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/url-parse/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
 ;
 ;
 ;
-;
 function Button({ children, className, variant = 'default', size = 'md', isLoading = false, leftIcon, rightIcon, active = false, asChild = false, href, target, rel, ...props }) {
+    _s();
     const buttonClasses = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$buttonStyles$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getButtonClasses"])({
         variant,
         size,
-        active,
-        className
+        active
     });
     const isDisabled = 'disabled' in props ? props.disabled || false : false;
-    const linkRel = target === '_blank' ? 'noopener noreferrer' : rel;
-    // Безопасный парсинг URL с url-parse
-    if (href && !asChild && typeof href === 'string') {
-        try {
-            const parsedUrl = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$url$2d$parse$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](href, window?.location?.origin || 'http://localhost');
-            if (parsedUrl.protocol && parsedUrl.host) {
-                const isInsecure = parsedUrl.protocol === 'http:';
-                const isLocal = [
-                    'localhost',
-                    '127.0.0.1'
-                ].includes(parsedUrl.hostname);
-                if (isInsecure && !isLocal && ("TURBOPACK compile-time value", "development") === 'development') {
-                    console.warn(`Insecure external link detected. Please use HTTPS for production: ${href}`);
+    const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Button.useEffect": ()=>{
+            if ("object" !== 'undefined' && href && !asChild && typeof href === 'string') {
+                try {
+                    const parsedUrl = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$url$2d$parse$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"](href, window.location.origin);
+                    const isInsecure = parsedUrl.protocol === 'http:';
+                    const isLocalhost = [
+                        'localhost',
+                        '127.0.0.1'
+                    ].includes(parsedUrl.hostname);
+                    if (isInsecure && !isLocalhost && ("TURBOPACK compile-time value", "development") === 'development') {
+                        console.warn(`Insecure external link detected. Please use HTTPS in production: ${href}`);
+                    }
+                } catch (e) {
+                    console.error('Error parsing URL:', e);
                 }
             }
-        } catch (e) {
-            console.error('Error parsing URL:', e);
         }
-    }
+    }["Button.useEffect"], [
+        href,
+        asChild
+    ]);
+    // Render <a> for href unless overridden with asChild
     if (href && !asChild) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
             href: href,
@@ -189,7 +195,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: leftIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 95,
+                    lineNumber: 92,
                     columnNumber: 30
                 }, this),
                 children,
@@ -198,16 +204,17 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: rightIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 97,
+                    lineNumber: 94,
                     columnNumber: 31
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/ui/Button.tsx",
-            lineNumber: 85,
+            lineNumber: 82,
             columnNumber: 13
         }, this);
     }
+    // Support for polymorphic components via asChild
     if (asChild) {
         if (!/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isValidElement"])(children)) {
             throw new Error('Children must be a valid React element when asChild is true');
@@ -221,6 +228,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
             'aria-busy': isLoading
         });
     }
+    // Default <button> fallback
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])(buttonClasses, className),
         disabled: isDisabled || isLoading,
@@ -231,7 +239,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
             className: "animate-spin h-4 w-4 border-2 border-t-transparent border-black dark:border-white rounded-full"
         }, void 0, false, {
             fileName: "[project]/src/components/ui/Button.tsx",
-            lineNumber: 132,
+            lineNumber: 131,
             columnNumber: 17
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
@@ -240,7 +248,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: leftIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 135,
+                    lineNumber: 134,
                     columnNumber: 34
                 }, this),
                 children,
@@ -249,17 +257,18 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: rightIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 137,
+                    lineNumber: 136,
                     columnNumber: 35
                 }, this)
             ]
         }, void 0, true)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/Button.tsx",
-        lineNumber: 124,
+        lineNumber: 123,
         columnNumber: 9
     }, this);
 }
+_s(Button, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = Button;
 var _c;
 __turbopack_context__.k.register(_c, "Button");
@@ -932,10 +941,10 @@ const Header = ()=>{
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                         href: `/${lang}`,
                         "aria-label": "Homepage",
-                        className: "flex items-center space-x-2 transition-all duration-300",
+                        className: "flex items-center space-x-2 ",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center transition-all duration-300",
+                                className: "h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center ",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "font-bold",
                                     children: dict.header.logo
@@ -989,6 +998,16 @@ const Header = ()=>{
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header/Header.tsx",
                                 lineNumber: 38,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: "/path/to/file.pdf",
+                                download: "document.pdf" // Имя файла при скачивании
+                                ,
+                                children: "Скачать PDF"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Header/Header.tsx",
+                                lineNumber: 43,
                                 columnNumber: 25
                             }, this)
                         ]

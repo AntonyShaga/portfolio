@@ -1,6 +1,7 @@
 'use client';
 
 import React, {
+    useEffect,
     ButtonHTMLAttributes,
     AnchorHTMLAttributes,
     isValidElement,
@@ -28,14 +29,12 @@ type BaseProps = {
     className?: string;
 };
 
-type ButtonAsButton = BaseProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonAsButton = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & {
     href?: undefined;
     disabled?: boolean;
 };
 
-type ButtonAsLink = BaseProps &
-    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'disabled'> & {
+type ButtonAsLink = BaseProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'disabled'> & {
     href: string;
 };
 
@@ -56,30 +55,28 @@ export default function Button({
                                    rel,
                                    ...props
                                }: ButtonProps) {
-    const buttonClasses = getButtonClasses({ variant, size, active, className });
+    const buttonClasses = getButtonClasses({ variant, size, active });
+
     const isDisabled = 'disabled' in props ? props.disabled || false : false;
-    const linkRel = target === '_blank' ? 'noopener noreferrer' : rel;
+    const linkRel = target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
 
-    // Безопасный парсинг URL с url-parse
-    if (href && !asChild && typeof href === 'string') {
-        try {
-            const parsedUrl = new URLParse(href, window?.location?.origin || 'http://localhost');
-
-            if (parsedUrl.protocol && parsedUrl.host) {
+    useEffect(() => {
+        if (typeof window !== 'undefined' && href && !asChild && typeof href === 'string') {
+            try {
+                const parsedUrl = new URLParse(href, window.location.origin);
                 const isInsecure = parsedUrl.protocol === 'http:';
-                const isLocal = ['localhost', '127.0.0.1'].includes(parsedUrl.hostname);
+                const isLocalhost = ['localhost', '127.0.0.1'].includes(parsedUrl.hostname);
 
-                if (isInsecure && !isLocal && process.env.NODE_ENV === 'development') {
-                    console.warn(
-                        `Insecure external link detected. Please use HTTPS for production: ${href}`
-                    );
+                if (isInsecure && !isLocalhost && process.env.NODE_ENV === 'development') {
+                    console.warn(`Insecure external link detected. Please use HTTPS in production: ${href}`);
                 }
+            } catch (e) {
+                console.error('Error parsing URL:', e);
             }
-        } catch (e) {
-            console.error('Error parsing URL:', e);
         }
-    }
+    }, [href, asChild]);
 
+    // Render <a> for href unless overridden with asChild
     if (href && !asChild) {
         return (
             <Link
@@ -99,6 +96,7 @@ export default function Button({
         );
     }
 
+    // Support for polymorphic components via asChild
     if (asChild) {
         if (!isValidElement(children)) {
             throw new Error('Children must be a valid React element when asChild is true');
@@ -120,6 +118,7 @@ export default function Button({
         });
     }
 
+    // Default <button> fallback
     return (
         <button
             className={cn(buttonClasses, className)}
