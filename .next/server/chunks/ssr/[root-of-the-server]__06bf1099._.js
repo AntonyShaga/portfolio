@@ -107,13 +107,7 @@ const variantStyles = {
     default: "bg-gray-100 text-black dark:bg-neutral-800 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700",
     ghost: "bg-transparent hover:bg-gray-100 dark:hover:bg-neutral-800 text-black dark:text-white",
     outline: "border border-gray-300 dark:border-neutral-700 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800",
-    danger: "bg-red-500 text-white hover:bg-red-600"
-};
-const variantStylesDark = {
-    default: "bg-neutral-800 text-white dark:bbg-gray-100 dark:text-black hover:bg-neutral-700 dark:hover:bg-gray-200",
-    ghost: "bg-transparent hover:bg-gray-100 dark:hover:bg-neutral-800 text-black dark:text-white",
-    outline: "border border-gray-300 dark:border-neutral-700 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800",
-    danger: "bg-red-500 text-white hover:bg-red-600"
+    danger: "bg-black text-white dark:bg-gray-100 dark:text-black hover:bg-neutral-700 dark:hover:bg-gray-200"
 };
 const variantStylesActive = {
     default: "bg-gray-100 text-black dark:bg-neutral-800 dark:text-white",
@@ -126,9 +120,8 @@ const sizeStyles = {
     md: "px-3 py-2 text-base",
     lg: "px-4 py-3 text-lg"
 };
-function getButtonClasses({ variant = "default", isDark = false, size = "md", active = false, className = "" }) {
-    const is = isDark ? variantStylesDark[variant] : variantStyles[variant];
-    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(baseStyles, active ? variantStylesActive[variant] : is, sizeStyles[size], className);
+function getButtonClasses({ variant = "default", size = "md", active = false, className = "" }) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(baseStyles, active ? variantStylesActive[variant] : variantStyles[variant], sizeStyles[size], className);
 }
 }}),
 "[project]/src/components/ui/Button.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
@@ -144,28 +137,50 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$buttonStyles$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/buttonStyles.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$url$2d$parse$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/url-parse/index.js [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
 ;
 ;
-function Button({ children, className, variant = 'default', size = 'md', isLoading = false, disabled, leftIcon, rightIcon, active = false, asChild = false, href, target, rel, isDark = false, ...props }) {
+;
+function Button({ children, className, variant = 'default', size = 'md', isLoading = false, leftIcon, rightIcon, active = false, asChild = false, href, target, rel, ...props }) {
     const buttonClasses = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$buttonStyles$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getButtonClasses"])({
         variant,
         size,
         active,
-        className,
-        isDark
+        className
     });
-    if (asChild && href) {
+    const isDisabled = 'disabled' in props ? props.disabled || false : false;
+    const linkRel = target === '_blank' ? 'noopener noreferrer' : rel;
+    // Безопасный парсинг URL с url-parse
+    if (href && !asChild && typeof href === 'string') {
+        try {
+            const parsedUrl = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$url$2d$parse$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"](href, window?.location?.origin || 'http://localhost');
+            if (parsedUrl.protocol && parsedUrl.host) {
+                const isInsecure = parsedUrl.protocol === 'http:';
+                const isLocal = [
+                    'localhost',
+                    '127.0.0.1'
+                ].includes(parsedUrl.hostname);
+                if (isInsecure && !isLocal && ("TURBOPACK compile-time value", "development") === 'development') {
+                    console.warn(`Insecure external link detected. Please use HTTPS for production: ${href}`);
+                }
+            }
+        } catch (e) {
+            console.error('Error parsing URL:', e);
+        }
+    }
+    if (href && !asChild) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             href: href,
             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(buttonClasses, className),
             target: target,
-            rel: rel,
-            "aria-disabled": disabled || isLoading,
+            rel: linkRel,
+            "aria-disabled": isDisabled || isLoading,
             "aria-busy": isLoading,
+            tabIndex: isDisabled || isLoading ? -1 : undefined,
             ...props,
             children: [
                 leftIcon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -173,7 +188,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: leftIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 54,
+                    lineNumber: 95,
                     columnNumber: 30
                 }, this),
                 children,
@@ -182,13 +197,13 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: rightIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 56,
+                    lineNumber: 97,
                     columnNumber: 31
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/ui/Button.tsx",
-            lineNumber: 45,
+            lineNumber: 85,
             columnNumber: 13
         }, this);
     }
@@ -200,22 +215,22 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
         return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(child, {
             ...props,
             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(buttonClasses, child.props.className),
-            disabled: disabled || isLoading,
-            'aria-disabled': disabled || isLoading,
+            disabled: isDisabled || isLoading,
+            'aria-disabled': isDisabled || isLoading,
             'aria-busy': isLoading
         });
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-        className: buttonClasses,
-        disabled: disabled || isLoading,
-        "aria-disabled": disabled || isLoading,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(buttonClasses, className),
+        disabled: isDisabled || isLoading,
+        "aria-disabled": isDisabled || isLoading,
         "aria-busy": isLoading,
         ...props,
         children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
             className: "animate-spin h-4 w-4 border-2 border-t-transparent border-black dark:border-white rounded-full"
         }, void 0, false, {
             fileName: "[project]/src/components/ui/Button.tsx",
-            lineNumber: 86,
+            lineNumber: 132,
             columnNumber: 17
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
@@ -224,7 +239,7 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: leftIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 89,
+                    lineNumber: 135,
                     columnNumber: 34
                 }, this),
                 children,
@@ -233,14 +248,14 @@ function Button({ children, className, variant = 'default', size = 'md', isLoadi
                     children: rightIcon
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/Button.tsx",
-                    lineNumber: 91,
+                    lineNumber: 137,
                     columnNumber: 35
                 }, this)
             ]
         }, void 0, true)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/Button.tsx",
-        lineNumber: 78,
+        lineNumber: 124,
         columnNumber: 9
     }, this);
 }
@@ -822,11 +837,12 @@ const Header = ()=>{
                 className: "flex items-center justify-between",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                        href: "#",
-                        className: "flex items-center space-x-2",
+                        href: `/${lang}`,
+                        "aria-label": "Homepage",
+                        className: "flex items-center space-x-2 transition-all duration-300",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center",
+                                className: "h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center transition-all duration-300",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "font-bold",
                                     children: dict.header.logo
@@ -875,7 +891,7 @@ const Header = ()=>{
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                isDark: true,
+                                variant: "danger",
                                 children: dict.header.resume
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header/Header.tsx",
@@ -1190,7 +1206,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$i18n$2f$Dictio
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/MotionWrapper.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$SocialLinks$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/SocialLinks.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/Button.tsx [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -1212,35 +1230,29 @@ const Hero = ()=>{
                             className: "space-y-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    as: "h1",
                                     className: "max-w-[700px] w-full text-muted-foreground md:text-xl",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "text-3xl font-bold w-full flex flex-col tracking-tighter sm:text-5xl xl:text-6xl/none",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: 'flex ',
-                                                children: dict.hero.name
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 20,
-                                                columnNumber: 37
-                                            }, this),
+                                            dict.hero.name,
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "flex",
                                                 children: dict.hero.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 21,
+                                                lineNumber: 22,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 19,
+                                        lineNumber: 20,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Hero.tsx",
-                                    lineNumber: 18,
+                                    lineNumber: 19,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1252,13 +1264,13 @@ const Hero = ()=>{
                                     children: dict.hero.description
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Hero.tsx",
-                                    lineNumber: 24,
+                                    lineNumber: 25,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Hero.tsx",
-                            lineNumber: 17,
+                            lineNumber: 18,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1267,78 +1279,93 @@ const Hero = ()=>{
                                 delay: 0.2
                             },
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "#contact",
-                                    "aria-labelledby": "contact-heading",
-                                    className: "flex items-center justify-center h-10 px-8 bg-neutral-900 transition-all duration-300 dark:bg-white dark:text-black text-white rounded-md dark:hover:bg-gray-200 hover:bg-neutral-700 cursor-pointer",
-                                    children: [
-                                        dict.hero.contact,
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            id: "contact-heading",
-                                            className: "sr-only",
-                                            children: "Contact Section"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/Hero.tsx",
-                                            lineNumber: 31,
-                                            columnNumber: 33
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    className: 'h-10 px-8 transition-all duration-300',
+                                    asChild: true,
+                                    variant: "danger",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "#contact",
+                                        "aria-labelledby": "contact-heading",
+                                        children: [
+                                            dict.hero.contact,
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                id: "contact-heading",
+                                                className: "sr-only",
+                                                children: "Contact Section"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Hero.tsx",
+                                                lineNumber: 33,
+                                                columnNumber: 37
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/Hero.tsx",
+                                        lineNumber: 31,
+                                        columnNumber: 33
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/src/components/Hero.tsx",
-                                    lineNumber: 29,
+                                    lineNumber: 30,
                                     columnNumber: 29
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "#projects",
-                                    "aria-labelledby": "projects-heading",
-                                    className: "flex items-center justify-center h-10 px-8 border rounded-md transition-all duration-300 dark:bg-neutral-900 dark:text-white text-black dark:hover:bg-neutral-700 dark:border-neutral-700 hover:bg-gray-200 cursor-pointer",
-                                    children: [
-                                        dict.hero.projects,
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            id: "projects-heading",
-                                            className: "sr-only",
-                                            children: "Projects Section"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/Hero.tsx",
-                                            lineNumber: 36,
-                                            columnNumber: 33
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    asChild: true,
+                                    className: 'h-10 px-8 transition-all duration-300',
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "#projects",
+                                        "aria-labelledby": "projects-heading",
+                                        children: [
+                                            dict.hero.projects,
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                id: "projects-heading",
+                                                className: "sr-only",
+                                                children: "Projects Section"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Hero.tsx",
+                                                lineNumber: 39,
+                                                columnNumber: 37
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/Hero.tsx",
+                                        lineNumber: 37,
+                                        columnNumber: 33
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/src/components/Hero.tsx",
-                                    lineNumber: 34,
+                                    lineNumber: 36,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Hero.tsx",
-                            lineNumber: 28,
+                            lineNumber: 29,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$SocialLinks$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/src/components/Hero.tsx",
-                            lineNumber: 39,
+                            lineNumber: 43,
                             columnNumber: 24
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Hero.tsx",
-                    lineNumber: 16,
+                    lineNumber: 17,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Hero.tsx",
-                lineNumber: 15,
+                lineNumber: 16,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/Hero.tsx",
-            lineNumber: 14,
+            lineNumber: 15,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Hero.tsx",
-        lineNumber: 13,
+        lineNumber: 14,
         columnNumber: 9
     }, this);
 };

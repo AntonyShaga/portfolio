@@ -23,8 +23,8 @@ const Header = () => {
         >
             <div className="container mx-auto px-4 md:px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <Link href="#" className="flex items-center space-x-2">
-                        <span className="h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center">
+                    <Link href={`/${lang}`} aria-label="Homepage" className="flex items-center space-x-2 transition-all duration-300">
+                        <span className="h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center transition-all duration-300">
                           <span className="font-bold">{dict.header.logo}</span>
                         </span>
                         <span className="font-bold text-lg">{dict.header.name}</span>
@@ -36,7 +36,7 @@ const Header = () => {
                         <LanguageSwitcher currentLang={lang} />
                         <ThemeSwitcher />
                         <Button
-                            isDark={true}
+                            variant={"danger"}
                         >
                             {dict.header.resume}
                         </Button>

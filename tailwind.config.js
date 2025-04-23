@@ -7,8 +7,8 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                background: "rgb(var(--background))",
-                foreground: "rgb(var(--foreground))",
+                background: "rgb(var(--background) / <alpha-value>)",
+                foreground: "rgb(var(--foreground) / <alpha-value>)",
             },
             fontFamily: {
                 sans: ["var(--font-sans)", "Arial", "sans-serif"],

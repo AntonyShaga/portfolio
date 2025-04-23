@@ -11,18 +11,10 @@ const variantStyles: Record<Variant, string> = {
         "bg-transparent hover:bg-gray-100 dark:hover:bg-neutral-800 text-black dark:text-white",
     outline:
         "border border-gray-300 dark:border-neutral-700 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800",
-    danger: "bg-red-500 text-white hover:bg-red-600",
+    danger:
+        "bg-black text-white dark:bg-gray-100 dark:text-black hover:bg-neutral-700 dark:hover:bg-gray-200",
 };
 
-const variantStylesDark: Record<Variant, string> = {
-    default:
-        "bg-neutral-800 text-white dark:bbg-gray-100 dark:text-black hover:bg-neutral-700 dark:hover:bg-gray-200",
-    ghost:
-        "bg-transparent hover:bg-gray-100 dark:hover:bg-neutral-800 text-black dark:text-white",
-    outline:
-        "border border-gray-300 dark:border-neutral-700 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800",
-    danger: "bg-red-500 text-white hover:bg-red-600",
-};
 
 const variantStylesActive: Record<Variant, string> = {
     default: "bg-gray-100 text-black dark:bg-neutral-800 dark:text-white",
@@ -39,22 +31,19 @@ const sizeStyles: Record<Size, string> = {
 
 export function getButtonClasses({
                                      variant = "default",
-                                     isDark = false,
                                      size = "md",
                                      active = false,
                                      className = "",
                                  }: {
     variant?: Variant;
-    isDark?: boolean;
     size?: Size;
     active?: boolean;
     className?: string;
 }) {
-    const  is = isDark ? variantStylesDark[variant] : variantStyles[variant]
 
     return cn(
         baseStyles,
-        active ? variantStylesActive[variant] : is,
+        active ? variantStylesActive[variant] : variantStyles[variant],
         sizeStyles[size],
         className
     );

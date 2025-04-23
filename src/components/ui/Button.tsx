@@ -1,25 +1,45 @@
 'use client';
 
-import React, {ButtonHTMLAttributes, isValidElement, ReactElement, ReactNode,} from 'react';
-import {getButtonClasses} from '@/lib/buttonStyles';
-import type {Size, Variant} from '@/types/button';
-import {cn} from '@/lib/utils';
-import Link from 'next/link';
+import React, {
+    ButtonHTMLAttributes,
+    AnchorHTMLAttributes,
+    isValidElement,
+    ReactElement,
+    ReactNode,
+} from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+import { getButtonClasses } from '@/lib/buttonStyles';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { Variant } from "@/types/button";
+import URLParse from "url-parse";
+
+type BaseProps = {
     children: ReactNode;
     variant?: Variant;
-    size?: Size;
+    size?: 'sm' | 'md' | 'lg';
     isLoading?: boolean;
     leftIcon?: ReactNode;
     rightIcon?: ReactNode;
     active?: boolean;
     asChild?: boolean;
-    href?: string;
     target?: string;
     rel?: string;
-    isDark?: boolean;
-}
+    className?: string;
+};
+
+type ButtonAsButton = BaseProps &
+    ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
+    disabled?: boolean;
+};
+
+type ButtonAsLink = BaseProps &
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'disabled'> & {
+    href: string;
+};
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export default function Button({
                                    children,
@@ -27,7 +47,6 @@ export default function Button({
                                    variant = 'default',
                                    size = 'md',
                                    isLoading = false,
-                                   disabled,
                                    leftIcon,
                                    rightIcon,
                                    active = false,
@@ -35,21 +54,43 @@ export default function Button({
                                    href,
                                    target,
                                    rel,
-                                   isDark = false,
                                    ...props
                                }: ButtonProps) {
-    const buttonClasses = getButtonClasses({ variant, size, active, className ,isDark});
+    const buttonClasses = getButtonClasses({ variant, size, active, className });
+    const isDisabled = 'disabled' in props ? props.disabled || false : false;
+    const linkRel = target === '_blank' ? 'noopener noreferrer' : rel;
 
-    if (asChild && href) {
+    // Безопасный парсинг URL с url-parse
+    if (href && !asChild && typeof href === 'string') {
+        try {
+            const parsedUrl = new URLParse(href, window?.location?.origin || 'http://localhost');
+
+            if (parsedUrl.protocol && parsedUrl.host) {
+                const isInsecure = parsedUrl.protocol === 'http:';
+                const isLocal = ['localhost', '127.0.0.1'].includes(parsedUrl.hostname);
+
+                if (isInsecure && !isLocal && process.env.NODE_ENV === 'development') {
+                    console.warn(
+                        `Insecure external link detected. Please use HTTPS for production: ${href}`
+                    );
+                }
+            }
+        } catch (e) {
+            console.error('Error parsing URL:', e);
+        }
+    }
+
+    if (href && !asChild) {
         return (
             <Link
                 href={href}
                 className={cn(buttonClasses, className)}
                 target={target}
-                rel={rel}
-                aria-disabled={disabled || isLoading}
+                rel={linkRel}
+                aria-disabled={isDisabled || isLoading}
                 aria-busy={isLoading}
-                {...props}
+                tabIndex={(isDisabled || isLoading) ? -1 : undefined}
+                {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
             >
                 {leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
                 {children}
@@ -63,24 +104,29 @@ export default function Button({
             throw new Error('Children must be a valid React element when asChild is true');
         }
 
-        const child = children as ReactElement<{ className?: string; disabled?: boolean; 'aria-disabled'?: boolean; 'aria-busy'?: boolean }>;
+        const child = children as ReactElement<{
+            className?: string;
+            disabled?: boolean;
+            'aria-disabled'?: boolean;
+            'aria-busy'?: boolean;
+        }>;
 
         return React.cloneElement(child, {
             ...props,
             className: cn(buttonClasses, child.props.className),
-            disabled: disabled || isLoading,
-            'aria-disabled': disabled || isLoading,
+            disabled: isDisabled || isLoading,
+            'aria-disabled': isDisabled || isLoading,
             'aria-busy': isLoading,
         });
     }
 
     return (
         <button
-            className={buttonClasses}
-            disabled={disabled || isLoading}
-            aria-disabled={disabled || isLoading}
+            className={cn(buttonClasses, className)}
+            disabled={isDisabled || isLoading}
+            aria-disabled={isDisabled || isLoading}
             aria-busy={isLoading}
-            {...props}
+            {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
         >
             {isLoading ? (
                 <span className="animate-spin h-4 w-4 border-2 border-t-transparent border-black dark:border-white rounded-full" />
