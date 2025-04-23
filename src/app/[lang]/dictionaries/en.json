@@ -16,5 +16,11 @@
     "description": "I build modern, responsive, and high-performance web applications using React, Next.js, and cutting-edge frontend technologies.",
     "contact": "Contact Me",
     "projects": "My Projects"
+  },
+  "toast": {
+    "loading": "Downloading resume...",
+    "success": "Resume downloaded successfully!",
+    "error": "Failed to download file. Please try again later.",
+    "downloadError": "Download error"
   }
 }

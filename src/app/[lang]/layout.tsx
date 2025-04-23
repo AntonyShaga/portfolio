@@ -6,7 +6,8 @@ import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
 import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
 import {notFound} from "next/navigation";
-import { headers } from 'next/headers';
+import {headers} from 'next/headers';
+import {Toaster} from "sonner";
 
 
 export async function generateStaticParams() {
@@ -51,6 +52,7 @@ export default async function RootLayout({
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <DictionaryProvider  dict={dict}>
               {children}
+              <Toaster />
           </DictionaryProvider>
       </ThemeProvider>
       </body>

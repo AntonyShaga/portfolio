@@ -35,9 +35,7 @@ const Header = () => {
                     <div className="flex items-center gap-3">
                         <LanguageSwitcher currentLang={lang} />
                         <ThemeSwitcher />
-                        <DownloadResumeButton>
-                            {dict.header.resume}
-                        </DownloadResumeButton>
+                        <DownloadResumeButton/>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,12 @@ export interface Dictionary {
         contact: string;
         projects: string;
     };
+    toast: {
+        loading: string
+        success: string
+        error: string
+        downloadError: string
+    }
 }
 export interface NavItem {
     name: string;
