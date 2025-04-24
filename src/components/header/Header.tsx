@@ -30,7 +30,7 @@ const Header = () => {
                         <span className="font-bold text-lg">{dict.header.name}</span>
                     </Link>
 
-                   <Nav  ariaLabel="Main navigation"/>
+                   <Nav ariaLabel={"Main navigation"}/>
 
                     <div className="flex items-center gap-3">
                         <LanguageSwitcher currentLang={lang} />
