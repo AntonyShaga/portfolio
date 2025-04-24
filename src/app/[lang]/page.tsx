@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     return [{ lang: "en" }, { lang: "ru" }];
 }
 
-export default async function Home({ params }: { params: { lang: 'en' | 'ru' } }) {
+export default async function Home() {
 
     const headersList = await headers();
     const langFromHeader = headersList.get('x-current-locale');
@@ -24,8 +24,9 @@ export default async function Home({ params }: { params: { lang: 'en' | 'ru' } }
         notFound();
     }
 
-    const dict = await getDictionary(params.lang)
+    const dict = await getDictionary(lang as 'en' | 'ru')
     console.log(dict);
+    console.log(lang);
 
   return (
     <main className="min-h-screen bg-background">
