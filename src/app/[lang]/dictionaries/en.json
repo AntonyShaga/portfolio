@@ -78,6 +78,37 @@
       }
     ]
   },
+  "projects": {
+    "sectionTitle": "Projects",
+    "projectTitle": "My Latest Work",
+    "description": "Here are some of the projects I’ve worked on. Each one is unique and showcases different aspects of my skills and experience.",
+    "items": [
+      {
+        "title": "E-commerce Platform",
+        "description": "A fully-featured online store with shopping cart, checkout, and admin panel.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      },
+      {
+        "title": "Analytics Dashboard",
+        "description": "An interactive dashboard for data visualization and analysis with various charts and filters.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "TypeScript", "D3.js", "Recharts", "Material UI"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      },
+      {
+        "title": "Social Platform",
+        "description": "A platform for social interaction with profile creation, post publishing, and messaging functionality.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      }
+    ]
+  },
   "footer": {
     "copyright": "Anton Shaga. All rights reserved."
   },

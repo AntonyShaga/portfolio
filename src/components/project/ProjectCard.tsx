@@ -1,83 +1,98 @@
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 import Button from "@/components/ui/Button";
+import Link from "next/link";
+import Git from "@/icons/Git";
+import ExternalLink from "@/icons/ExternalLink";
+import {getProjectsList} from "@/lib/projectsList";
+import {useDictionary} from "@/app/i18n/DictionaryContext";
+import ProjectImage from "@/components/project/ProjectImage";
 
-const projects = [
-    {
-        title: "E-commerce Platform",
-        description: "Полнофункциональный интернет-магазин с корзиной, оформлением заказа и панелью администратора.",
-        image: "/placeholder.svg?height=400&width=600",
-        tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
-        demoUrl: "https://example.com",
-        repoUrl: "https://github.com",
-    },
-    {
-        title: "Дашборд аналитики",
-        description: "Интерактивный дашборд для визуализации и анализа данных с различными графиками и фильтрами.",
-        image: "/placeholder.svg?height=400&width=600",
-        tags: ["React", "TypeScript", "D3.js", "Recharts", "Material UI"],
-        demoUrl: "https://example.com",
-        repoUrl: "https://github.com",
-    },
-    {
-        title: "Социальная платформа",
-        description: "Платформа для общения с возможностью создания профиля, публикации постов и обмена сообщениями.",
-        image: "/placeholder.svg?height=400&width=600",
-        tags: ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
-        demoUrl: "https://example.com",
-        repoUrl: "https://github.com",
-    },
-]
 
 const ProjectCard = () => {
+    const dict = useDictionary()
+    const projects = getProjectsList(dict)
     return (
         <div className="grid gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
-                <motion.div
-                    key={index}
+                <motion.article
+                    key={`${project.title}-${index}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true, margin: "0px 0px -100px 0px" }} // Добавляем margin для раннего срабатывания
+                    transition={{
+                        duration: 0.5,
+                        delay: index * 0.05, // Уменьшаем задержку
+                        type: "spring", // Более естественная анимация
+                        stiffness: 100
+                    }}
+                    aria-labelledby={`project-${index}-title`}
                 >
-                    <div className="overflow-hidden h-full flex flex-col">
-                        <div className="aspect-video overflow-hidden">
-                            <img
-                                src={project.image || "/placeholder.svg"}
-                                alt={project.title}
+                    <div className="rounded-lg border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden h-full flex flex-col hover:shadow-md transition-shadow">
+                        <div className="aspect-video overflow-hidden relative">
+                           <ProjectImage project={project}/>
+                            {/*<Image
+                                src={project.image}
+                                alt={`Скриншот проекта ${project.title}`}
                                 width={600}
                                 height={400}
-                                className="object-cover w-full h-full transition-transform hover:scale-105"
-                            />
+                                className="object-cover w-full h-full transition-transform hover:scale-105 duration-300"
+                                placeholder="blur" // Опционально
+                                blurDataURL="data:image/svg+xml;base64,..." // Замените на base64 маленького превью
+                            />*/}
                         </div>
-                        <h2>
-                            <div>{project.title}</div>
-                            <p>{project.description}</p>
-                        </h2>
-                        <div className="flex-grow">
-                            <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-col space-y-1.5 p-6">
+                            <h3
+                                id={`project-${index}-title`}
+                                className="text-2xl font-semibold leading-none tracking-tight"
+                            >
+                                {project.title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        <div className="p-6 pt-0 flex-grow">
+                            <ul className="flex flex-wrap gap-2" aria-label="Технологии">
                                 {project.tags.map((tag) => (
-                                    <div key={tag} >
-                                        {tag}
-                                    </div>
+                                    <li key={tag}>
+                    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                      {tag}
+                    </span>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
                         </div>
-                        <div className="flex justify-between">
-                            <Button variant="outline" size="sm" asChild>
-                                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                                    {/*<Github className="mr-2 h-4 w-4" />*/}
+
+                        <div className="items-center p-6 pt-0 flex justify-between gap-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="flex-1"
+                                aria-label={`Посмотреть код проекта ${project.title}`}
+                            >
+                                <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                                    <Git className="w-4 h-4 mr-2" />
                                     Код
-                                </a>
+                                </Link>
                             </Button>
-                            <Button size="sm" asChild>
-                                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                  {/*  <ExternalLink className="mr-2 h-4 w-4" />*/}
+
+                            <Button
+                                size="sm"
+                                asChild
+                                variant="danger"
+                                className="flex-1"
+                                aria-label={`Посмотреть демо проекта ${project.title}`}
+                            >
+                                <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4 mr-2" />
                                     Демо
-                                </a>
+                                </Link>
                             </Button>
                         </div>
                     </div>
-                </motion.div>
+                </motion.article>
             ))}
         </div>
     )

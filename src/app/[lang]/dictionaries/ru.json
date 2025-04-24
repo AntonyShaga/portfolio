@@ -78,6 +78,37 @@
       }
     ]
   },
+  "projects": {
+    "sectionTitle": "Проекты",
+    "projectTitle": "Мои последние работы",
+    "description": "Вот некоторые из проектов, над которыми я работал. Каждый проект уникален и демонстрирует различные аспекты моих навыков и опыта.",
+    "items": [
+      {
+        "title": "E-commerce Platform",
+        "description": "Полнофункциональный интернет-магазин с корзиной, оформлением заказа и панелью администратора.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      },
+      {
+        "title": "Дашборд аналитики",
+        "description": "Интерактивный дашборд для визуализации и анализа данных с различными графиками и фильтрами.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "TypeScript", "D3.js", "Recharts", "Material UI"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      },
+      {
+        "title": "Социальная платформа",
+        "description": "Платформа для общения с возможностью создания профиля, публикации постов и обмена сообщениями.",
+        "image": "/placeholder.svg?height=400&width=600",
+        "tags": ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
+        "demoUrl": "https://example.com",
+        "repoUrl": "https://github.com"
+      }
+    ]
+  },
   "footer": {
     "copyright": "Антон Шага. Все права защищены."
   },

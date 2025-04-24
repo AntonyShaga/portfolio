@@ -107,16 +107,27 @@ export default function Button({
             disabled?: boolean;
             'aria-disabled'?: boolean;
             'aria-busy'?: boolean;
+            children?: ReactNode;
         }>;
 
-        return React.cloneElement(child, {
+        const cloned = React.cloneElement(child, {
             ...props,
             className: cn(buttonClasses, child.props.className),
             disabled: isDisabled || isLoading,
             'aria-disabled': isDisabled || isLoading,
             'aria-busy': isLoading,
+            children: (
+                <>
+                    {leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
+                    {child.props.children}
+                    {rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+                </>
+            ),
         });
+
+        return cloned;
     }
+
 
     // Default <button> fallback
     return (

@@ -44,6 +44,12 @@ export interface Dictionary {
         intro: string;
         items: ExperienceItem[];
     };
+    projects : {
+        sectionTitle: string;
+        projectTitle: string;
+        description: string;
+        items: ProjectItem[];
+    }
     footer: {
         copyright: string;
     };
@@ -61,7 +67,14 @@ export interface ExperienceItem {
     period: string;
     description: string[];
 }
-
+export type ProjectItem = {
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+    demoUrl: string;
+    repoUrl: string;
+};
 export interface NavItem {
     name: string;
     href: `#${string}`;
