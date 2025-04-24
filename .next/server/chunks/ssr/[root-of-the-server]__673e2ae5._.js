@@ -2193,7 +2193,9 @@ const Experience = ()=>{
     const experiences = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$experiences$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getExperiences"])(dict);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "experience",
-        className: "py-24 transition-all duration-300 ",
+        className: "py-24 transition-all duration-300",
+        "aria-labelledby": "experience-title",
+        "aria-describedby": "experience-description",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "container mx-auto px-4 md:px-6",
             children: [
@@ -2201,38 +2203,43 @@ const Experience = ()=>{
                     className: "flex flex-col items-center justify-center space-y-4 text-center",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "inline-block rounded-lg dark:bg-gray-50  bg-black text-white dark:text-black px-3 py-1 text-sm",
+                            className: "inline-block rounded-lg dark:bg-gray-50 bg-black text-white dark:text-black px-3 py-1 text-sm",
+                            id: "experience-badge",
                             children: dict.experience.sectionTitle
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/Experience.tsx",
-                            lineNumber: 17,
-                            columnNumber: 21
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "text-3xl font-bold tracking-tighter md:text-4xl",
-                            children: dict.experience.careerPathTitle
                         }, void 0, false, {
                             fileName: "[project]/src/components/Experience.tsx",
                             lineNumber: 20,
                             columnNumber: 21
                         }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                            className: "text-3xl font-bold tracking-tighter md:text-4xl",
+                            id: "experience-title",
+                            children: dict.experience.careerPathTitle
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/Experience.tsx",
+                            lineNumber: 26,
+                            columnNumber: 21
+                        }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "max-w-[700px] md:text-lg",
+                            id: "experience-description",
                             children: dict.experience.intro
                         }, void 0, false, {
                             fileName: "[project]/src/components/Experience.tsx",
-                            lineNumber: 21,
+                            lineNumber: 32,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Experience.tsx",
-                    lineNumber: 16,
+                    lineNumber: 19,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "mt-12 space-y-6",
-                    children: experiences.map((experience, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                    role: "list",
+                    "aria-label": dict.experience.sectionTitle,
+                    children: experiences.map((experience, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].article, {
                             initial: {
                                 opacity: 0,
                                 y: 20
@@ -2248,6 +2255,8 @@ const Experience = ()=>{
                                 duration: 0.5,
                                 delay: index * 0.1
                             },
+                            role: "listitem",
+                            "aria-labelledby": `exp-title-${index}`,
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "rounded-lg border shadow-sm border-gray-200",
                                 children: [
@@ -2259,11 +2268,12 @@ const Experience = ()=>{
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                            id: `exp-title-${index}`,
                                                             className: "text-2xl font-semibold leading-none tracking-tight",
                                                             children: experience.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Experience.tsx",
-                                                            lineNumber: 38,
+                                                            lineNumber: 55,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2271,32 +2281,32 @@ const Experience = ()=>{
                                                             children: experience.company
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Experience.tsx",
-                                                            lineNumber: 39,
+                                                            lineNumber: 61,
                                                             columnNumber: 45
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/Experience.tsx",
-                                                    lineNumber: 37,
+                                                    lineNumber: 54,
                                                     columnNumber: 41
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "mt-2 md:mt-0 text-sm ",
+                                                    className: "mt-2 md:mt-0 text-sm",
                                                     children: experience.period
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Experience.tsx",
-                                                    lineNumber: 41,
+                                                    lineNumber: 63,
                                                     columnNumber: 41
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Experience.tsx",
-                                            lineNumber: 36,
+                                            lineNumber: 53,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Experience.tsx",
-                                        lineNumber: 35,
+                                        lineNumber: 52,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2304,48 +2314,47 @@ const Experience = ()=>{
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                             className: "list-disc pl-5 space-y-1",
                                             children: experience.description.map((item, itemIndex)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                    className: "",
                                                     children: item
                                                 }, itemIndex, false, {
                                                     fileName: "[project]/src/components/Experience.tsx",
-                                                    lineNumber: 47,
+                                                    lineNumber: 71,
                                                     columnNumber: 45
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Experience.tsx",
-                                            lineNumber: 45,
+                                            lineNumber: 69,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Experience.tsx",
-                                        lineNumber: 44,
+                                        lineNumber: 68,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Experience.tsx",
-                                lineNumber: 34,
+                                lineNumber: 51,
                                 columnNumber: 29
                             }, this)
                         }, index, false, {
                             fileName: "[project]/src/components/Experience.tsx",
-                            lineNumber: 27,
+                            lineNumber: 42,
                             columnNumber: 25
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/Experience.tsx",
-                    lineNumber: 25,
+                    lineNumber: 40,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Experience.tsx",
-            lineNumber: 15,
+            lineNumber: 18,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Experience.tsx",
-        lineNumber: 14,
+        lineNumber: 12,
         columnNumber: 9
     }, this);
 };

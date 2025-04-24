@@ -2277,7 +2277,7 @@ const Skills = ()=>{
                             children: dict.skills.sectionTitle
                         }, void 0, false, {
                             fileName: "[project]/src/components/Skills.tsx",
-                            lineNumber: 14,
+                            lineNumber: 17,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2285,7 +2285,7 @@ const Skills = ()=>{
                             children: dict.skills.stackTitle
                         }, void 0, false, {
                             fileName: "[project]/src/components/Skills.tsx",
-                            lineNumber: 15,
+                            lineNumber: 18,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2293,13 +2293,13 @@ const Skills = ()=>{
                             children: dict.skills.description
                         }, void 0, false, {
                             fileName: "[project]/src/components/Skills.tsx",
-                            lineNumber: 16,
+                            lineNumber: 19,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Skills.tsx",
-                    lineNumber: 13,
+                    lineNumber: 16,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2312,7 +2312,7 @@ const Skills = ()=>{
                                     children: category.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Skills.tsx",
-                                    lineNumber: 23,
+                                    lineNumber: 26,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2343,7 +2343,7 @@ const Skills = ()=>{
                                                     className: "mb-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Skills.tsx",
-                                                    lineNumber: 34,
+                                                    lineNumber: 37,
                                                     columnNumber: 41
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2351,40 +2351,40 @@ const Skills = ()=>{
                                                     children: skill.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Skills.tsx",
-                                                    lineNumber: 35,
+                                                    lineNumber: 38,
                                                     columnNumber: 41
                                                 }, this)
                                             ]
                                         }, skillIndex, true, {
                                             fileName: "[project]/src/components/Skills.tsx",
-                                            lineNumber: 26,
+                                            lineNumber: 29,
                                             columnNumber: 37
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Skills.tsx",
-                                    lineNumber: 24,
+                                    lineNumber: 27,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, categoryIndex, true, {
                             fileName: "[project]/src/components/Skills.tsx",
-                            lineNumber: 22,
+                            lineNumber: 25,
                             columnNumber: 25
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/Skills.tsx",
-                    lineNumber: 20,
+                    lineNumber: 23,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Skills.tsx",
-            lineNumber: 12,
+            lineNumber: 15,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Skills.tsx",
-        lineNumber: 11,
+        lineNumber: 14,
         columnNumber: 9
     }, this);
 };
