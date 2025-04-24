@@ -7,9 +7,13 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/experience/Experience";
 import {getDictionary} from "@/app/i18n/get-dictionary";
+import type { PageProps } from "@/types";
 
+export async function generateStaticParams() {
+    return [{ lang: "en" }, { lang: "ru" }];
+}
 
-export default async function Home({ params }: { params: { lang: "en" | "ru"  } }) {
+export default async function Home({ params }: PageProps) {
     const dict = await getDictionary(params.lang)
     console.log(dict);
 
