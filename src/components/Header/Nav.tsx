@@ -13,7 +13,7 @@ const Nav = () => {
                 <Link
                     key={index}
                     href={item.href}
-                    className="text-sm text-gray-500 hover:text-neutral-800 dark:hover:text-white font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-gray-500 hover:text-neutral-800 dark:hover:text-white font-medium  transition-colors"
                 >
                     {item.name}
                 </Link>

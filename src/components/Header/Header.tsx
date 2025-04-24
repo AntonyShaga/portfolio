@@ -19,7 +19,7 @@ const Header = () => {
         <MotionWrapper as={'header'}
             initial={{ opacity: 0, y: 0 }}
             transition={{ duration: 0, ease: 'easeOut' }}
-            className="fixed flex justify-center top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+            className="fixed flex justify-center top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-sm"
         >
             <div className="container mx-auto px-4 md:px-6 py-4">
                 <div className="flex items-center justify-between">

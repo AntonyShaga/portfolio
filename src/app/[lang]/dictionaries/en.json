@@ -2,25 +2,47 @@
   "header": {
     "logo": "AS",
     "name": "Anton Shaga",
-    "home": "Home",
-    "about": "About Me",
-    "projects": "Projects",
-    "skills": "Skills",
-    "experience": "Experience",
-    "contact": "Contact",
-    "resume": "Resume"
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "projects": "Projects",
+      "skills": "Skills",
+      "experience": "Experience",
+      "contact": "Contact",
+      "resume": "Resume"
+    }
   },
   "hero": {
     "name": "Anton Shaga",
     "title": "Frontend Developer",
     "description": "I build modern, responsive, and high-performance web applications using React, Next.js, and cutting-edge frontend technologies.",
-    "contact": "Contact Me",
-    "projects": "My Projects"
+    "contactButton": "Contact me",
+    "projectsButton": "My Projects"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "headline": "Frontend Developer with 2 Years of Experience",
+    "text": "Hi! I'm Anton, a frontend developer from Mariupol. I specialize in creating modern web applications using React, Next.js, and TypeScript.",
+    "education": {
+      "title": "Education",
+      "university": "Mariupol State University",
+      "degree": "Master of Computer Science, 2018"
+    },
+    "certificates": "Certificates",
+    "story": "My journey into development started 5 years ago. Since then, I've worked on various projects — from small landing pages to large-scale enterprise applications. I strive to create intuitive, accessible, and performant interfaces."
+  },
+  "skills": {
+    "sectionTitle": "Skills",
+    "stackTitle": "Tech Stack",
+    "description": "I work with modern technologies and tools to build high-quality web applications. Here are some of the technologies I use."
+  },
+  "footer": {
+    "copyright": "Anton Shaga. All rights reserved."
   },
   "toast": {
-    "loading": "Downloading resume...",
-    "success": "Resume downloaded successfully!",
-    "error": "Failed to download file. Please try again later.",
+    "loading": "Loading resume...",
+    "success": "Resume loaded successfully!",
+    "error": "Failed to load the file. Please try again later.",
     "downloadError": "Download error"
   }
 }
