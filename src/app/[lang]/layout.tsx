@@ -34,7 +34,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-    const headersList =await  headers();
+    const headersList = await  headers();
     const langFromHeader = headersList.get('x-current-locale');
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     const lang = langFromHeader || path?.split('/')[1];

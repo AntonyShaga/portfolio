@@ -6,10 +6,12 @@ import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/experience/Experience";
+import {getDictionary} from "@/app/i18n/get-dictionary";
 
 
-
-export default async function Home() {
+export default async function Home({ params }: { params: { lang: "en" | "ru"  } }) {
+    const dict = await getDictionary(params.lang)
+    console.log(dict);
 
   return (
     <main className="min-h-screen bg-background">
@@ -19,7 +21,7 @@ export default async function Home() {
         <Project/>
         <Skills/>
         <Experience/>
-        <Footer/>
+        <Footer footer={dict.footer} />
     </main>
   );
 }
