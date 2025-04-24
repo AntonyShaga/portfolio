@@ -7,27 +7,29 @@ export type Project = {
     tags: string[];
     demoUrl: string;
     repoUrl: string;
+    buttonCode: string;
+    buttonDemo: string;
 };
 
 export const getProjectsList = (dict: Dictionary): Project[] => {
     return dict.projects.items.map((el) => ({
         title: el.title,
         description: el.description,
-        image: getProjectImage(el.image, el.title), // Используем хелпер для изображений
+        image: getProjectImage(el.image, el.title),
         tags: el.tags,
         demoUrl: el.demoUrl,
-        repoUrl: el.repoUrl
+        repoUrl: el.repoUrl,
+        buttonCode:el.buttonCode,
+        buttonDemo: el.buttonDemo,
     }));
 };
 
-// Хелпер для получения изображения или плейсхолдера
 const getProjectImage = (imagePath: string, title: string): string => {
-    // Если изображение указано и это не плейсхолдер
+
     if (imagePath && !imagePath.includes('placeholder.svg')) {
         return imagePath;
     }
 
-    // Генерируем SVG-плейсхолдер с названием проекта
     const svgTemplate = `
         <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
             <rect width="100%" height="100%" fill="#f3f4f6"/>

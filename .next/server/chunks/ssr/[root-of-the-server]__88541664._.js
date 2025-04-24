@@ -1591,16 +1591,15 @@ const getProjectsList = (dict)=>{
             image: getProjectImage(el.image, el.title),
             tags: el.tags,
             demoUrl: el.demoUrl,
-            repoUrl: el.repoUrl
+            repoUrl: el.repoUrl,
+            buttonCode: el.buttonCode,
+            buttonDemo: el.buttonDemo
         }));
 };
-// Хелпер для получения изображения или плейсхолдера
 const getProjectImage = (imagePath, title)=>{
-    // Если изображение указано и это не плейсхолдер
     if (imagePath && !imagePath.includes('placeholder.svg')) {
         return imagePath;
     }
-    // Генерируем SVG-плейсхолдер с названием проекта
     const svgTemplate = `
         <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
             <rect width="100%" height="100%" fill="#f3f4f6"/>
@@ -1727,7 +1726,7 @@ const ProjectCard = ()=>{
                                     children: project.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 35,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1735,13 +1734,13 @@ const ProjectCard = ()=>{
                                     children: project.description
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 41,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/project/ProjectCard.tsx",
-                            lineNumber: 43,
+                            lineNumber: 34,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1755,22 +1754,22 @@ const ProjectCard = ()=>{
                                             children: tag
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 50,
                                             columnNumber: 21
                                         }, this)
                                     }, tag, false, {
                                         fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 49,
                                         columnNumber: 37
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                lineNumber: 56,
+                                lineNumber: 47,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/project/ProjectCard.tsx",
-                            lineNumber: 55,
+                            lineNumber: 46,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1791,19 +1790,19 @@ const ProjectCard = ()=>{
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                                lineNumber: 76,
+                                                lineNumber: 67,
                                                 columnNumber: 37
                                             }, this),
-                                            "Код"
+                                            project.buttonCode
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 66,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 59,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1821,25 +1820,25 @@ const ProjectCard = ()=>{
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 80,
                                                 columnNumber: 37
                                             }, this),
-                                            "Демо"
+                                            project.buttonDemo
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                        lineNumber: 88,
+                                        lineNumber: 79,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/project/ProjectCard.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 72,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/project/ProjectCard.tsx",
-                            lineNumber: 67,
+                            lineNumber: 58,
                             columnNumber: 25
                         }, this)
                     ]

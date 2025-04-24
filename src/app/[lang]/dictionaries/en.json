@@ -82,6 +82,8 @@
     "sectionTitle": "Projects",
     "projectTitle": "My Latest Work",
     "description": "Here are some of the projects I’ve worked on. Each one is unique and showcases different aspects of my skills and experience.",
+    "buttonCode": "Code",
+    "buttonDemo": "Demo",
     "items": [
       {
         "title": "E-commerce Platform",
@@ -89,7 +91,9 @@
         "image": "/placeholder.svg?height=400&width=600",
         "tags": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
         "demoUrl": "https://example.com",
-        "repoUrl": "https://github.com"
+        "repoUrl": "https://github.com",
+        "buttonCode": "Code",
+        "buttonDemo": "Demo"
       },
       {
         "title": "Analytics Dashboard",
@@ -97,7 +101,9 @@
         "image": "/placeholder.svg?height=400&width=600",
         "tags": ["React", "TypeScript", "D3.js", "Recharts", "Material UI"],
         "demoUrl": "https://example.com",
-        "repoUrl": "https://github.com"
+        "repoUrl": "https://github.com",
+        "buttonCode": "Code",
+        "buttonDemo": "Demo"
       },
       {
         "title": "Social Platform",
@@ -105,7 +111,9 @@
         "image": "/placeholder.svg?height=400&width=600",
         "tags": ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
         "demoUrl": "https://example.com",
-        "repoUrl": "https://github.com"
+        "repoUrl": "https://github.com",
+        "buttonCode": "Code",
+        "buttonDemo": "Demo"
       }
     ]
   },

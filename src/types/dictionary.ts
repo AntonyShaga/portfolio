@@ -74,6 +74,8 @@ export type ProjectItem = {
     tags: string[];
     demoUrl: string;
     repoUrl: string;
+    buttonCode: string;
+    buttonDemo: string;
 };
 export interface NavItem {
     name: string;

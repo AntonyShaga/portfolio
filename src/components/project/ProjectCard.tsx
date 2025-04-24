@@ -30,15 +30,6 @@ const ProjectCard = () => {
                     <div className="rounded-lg border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden h-full flex flex-col hover:shadow-md transition-shadow">
                         <div className="aspect-video overflow-hidden relative">
                            <ProjectImage project={project}/>
-                            {/*<Image
-                                src={project.image}
-                                alt={`Скриншот проекта ${project.title}`}
-                                width={600}
-                                height={400}
-                                className="object-cover w-full h-full transition-transform hover:scale-105 duration-300"
-                                placeholder="blur" // Опционально
-                                blurDataURL="data:image/svg+xml;base64,..." // Замените на base64 маленького превью
-                            />*/}
                         </div>
                         <div className="flex flex-col space-y-1.5 p-6">
                             <h3
@@ -74,7 +65,7 @@ const ProjectCard = () => {
                             >
                                 <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer">
                                     <Git className="w-4 h-4 mr-2" />
-                                    Код
+                                    {project.buttonCode}
                                 </Link>
                             </Button>
 
@@ -87,7 +78,7 @@ const ProjectCard = () => {
                             >
                                 <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="w-4 h-4 mr-2" />
-                                    Демо
+                                    {project.buttonDemo}
                                 </Link>
                             </Button>
                         </div>
