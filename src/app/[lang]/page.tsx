@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero";
 
-import Project from "@/components/Projects";
+import Project from "@/components/project/Projects";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
