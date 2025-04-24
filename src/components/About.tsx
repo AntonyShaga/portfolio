@@ -7,8 +7,9 @@ import {useDictionary} from "@/app/i18n/DictionaryContext";
 export default function  About () {
     const dict = useDictionary();
     return (
-        <section id="about" className="py-24 dark:bg-black transition-all duration-300 bg-gray-50">
+        <section id="about" aria-labelledby="about-heading" className="py-24 dark:bg-black transition-all duration-300 bg-gray-50">
             <div className="container mx-auto px-4 md:px-6">
+                <h2 id="about-heading" className="sr-only">{dict.about.headline}</h2>
                 <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
                     <motion.div
                         className="space-y-4"

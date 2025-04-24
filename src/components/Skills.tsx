@@ -1,56 +1,22 @@
 'use client'
-import { motion } from "framer-motion"
-import {
-    SiCss3, SiGit, SiGithub,
-    SiHtml5,
-    SiJavascript, SiJest,
-    SiNextdotjs, SiNpm,
-    SiReact,
-    SiRedux, SiStorybook,
-    SiTailwindcss, SiTestinglibrary,
-    SiTypescript, SiVite, SiWebpack
-} from "react-icons/si";
+import {motion} from "framer-motion"
 import {useDictionary} from "@/app/i18n/DictionaryContext";
-
-const skillCategories = [
-    {
-        title: "Основные технологии",
-        skills: [
-            { name: "React", icon: SiReact, color: "#61DAFB" },
-            { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-            { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-            { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-            { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-            { name: "CSS3", icon: SiCss3, color: "#1572B6" },
-            { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-            { name: "Redux", icon: SiRedux, color: "#764ABC" },
-        ],
-    },
-    {
-        title: "Инструменты и рабочий процесс",
-        skills: [
-            { name: "Git", icon: SiGit, color: "#F05032" },
-            { name: "GitHub", icon: SiGithub, color: "#181717" },
-            { name: "npm", icon: SiNpm, color: "#CB3837" },
-            { name: "Webpack", icon: SiWebpack, color: "#8DD6F9" },
-            { name: "Vite", icon: SiVite, color: "#646CFF" },
-            { name: "Jest", icon: SiJest, color: "#C21325" },
-            { name: "Testing Library", icon: SiTestinglibrary, color: "#E33332" },
-            { name: "Storybook", icon: SiStorybook, color: "#FF4785" },
-        ],
-    },
-]
+import {getSkillCategories} from "@/lib/skillCategories";
 
 
 const Skills = () => {
+
     const dict = useDictionary()
+
+    const skillCategories = getSkillCategories(dict)
+
     return (
-        <section id="skills" className="py-24  dark:bg-black  bg-gray-50 ">
+        <section id="skills" className="py-24  dark:bg-black transition-all duration-300   bg-gray-50 ">
             <div className="container mx-auto px-4 md:px-6 ">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="inline-block rounded-lg px-3 py-1 text-sm  dark:bg-gray-50  bg-black text-white dark:text-black">{dict.skills.sectionTitle}</div>
                     <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">{dict.skills.stackTitle}</h2>
-                    <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                    <p className="max-w-[700px]  md:text-lg">
                         {dict.skills.description}
                     </p>
                 </div>

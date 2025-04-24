@@ -34,7 +34,49 @@
   "skills": {
     "sectionTitle": "Skills",
     "stackTitle": "Tech Stack",
-    "description": "I work with modern technologies and tools to build high-quality web applications. Here are some of the technologies I use."
+    "description": "I work with modern technologies and tools to build high-quality web applications. Here are some of the technologies I use.",
+    "technology": "Core Technologies",
+    "tools": "Tools and Workflow"
+  },
+  "experience": {
+    "sectionTitle": "Experience",
+    "careerPathTitle": "A professional journey.",
+    "intro": "My experience in frontend development includes working for various companies and on diverse projects.",
+    "items": [
+      {
+        "title": "Senior Frontend Developer",
+        "company": "Tech Solutions",
+        "period": "2021 - Present",
+        "description": [
+          "Developing and maintaining a large SPA using React, TypeScript, and Next.js",
+          "Implementing new features and improving user experience",
+          "Optimizing application performance and accessibility",
+          "Mentoring junior developers and conducting code reviews"
+        ]
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Digital Agency",
+        "period": "2019 - 2021",
+        "description": [
+          "Building interactive web apps for clients across various industries",
+          "Creating responsive interfaces with React and Redux",
+          "Integrating with various APIs and services",
+          "Working in an agile team, participating in planning and task estimation"
+        ]
+      },
+      {
+        "title": "Junior Frontend Developer",
+        "company": "Startup Inc.",
+        "period": "2018 - 2019",
+        "description": [
+          "Creating user interfaces using HTML, CSS, and JavaScript",
+          "Supporting and enhancing existing web applications",
+          "Working with version control systems (Git)",
+          "Exploring and adopting new technologies and libraries"
+        ]
+      }
+    ]
   },
   "footer": {
     "copyright": "Anton Shaga. All rights reserved."

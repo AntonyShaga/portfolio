@@ -35,6 +35,14 @@ export interface Dictionary {
         sectionTitle: string;
         stackTitle: string;
         description: string;
+        technology: string;
+        tools: string;
+    };
+    experience: {
+        sectionTitle: string;
+        careerPathTitle: string;
+        intro: string;
+        items: ExperienceItem[];
     };
     footer: {
         copyright: string;
@@ -46,6 +54,14 @@ export interface Dictionary {
         downloadError: string;
     };
 }
+
+export interface ExperienceItem {
+    title: string;
+    company: string;
+    period: string;
+    description: string[];
+}
+
 export interface NavItem {
     name: string;
     href: `#${string}`;

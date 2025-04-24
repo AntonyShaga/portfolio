@@ -5,6 +5,7 @@ import Project from "@/components/Projects";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 
 
 
@@ -17,6 +18,7 @@ export default async function Home() {
         <About/>
         <Project/>
         <Skills/>
+        <Experience/>
         <Footer/>
     </main>
   );
