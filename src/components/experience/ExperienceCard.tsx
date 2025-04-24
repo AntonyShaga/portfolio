@@ -8,7 +8,7 @@ const ExperienceCard = () => {
 
     const experiences = getExperiences(dict);
     return (
-        <div className="mt-12 space-y-6" role="list" aria-label={dict.experience.sectionTitle}>
+        <div className="mt-12 space-y-6"  aria-label={dict.experience.sectionTitle}>
             {experiences.map((experience, index) => (
                 <motion.article
                     key={index}
@@ -16,7 +16,7 @@ const ExperienceCard = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    role="listitem"
+
                     aria-labelledby={`exp-title-${index}`}
                 >
                     <div className="rounded-lg border shadow-sm border-gray-200">
@@ -37,9 +37,9 @@ const ExperienceCard = () => {
                             </div>
                         </div>
                         <div className="p-6 pt-0">
-                            <ul className="list-disc pl-5 space-y-1">
+                            <ul role="list" className="list-disc pl-5 space-y-1">
                                 {experience.description.map((item, itemIndex) => (
-                                    <li key={itemIndex}>{item}</li>
+                                    <li role="listitem" key={itemIndex}>{item}</li>
                                 ))}
                             </ul>
                         </div>

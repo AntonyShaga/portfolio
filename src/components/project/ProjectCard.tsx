@@ -6,11 +6,15 @@ import ExternalLink from "@/icons/ExternalLink";
 import {getProjectsList} from "@/lib/projectsList";
 import {useDictionary} from "@/app/i18n/DictionaryContext";
 import ProjectImage from "@/components/project/ProjectImage";
+import {useMemo} from "react";
 
 
 const ProjectCard = () => {
+
     const dict = useDictionary()
-    const projects = getProjectsList(dict)
+
+    const projects = useMemo(() => getProjectsList(dict), [dict]);
+
     return (
         <div className="grid gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
@@ -21,8 +25,8 @@ const ProjectCard = () => {
                     viewport={{ once: true, margin: "0px 0px -100px 0px" }} // Добавляем margin для раннего срабатывания
                     transition={{
                         duration: 0.5,
-                        delay: index * 0.05, // Уменьшаем задержку
-                        type: "spring", // Более естественная анимация
+                        delay: index * 0.05,
+                        type: "spring",
                         stiffness: 100
                     }}
                     aria-labelledby={`project-${index}-title`}

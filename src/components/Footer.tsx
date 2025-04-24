@@ -1,7 +1,7 @@
 "use client";
 
 import SocialLinks from "@/components/ui/SocialLinks";
-import Nav from "@/components/Header/Nav";
+import Nav from "@/components/header/Nav";
 import {useDictionary} from "@/app/i18n/DictionaryContext";
 
 const Footer = () => {
@@ -14,7 +14,7 @@ const Footer = () => {
                        <SocialLinks/>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-muted-foreground">
-                       <Nav/>
+                       <Nav ariaLabel="Footer navigation" />
                     </div>
                     <div className="text-sm text-muted-foreground">
                         © {new Date().getFullYear()} {dict.footer.copyright}

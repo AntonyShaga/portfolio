@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import Hero from "@/components/Hero";
 
 import Project from "@/components/project/Projects";

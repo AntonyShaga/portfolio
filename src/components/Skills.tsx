@@ -2,13 +2,13 @@
 import {motion} from "framer-motion"
 import {useDictionary} from "@/app/i18n/DictionaryContext";
 import {getSkillCategories} from "@/lib/skillCategories";
-
+import {useMemo} from "react";
 
 const Skills = () => {
 
     const dict = useDictionary()
 
-    const skillCategories = getSkillCategories(dict)
+    const skillCategories = useMemo(() => getSkillCategories(dict), [dict]);
 
     return (
         <section id="skills" className="py-24  dark:bg-black transition-all duration-300   bg-gray-50 ">
@@ -34,7 +34,7 @@ const Skills = () => {
                                         transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
                                         className="flex flex-col items-center justify-center p-4 bg-white  rounded-lg  hover:shadow-md transition-shadow"
                                     >
-                                        <skill.icon size={40} style={{ color: skill.color }} className="mb-2" />
+                                        <skill.icon size={40} style={{ color: skill.color }  }  aria-label={skill.name} className="mb-2" />
                                         <span className="text-sm font-medium dark:text-black">{skill.name}</span>
                                     </motion.div>
                                 ))}
