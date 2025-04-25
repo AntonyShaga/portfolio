@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-        <Header />
+        <Header lang={lang as 'en' | 'ru'} header={dict.header} nav={dict.nav} />
         <Hero/>
         <About/>
         <Project/>

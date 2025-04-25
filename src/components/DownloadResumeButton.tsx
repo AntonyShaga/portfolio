@@ -61,7 +61,7 @@ export default function DownloadResumeButton() {
             variant="danger"
             disabled={loading}
         >
-            {dict.header.nav.resume}
+            {dict.nav.resume}
         </Button>
     );
 }

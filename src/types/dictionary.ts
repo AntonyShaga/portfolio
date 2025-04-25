@@ -1,17 +1,6 @@
 export interface Dictionary {
-    header: {
-        logo: string;
-        name: string;
-        nav: {
-            home: string;
-            about: string;
-            projects: string;
-            skills: string;
-            experience: string;
-            contact: string;
-            resume: string;
-        };
-    };
+    header: HeaderItem
+    nav: NavTitle
     hero: {
         name: string;
         title: string;
@@ -80,4 +69,19 @@ export type ProjectItem = {
 export interface NavItem {
     name: string;
     href: `#${string}`;
+}
+
+export interface NavTitle  {
+        home: string;
+        about: string;
+        projects: string;
+        skills: string;
+        experience: string;
+        contact: string;
+        resume: string;
+}
+
+export interface HeaderItem {
+        logo: string;
+        name: string;
 }

@@ -1,19 +1,21 @@
-'use client';
+
 
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import {useParams} from "next/navigation";
 import LanguageSwitcher from "@/components/languageSwitcher/LanguageSwitcher";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import Nav from "@/components/header/Nav";
-import {useDictionary} from "@/app/i18n/DictionaryContext";
 import DownloadResumeButton from "@/components/DownloadResumeButton";
+import {HeaderItem, NavTitle} from "@/types/dictionary";
 
-const Header = () => {
-    const dict = useDictionary();
-    const params = useParams();
-    const lang = params.lang as string;
+interface IProps {
+    header:HeaderItem
+    nav:NavTitle
+    lang:'en' | 'ru'
+}
 
+const Header = ({header,nav,lang}:IProps) => {
+    const {logo,name} = header
 
     return (
         <MotionWrapper as={'header'}
@@ -25,12 +27,12 @@ const Header = () => {
                 <div className="flex items-center justify-between">
                     <Link href={`/${lang}`} aria-label="Homepage" className="flex items-center space-x-2 ">
                         <span className="h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center ">
-                          <span className="font-bold">{dict.header.logo}</span>
+                          <span className="font-bold">{logo}</span>
                         </span>
-                        <span className="font-bold text-lg">{dict.header.name}</span>
+                        <span className="font-bold text-lg">{name}</span>
                     </Link>
 
-                   <Nav ariaLabel={"Main navigation"}/>
+                   <Nav nav={nav}  ariaLabel={"Main navigation"} />
 
                     <div className="flex items-center gap-3">
                         <LanguageSwitcher currentLang={lang} />

@@ -1,10 +1,10 @@
-import {Dictionary, NavItem} from "@/types/dictionary";
+import {NavItem, NavTitle} from "@/types/dictionary";
 
-export const getNavItems = (dict: Dictionary):NavItem[] => [
-    { name: dict.header.nav.home, href: "#home" },
-    { name: dict.header.nav.about, href: "#about" },
-    { name: dict.header.nav.projects, href: "#projects" },
-    { name: dict.header.nav.skills, href: "#skills" },
-    { name: dict.header.nav.experience, href: "#experience" },
-    { name: dict.header.nav.contact, href: "#contact" },
+export const getNavItems = (dict: NavTitle):NavItem[] => [
+    { name: dict.home, href: "#home" },
+    { name: dict.about, href: "#about" },
+    { name: dict.projects, href: "#projects" },
+    { name: dict.skills, href: "#skills" },
+    { name: dict.experience, href: "#experience" },
+    { name: dict.contact, href: "#contact" },
 ]

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import {getNavItems} from "@/lib/navigation";
-import {useDictionary} from "@/app/i18n/DictionaryContext";
-import {useMemo} from "react";
+import {NavTitle} from "@/types/dictionary";
 
-const Nav = ( { ariaLabel }: { ariaLabel: string }) => {
-    const dict = useDictionary();
-
-    const navItems = useMemo(() => getNavItems(dict), [dict]);
+interface IProps {
+    nav:NavTitle,
+    ariaLabel:string
+}
+export default async function Nav ( { ariaLabel ,nav }:IProps)  {
+    const navItems = await getNavItems(nav) ;
 
     return (
         <nav className="hidden md:flex gap-6 text-sm font-medium" aria-label={ariaLabel}>
@@ -23,4 +24,3 @@ const Nav = ( { ariaLabel }: { ariaLabel: string }) => {
     );
 };
 
-export default Nav;

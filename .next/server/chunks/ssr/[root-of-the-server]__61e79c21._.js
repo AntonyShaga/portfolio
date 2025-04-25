@@ -805,27 +805,27 @@ __turbopack_context__.s({
 });
 const getNavItems = (dict)=>[
         {
-            name: dict.header.nav.home,
+            name: dict.home,
             href: "#home"
         },
         {
-            name: dict.header.nav.about,
+            name: dict.about,
             href: "#about"
         },
         {
-            name: dict.header.nav.projects,
+            name: dict.projects,
             href: "#projects"
         },
         {
-            name: dict.header.nav.skills,
+            name: dict.skills,
             href: "#skills"
         },
         {
-            name: dict.header.nav.experience,
+            name: dict.experience,
             href: "#experience"
         },
         {
-            name: dict.header.nav.contact,
+            name: dict.contact,
             href: "#contact"
         }
     ];
@@ -836,23 +836,16 @@ const getNavItems = (dict)=>[
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "default": (()=>__TURBOPACK__default__export__)
+    "default": (()=>Nav)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$navigation$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/navigation.ts [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$i18n$2f$DictionaryContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/i18n/DictionaryContext.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 ;
 ;
 ;
-;
-;
-const Nav = ({ ariaLabel })=>{
-    const dict = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$i18n$2f$DictionaryContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDictionary"])();
-    const navItems = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$navigation$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getNavItems"])(dict), [
-        dict
-    ]);
+async function Nav({ ariaLabel, nav }) {
+    const navItems = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$navigation$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getNavItems"])(nav);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
         className: "hidden md:flex gap-6 text-sm font-medium",
         "aria-label": ariaLabel,
@@ -862,16 +855,15 @@ const Nav = ({ ariaLabel })=>{
                 children: item.name
             }, index, false, {
                 fileName: "[project]/src/components/header/Nav.tsx",
-                lineNumber: 14,
+                lineNumber: 15,
                 columnNumber: 17
             }, this))
     }, void 0, false, {
         fileName: "[project]/src/components/header/Nav.tsx",
-        lineNumber: 12,
+        lineNumber: 13,
         columnNumber: 9
     }, this);
-};
-const __TURBOPACK__default__export__ = Nav;
+}
 }}),
 "[project]/src/components/DownloadResumeButton.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -943,7 +935,7 @@ function DownloadResumeButton() {
         onClick: handleDownload,
         variant: "danger",
         disabled: loading,
-        children: dict.header.nav.resume
+        children: dict.nav.resume
     }, void 0, false, {
         fileName: "[project]/src/components/DownloadResumeButton.tsx",
         lineNumber: 59,
@@ -962,11 +954,9 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ThemeSwitcher$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ThemeSwitcher.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$languageSwitcher$2f$LanguageSwitcher$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/languageSwitcher/LanguageSwitcher.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/MotionWrapper.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$header$2f$Nav$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/header/Nav.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$i18n$2f$DictionaryContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/i18n/DictionaryContext.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DownloadResumeButton$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/DownloadResumeButton.tsx [app-ssr] (ecmascript)");
 'use client';
 ;
@@ -976,12 +966,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Downloa
 ;
 ;
 ;
-;
-;
-const Header = ()=>{
-    const dict = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$i18n$2f$DictionaryContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDictionary"])();
-    const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useParams"])();
-    const lang = params.lang;
+const Header = ({ header, nav, lang })=>{
+    const { logo, name } = header;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MotionWrapper$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         as: 'header',
         initial: {
@@ -1007,36 +993,37 @@ const Header = ()=>{
                                 className: "h-8 w-8 bg-black dark:bg-white  dark:text-black text-white rounded-md flex items-center justify-center ",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "font-bold",
-                                    children: dict.header.logo
+                                    children: logo
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/header/Header.tsx",
-                                    lineNumber: 28,
+                                    lineNumber: 30,
                                     columnNumber: 27
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/header/Header.tsx",
-                                lineNumber: 27,
+                                lineNumber: 29,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "font-bold text-lg",
-                                children: dict.header.name
+                                children: name
                             }, void 0, false, {
                                 fileName: "[project]/src/components/header/Header.tsx",
-                                lineNumber: 30,
+                                lineNumber: 32,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/header/Header.tsx",
-                        lineNumber: 26,
+                        lineNumber: 28,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$header$2f$Nav$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                        nav: nav,
                         ariaLabel: "Main navigation"
                     }, void 0, false, {
                         fileName: "[project]/src/components/header/Header.tsx",
-                        lineNumber: 33,
+                        lineNumber: 35,
                         columnNumber: 20
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1046,39 +1033,39 @@ const Header = ()=>{
                                 currentLang: lang
                             }, void 0, false, {
                                 fileName: "[project]/src/components/header/Header.tsx",
-                                lineNumber: 36,
+                                lineNumber: 38,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ThemeSwitcher$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/src/components/header/Header.tsx",
-                                lineNumber: 37,
+                                lineNumber: 39,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DownloadResumeButton$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/src/components/header/Header.tsx",
-                                lineNumber: 38,
+                                lineNumber: 40,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/header/Header.tsx",
-                        lineNumber: 35,
+                        lineNumber: 37,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/header/Header.tsx",
-                lineNumber: 25,
+                lineNumber: 27,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/header/Header.tsx",
-            lineNumber: 24,
+            lineNumber: 26,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/header/Header.tsx",
-        lineNumber: 19,
+        lineNumber: 21,
         columnNumber: 9
     }, this);
 };

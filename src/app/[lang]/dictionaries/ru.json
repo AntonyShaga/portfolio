@@ -1,16 +1,16 @@
 {
   "header": {
     "logo": "АШ",
-    "name": "Антон Шага",
-    "nav": {
-      "home": "Главная",
-      "about": "Обо мне",
-      "projects": "Проекты",
-      "skills": "Навыки",
-      "experience": "Опыт",
-      "contact": "Контакты",
-      "resume": "Резюме"
-    }
+    "name": "Антон Шага"
+  },
+  "nav": {
+    "home": "Главная",
+    "about": "Обо мне",
+    "projects": "Проекты",
+    "skills": "Навыки",
+    "experience": "Опыт",
+    "contact": "Контакты",
+    "resume": "Резюме"
   },
   "hero": {
     "name": "Антон Шага",

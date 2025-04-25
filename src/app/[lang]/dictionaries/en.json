@@ -1,16 +1,16 @@
 {
   "header": {
     "logo": "AS",
-    "name": "Anton Shaga",
-    "nav": {
-      "home": "Home",
-      "about": "About",
-      "projects": "Projects",
-      "skills": "Skills",
-      "experience": "Experience",
-      "contact": "Contact",
-      "resume": "Resume"
-    }
+    "name": "Anton Shaga"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact",
+    "resume": "Resume"
   },
   "hero": {
     "name": "Anton Shaga",
