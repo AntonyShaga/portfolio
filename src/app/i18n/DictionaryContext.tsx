@@ -1,9 +1,9 @@
 'use client';
 
 import {createContext, ReactNode, useContext} from 'react';
-import {Dictionary} from "@/types/dictionary";
+import {AppDictionary} from "@/types/dictionary";
 
-export const DictionaryContext = createContext<Dictionary | null>(null);
+export const DictionaryContext = createContext<AppDictionary | null>(null);
 
 export const useDictionary = () => {
     const context = useContext(DictionaryContext);
@@ -17,7 +17,7 @@ export const DictionaryProvider = ({
 dict,
 children,
   }: {
-    dict: Dictionary;
+    dict: AppDictionary;
     children: ReactNode;
 }) => {
     return (

@@ -1,18 +1,7 @@
-import { Dictionary } from "@/types/dictionary";
+import {ProjectItem} from "@/types/dictionary";
 
-export type Project = {
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
-    demoUrl: string;
-    repoUrl: string;
-    buttonCode: string;
-    buttonDemo: string;
-};
-
-export const getProjectsList = (dict: Dictionary): Project[] => {
-    return dict.projects.items.map((el) => ({
+export const getProjectsList = (dict: ProjectItem[]): ProjectItem[] => {
+    return dict.map((el) => ({
         title: el.title,
         description: el.description,
         image: getProjectImage(el.image, el.title),

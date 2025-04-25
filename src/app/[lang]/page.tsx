@@ -25,17 +25,15 @@ export default async function Home() {
     }
 
     const dict = await getDictionary(lang as 'en' | 'ru')
-    console.log(dict);
-    console.log(lang);
 
   return (
     <main className="min-h-screen bg-background">
-        <Header lang={lang as 'en' | 'ru'} header={dict.header} nav={dict.nav} />
-        <Hero/>
-        <About/>
-        <Project/>
-        <Skills/>
-        <Experience/>
+        <Header lang={lang as 'en' | 'ru'} header={dict.header} nav={dict.navigation} />
+        <Hero hero={dict.hero}/>
+        <About about={dict.about}/>
+        <Project projects={dict.projects}/>
+        <Skills skills={dict.skills}/>
+        <Experience experience={dict.experience}/>
         <Footer footer={dict.footer} />
     </main>
   );

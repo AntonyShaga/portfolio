@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import {Project} from "@/lib/projectsList";
+import {ProjectItem} from "@/types/dictionary";
 
 
-const ProjectImage = ({ project }: { project: Project }) => {
+const ProjectImage = ({ project }: { project: ProjectItem }) => {
     const isSvgPlaceholder = project.image.startsWith('data:image/svg+xml');
 
     return (

@@ -1,11 +1,13 @@
-'use client'
-
-import {useDictionary} from "@/app/i18n/DictionaryContext";
 import ExperienceCard from "@/components/experience/ExperienceCard";
+import {ExperienceSection} from "@/types/dictionary";
 
-const Experience = () => {
-    const dict = useDictionary();
+interface IProps {
+    experience:ExperienceSection
+}
 
+const Experience = ({experience}:IProps) => {
+
+const {items,intro,sectionTitle,careerPathTitle} = experience
 
     return (
         <section
@@ -20,22 +22,22 @@ const Experience = () => {
                         className="inline-block rounded-lg dark:bg-gray-50 bg-black text-white dark:text-black px-3 py-1 text-sm"
                         id="experience-badge"
                     >
-                        {dict.experience.sectionTitle}
+                        {sectionTitle}
                     </div>
                     <h2
                         className="text-3xl font-bold tracking-tighter md:text-4xl"
                         id="experience-title"
                     >
-                        {dict.experience.careerPathTitle}
+                        {careerPathTitle}
                     </h2>
                     <p
                         className="max-w-[700px] md:text-lg"
                         id="experience-description"
                     >
-                        {dict.experience.intro}
+                        {intro}
                     </p>
                 </div>
-                <ExperienceCard/>
+                <ExperienceCard ariaLabel={sectionTitle} items={items}/>
             </div>
         </section>
     );

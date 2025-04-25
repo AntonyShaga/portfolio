@@ -1,16 +1,19 @@
-import {motion} from "framer-motion";
 import {getExperiences} from "@/lib/experiences";
-import {useDictionary} from "@/app/i18n/DictionaryContext";
+import MotionWrapper from "@/components/ui/MotionWrapper";
+import {ExperienceItem} from "@/types/dictionary";
 
-const ExperienceCard = () => {
+interface IProps {
+    items:ExperienceItem[]
+    ariaLabel:string
+}
+const ExperienceCard = ({items,ariaLabel}:IProps) => {
 
-    const dict = useDictionary();
+    const experiences = getExperiences(items);
 
-    const experiences = getExperiences(dict);
     return (
-        <div className="mt-12 space-y-6"  aria-label={dict.experience.sectionTitle}>
+        <div className="mt-12 space-y-6"  aria-label={ariaLabel}>
             {experiences.map((experience, index) => (
-                <motion.article
+                <MotionWrapper as={"article"}
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +47,7 @@ const ExperienceCard = () => {
                             </ul>
                         </div>
                     </div>
-                </motion.article>
+                </MotionWrapper>
             ))}
         </div>
     )

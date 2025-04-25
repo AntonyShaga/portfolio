@@ -1,20 +1,18 @@
-
-
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import LanguageSwitcher from "@/components/languageSwitcher/LanguageSwitcher";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import Nav from "@/components/header/Nav";
 import DownloadResumeButton from "@/components/DownloadResumeButton";
-import {HeaderItem, NavTitle} from "@/types/dictionary";
+import {HeaderContent, NavigationLabels} from "@/types/dictionary";
 
 interface IProps {
-    header:HeaderItem
-    nav:NavTitle
+    header:HeaderContent
+    nav:NavigationLabels
     lang:'en' | 'ru'
 }
 
-const Header = ({header,nav,lang}:IProps) => {
+export default function Header  ({header,nav,lang}:IProps) {
     const {logo,name} = header
 
     return (
@@ -45,4 +43,3 @@ const Header = ({header,nav,lang}:IProps) => {
     );
 };
 
-export default Header;

@@ -1,15 +1,16 @@
-'use client'
-
-import {useDictionary} from "@/app/i18n/DictionaryContext";
 import Link from "next/link";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import SocialLinks from "@/components/ui/SocialLinks";
 import Button from "@/components/ui/Button";
 import ArrowDown from "@/icons/ArrowDown";
+import {HeroSection} from "@/types/dictionary";
 
+interface IProps {
+  hero:HeroSection
+}
 
-const Hero = ()=>{
-    const dict = useDictionary();
+const Hero = ({hero}:IProps)=>{
+    const {name,description,title,projectsButton,contactButton} = hero
 
     return(
         <section aria-label="Hero section" className="relative min-h-[100vh] transition-all duration-300  flex items-center">
@@ -19,23 +20,23 @@ const Hero = ()=>{
                         <div className="space-y-2">
                             <MotionWrapper as={"h1"}  className="max-w-[700px] w-full md:text-xl">
                                 <div  className="text-3xl font-bold w-full flex flex-col tracking-tighter sm:text-5xl xl:text-6xl/none">
-                                    {dict.hero.name}
-                                    <span className={"flex"}>{dict.hero.title}</span>
+                                    {name}
+                                    <span className={"flex"}>{title}</span>
                                 </div>
                             </MotionWrapper>
                             <MotionWrapper className="max-w-[600px] md:text-xl" as={"p"} transition={{delay:0.1}}>
-                                {dict.hero.description}
+                                {description}
                             </MotionWrapper>
                         </div>
                         <MotionWrapper className="flex flex-col gap-2 min-[400px]:flex-row" transition={{delay:0.2}}>
                             <Button className={'h-10 px-8 transition-all duration-300'} asChild variant={"danger"}>
-                                <Link href="#contact" aria-label={`${dict.hero.contactButton} (Contact Section)`}>
-                                    {dict.hero.contactButton}
+                                <Link href="#contact" aria-label={`${contactButton} (Contact Section)`}>
+                                    {contactButton}
                                 </Link>
                             </Button>
                             <Button asChild className={'h-10 px-8 transition-all duration-300'}>
-                                <Link href="#projects" aria-label={`${dict.hero.projectsButton} (Projects Section)`}>
-                                    {dict.hero.projectsButton}
+                                <Link href="#projects" aria-label={`${projectsButton} (Projects Section)`}>
+                                    {projectsButton}
                                 </Link>
                             </Button>
                         </MotionWrapper>

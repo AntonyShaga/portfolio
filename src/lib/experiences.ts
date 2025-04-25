@@ -1,16 +1,8 @@
-import {Dictionary} from "@/types/dictionary";
-
-export interface ExperienceItem {
-    title: string;
-    company: string;
-    period: string;
-    description: string[];
-}
+import {ExperienceItem} from "@/types/dictionary";
 
 
-
-export const getExperiences = (dict:Dictionary) : ExperienceItem[] => {
-    return dict.experience.items.map((el) => ({
+export const getExperiences = (dict:ExperienceItem[]) : ExperienceItem[] => {
+    return dict.map((el) => ({
         title: el.title,
         company: el.company,
         period: el.period,

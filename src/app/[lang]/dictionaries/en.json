@@ -3,7 +3,7 @@
     "logo": "AS",
     "name": "Anton Shaga"
   },
-  "nav": {
+  "navigation": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
@@ -84,7 +84,7 @@
     "description": "Here are some of the projects I’ve worked on. Each one is unique and showcases different aspects of my skills and experience.",
     "buttonCode": "Code",
     "buttonDemo": "Demo",
-    "items": [
+    "project": [
       {
         "title": "E-commerce Platform",
         "description": "A fully-featured online store with shopping cart, checkout, and admin panel.",

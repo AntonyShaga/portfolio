@@ -865,7 +865,7 @@ function DownloadResumeButton() {
         onClick: handleDownload,
         variant: "danger",
         disabled: loading,
-        children: dict.nav.resume
+        children: dict.navigation.resume
     }, void 0, false, {
         fileName: "[project]/src/components/DownloadResumeButton.tsx",
         lineNumber: 59,

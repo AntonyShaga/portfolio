@@ -1,16 +1,23 @@
 import {
-    SiCss3, SiGit, SiGithub,
+    SiCss3,
+    SiGit,
+    SiGithub,
     SiHtml5,
-    SiJavascript, SiJest,
-    SiNextdotjs, SiNpm,
+    SiJavascript,
+    SiJest,
+    SiNextdotjs,
+    SiNpm,
     SiReact,
-    SiRedux, SiStorybook,
-    SiTailwindcss, SiTestinglibrary,
-    SiTypescript, SiVite, SiWebpack
+    SiRedux,
+    SiStorybook,
+    SiTailwindcss,
+    SiTestinglibrary,
+    SiTypescript,
+    SiVite,
+    SiWebpack
 } from "react-icons/si";
-import {Dictionary} from "@/types/dictionary";
 
-import type { IconType } from "react-icons";
+import type {IconType} from "react-icons";
 
 export interface Skill {
     name: string;
@@ -22,12 +29,12 @@ export interface SkillCategory {
     title: string;
     skills: Skill[];
 }
-export const getSkillCategories = (dict: Dictionary):SkillCategory[] => {
-    if (!dict.skills) throw new Error("Dictionary skills not loaded");
+export const getSkillCategories = (tools:string,technology:string):SkillCategory[] => {
+    if (!tools || !technology) throw new Error("Dictionary skills not loaded");
     return (
         [
             {
-                title: dict.skills.technology,
+                title: technology,
                 skills: [
                     { name: "React", icon: SiReact, color: "#61DAFB" },
                     { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
@@ -40,7 +47,7 @@ export const getSkillCategories = (dict: Dictionary):SkillCategory[] => {
                 ],
             },
             {
-                title: dict.skills.tools,
+                title: tools,
                 skills: [
                     { name: "Git", icon: SiGit, color: "#F05032" },
                     { name: "GitHub", icon: SiGithub, color: "#181717" },

@@ -1,24 +1,23 @@
-import {motion} from "framer-motion"
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Git from "@/icons/Git";
 import ExternalLink from "@/icons/ExternalLink";
-import {getProjectsList} from "@/lib/projectsList";
-import {useDictionary} from "@/app/i18n/DictionaryContext";
 import ProjectImage from "@/components/project/ProjectImage";
-import {useMemo} from "react";
+import {ProjectItem,} from "@/types/dictionary";
+import MotionWrapper from "@/components/ui/MotionWrapper";
+import {getProjectsList} from "@/lib/projectsList";
 
+interface IProps {
+    project:ProjectItem[]
+}
+export default function ProjectCard ({project}:IProps) {
 
-const ProjectCard = () => {
-
-    const dict = useDictionary()
-
-    const projects = useMemo(() => getProjectsList(dict), [dict]);
+const projects = getProjectsList(project)
 
     return (
         <div className="grid gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
-                <motion.article
+                <MotionWrapper as={"article"}
                     key={`${project.title}-${index}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -87,9 +86,9 @@ const ProjectCard = () => {
                             </Button>
                         </div>
                     </div>
-                </motion.article>
+                </MotionWrapper>
             ))}
         </div>
     )
 }
-export default ProjectCard
+

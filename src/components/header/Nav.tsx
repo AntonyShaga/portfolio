@@ -1,13 +1,13 @@
 import Link from "next/link";
 import {getNavItems} from "@/lib/navigation";
-import {NavTitle} from "@/types/dictionary";
+import {NavigationLabels} from "@/types/dictionary";
 
 interface IProps {
-    nav:NavTitle,
+    nav:NavigationLabels,
     ariaLabel:string
 }
-export default async function Nav ( { ariaLabel ,nav }:IProps)  {
-    const navItems = await getNavItems(nav) ;
+export default function Nav ( { ariaLabel ,nav }:IProps)  {
+    const navItems = getNavItems(nav) ;
 
     return (
         <nav className="hidden md:flex gap-6 text-sm font-medium" aria-label={ariaLabel}>
