@@ -1,4 +1,3 @@
-import {useDictionary} from "@/app/i18n/DictionaryContext";
 import {getSkillCategories} from "@/lib/skillCategories";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import {SkillsSection} from "@/types/dictionary";

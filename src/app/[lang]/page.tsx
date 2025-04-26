@@ -12,9 +12,13 @@ import {getDictionary} from "@/app/i18n/get-dictionary";
 export async function generateStaticParams() {
     return [{ lang: "en" }, { lang: "ru" }];
 }
-
-export default async function Home() {
-
+interface PageProps {
+    params: {
+        lang: 'en' | 'ru'
+    }
+}
+export default async function Home({ params }: PageProps) {
+    console.log(await params);
     const headersList = await headers();
     const langFromHeader = headersList.get('x-current-locale');
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
