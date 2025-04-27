@@ -7,3 +7,4 @@ if (!redisUrl) {
 }
 
 export const redis = new Redis(redisUrl);
+
