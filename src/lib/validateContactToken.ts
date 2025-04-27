@@ -1,3 +1,4 @@
+/*
 import { NextRequest } from 'next/server';
 import { redis } from './redis';
 import jwt from 'jsonwebtoken';
@@ -54,3 +55,4 @@ export async function validateContactToken(req: NextRequest) {
         throw new TokenValidationError('Validation failed', 'VALIDATION_ERROR');
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 import {NextResponse} from 'next/server';
 import {redis} from '@/lib/redis';
 import jwt from 'jsonwebtoken';
@@ -12,3 +13,4 @@ export async function GET() {
 
     return NextResponse.json({ token });
 }
+*/

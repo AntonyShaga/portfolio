@@ -1,3 +1,4 @@
+/*
 import { NextRequest, NextResponse } from 'next/server';
 import { validateContactToken } from '../validateContactToken';
 
@@ -11,3 +12,4 @@ export function withContactValidation(handler: (req: NextRequest) => Promise<Nex
         }
     };
 }
+*/
