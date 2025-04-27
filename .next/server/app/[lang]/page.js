@@ -8,7 +8,7 @@ runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_client_components_un
 runtime.loadChunk("server/chunks/ssr/src_app_[lang]_dictionaries_69654e48._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_cd3bec3d._.js");
 runtime.loadChunk("server/chunks/ssr/[root-of-the-server]__bed7996f._.js");
-runtime.loadChunk("server/chunks/ssr/_8b8b8b1b._.js");
+runtime.loadChunk("server/chunks/ssr/_5163d410._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_next_2cae83c3._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_si_index_mjs_dd28d936._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_lib_b806b5fe._.js");

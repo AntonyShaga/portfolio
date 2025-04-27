@@ -8,7 +8,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/experience/Experience";
 import {getDictionary} from "@/app/i18n/get-dictionary";
-import Contact from "@/components/Contact";
+import Contact from "@/components/contact/Contact";
 
 export async function generateStaticParams() {
     return [{ lang: "en" }, { lang: "ru" }];

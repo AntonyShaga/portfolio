@@ -223,6 +223,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
+    --container-md: 28rem;
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
     --text-sm: .875rem;
@@ -828,6 +829,10 @@
 
   .max-w-\[700px\] {
     max-width: 700px;
+  }
+
+  .max-w-md {
+    max-width: var(--container-md);
   }
 
   .min-w-\[8rem\] {
@@ -1951,6 +1956,12 @@
   @media (width >= 48rem) {
     .md\:flex {
       display: flex;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }
 
