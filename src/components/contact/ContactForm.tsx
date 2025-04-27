@@ -22,7 +22,6 @@ export default function ContactForm () {
                 required
             />
             <textarea
-                name="" id="" cols="30" rows="10"
                 value={form.message}
                 onChange={(e) => setForm({...form, message:e.target.value})}
                 placeholder={"Ваше сообщение"}
