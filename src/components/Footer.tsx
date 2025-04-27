@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export default async function Footer ({ footer }: IProps) {
-    console.log(footer);
+
     return (
         <footer className=" transition-all duration-300  py-12">
             <div className="container mx-auto px-4 md:px-6">

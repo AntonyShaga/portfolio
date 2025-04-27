@@ -8,17 +8,14 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/experience/Experience";
 import {getDictionary} from "@/app/i18n/get-dictionary";
+import Contact from "@/components/Contact";
 
 export async function generateStaticParams() {
     return [{ lang: "en" }, { lang: "ru" }];
 }
-interface PageProps {
-    params: {
-        lang: 'en' | 'ru'
-    }
-}
-export default async function Home({ params }: PageProps) {
-    console.log(await params);
+
+export default async function Home() {
+
     const headersList = await headers();
     const langFromHeader = headersList.get('x-current-locale');
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
@@ -38,6 +35,7 @@ export default async function Home({ params }: PageProps) {
         <Project projects={dict.projects}/>
         <Skills skills={dict.skills}/>
         <Experience experience={dict.experience}/>
+        <Contact/>
         <Footer footer={dict.footer} />
     </main>
   );

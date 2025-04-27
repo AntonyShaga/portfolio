@@ -41,7 +41,6 @@ export default async function RootLayout({
     if (!['en', 'ru'].includes(lang || '')) {
         notFound();
     }
-
     const dict =  await getDictionary(lang as 'en' | 'ru');
 
   return (
