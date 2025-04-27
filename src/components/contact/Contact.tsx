@@ -1,5 +1,6 @@
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import SocialLinks from "@/components/ui/SocialLinks";
+import ContactForm from "@/components/contact/ContactForm";
 
 export default function Contact () {
     return (
@@ -59,31 +60,7 @@ export default function Contact () {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <form  className="flex flex-col gap-4 max-w-md mx-auto">
-                            <input
-                                type="text"
-                                placeholder="Ваше имя"
-
-
-                                required
-                            />
-                            <input
-                                type="email"
-                                placeholder="Ваш Email"
-
-
-                                required
-                            />
-                            <textarea
-                                placeholder="Ваше сообщение"
-
-
-                                required
-                            />
-                            <button type="submit" >
-
-                            </button>
-                        </form>
+                       <ContactForm/>
                     </MotionWrapper>
                 </div>
 
