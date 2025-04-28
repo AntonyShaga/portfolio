@@ -1001,7 +1001,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "default": (()=>ContactForm)
+    "ContactForm": (()=>ContactForm)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
@@ -1011,69 +1011,112 @@ var _s = __turbopack_context__.k.signature();
 ;
 function ContactForm() {
     _s();
+    const [token, setToken] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [form, setForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         name: '',
         email: '',
         message: ''
     });
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ContactForm.useEffect": ()=>{
+            async function fetchToken() {
+                const res = await fetch('/api/get-token');
+                const data = await res.json();
+                setToken(data.token);
+            }
+            fetchToken();
+        }
+    }["ContactForm.useEffect"], []);
+    async function handleSubmit(e) {
+        e.preventDefault();
+        if (!token) {
+            alert('Форма устарела. Пожалуйста обновите страницу.');
+            return;
+        }
+        setLoading(true);
+        const res = await fetch('/api/send-message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(form)
+        });
+        setLoading(false);
+        if (res.ok) {
+            alert('Сообщение отправлено!');
+            setForm({
+                name: '',
+                email: '',
+                message: ''
+            });
+        } else {
+            alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
+        }
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-        action: "",
+        onSubmit: handleSubmit,
+        className: "flex flex-col gap-4 max-w-md mx-auto",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                 type: "text",
+                placeholder: "Ваше имя",
                 value: form.name,
                 onChange: (e)=>setForm({
                         ...form,
                         name: e.target.value
                     }),
-                placeholder: "Ваше имя",
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 10,
+                lineNumber: 50,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                 type: "email",
+                placeholder: "Ваш Email",
                 value: form.email,
                 onChange: (e)=>setForm({
                         ...form,
                         email: e.target.value
                     }),
-                placeholder: "Ваш Email",
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 18,
+                lineNumber: 57,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                placeholder: "Ваше сообщение",
                 value: form.message,
                 onChange: (e)=>setForm({
                         ...form,
                         message: e.target.value
                     }),
-                placeholder: "Ваше сообщение"
+                required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 25,
+                lineNumber: 64,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                type: "submit"
+                type: "submit",
+                disabled: loading,
+                children: loading ? 'Отправка...' : 'Отправить сообщение'
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 30,
+                lineNumber: 70,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactForm.tsx",
-        lineNumber: 8,
+        lineNumber: 49,
         columnNumber: 9
     }, this);
 }
-_s(ContactForm, "oZ4gxRDsFiNQk2z2bkChqRTfBNo=");
+_s(ContactForm, "L4+mzdP6OrFh3JwzRKYVMsaIdkw=");
 _c = ContactForm;
 var _c;
 __turbopack_context__.k.register(_c, "ContactForm");

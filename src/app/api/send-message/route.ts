@@ -1,14 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withContactValidation } from '@/lib/middleware/withContactValidation';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function handler(req: NextRequest) {
     const data = await req.json();
-
     const { name, email, message } = data;
 
-    console.log('Получено сообщение:', { name, email, message });
+    try {
+        const emailResponse = await resend.emails.send({
+            from: 'Your Name <A@resend.dev>',
+            to: 'toxa1381@gmail.com',
+            subject: 'Новое сообщение с лендинга',
+            html: `
+        <h1>Новое сообщение</h1>
+        <p><strong>Имя:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Сообщение:</strong> ${message}</p>
+      `,
+        });
 
-    return NextResponse.json({ success: true });
+        // Проверим ответ Resend, если надо
+        if (emailResponse.error) {
+            return NextResponse.json(
+                { success: false, message: 'Ошибка при отправке письма' },
+                { status: 500 }
+            );
+        }
+
+        return NextResponse.json(
+            { success: true, message: 'Письмо успешно отправлено' },
+            { status: 200 }
+        );
+    } catch (error) {
+        return NextResponse.json(
+            { success: false, message: 'Ошибка сервера' },
+            { status: 500 }
+        );
+    }
 }
 
 export const POST = withContactValidation(handler);

@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 164, "column": 0}, "map": {"version":3,"sources":["file://G%3A/PORTFOLIO/portfolio/src/lib/redis.ts"],"sourcesContent":["import Redis from 'ioredis';\r\n\r\nconst redisUrl = process.env.REDIS_URL;\r\n\r\nif (!redisUrl) {\r\n    throw new Error('Missing REDIS_URL environment variable');\r\n}\r\n\r\nexport const redis = new Redis(redisUrl);\r\n\r\n"],"names":[],"mappings":";;;AAAA;;AAEA,MAAM,WAAW,QAAQ,GAAG,CAAC,SAAS;AAEtC,IAAI,CAAC,UAAU;IACX,MAAM,IAAI,MAAM;AACpB;AAEO,MAAM,QAAQ,IAAI,2IAAA,CAAA,UAAK,CAAC","debugId":null}},
+    {"offset": {"line": 180, "column": 0}, "map": {"version":3,"sources":["file://G%3A/PORTFOLIO/portfolio/src/app/api/get-token/route.ts"],"sourcesContent":["import {NextResponse} from 'next/server';\r\nimport {redis} from '@/lib/redis';\r\nimport jwt from 'jsonwebtoken';\r\nimport {randomUUID} from 'crypto';\r\n\r\nexport async function GET() {\r\n    const jti = randomUUID();\r\n    const token = jwt.sign({ jti }, process.env.JWT_SECRET!, { expiresIn: '10m' });\r\n\r\n    // Сохраняем токен в Redis\r\n    await redis.set(`contact_token:${jti}`, 'valid', 'EX', 600); // 10 минут\r\n\r\n    return NextResponse.json({ token });\r\n}\r\n"],"names":[],"mappings":";;;AAAA;AACA;AACA;AACA;;;;;AAEO,eAAe;IAClB,MAAM,MAAM,CAAA,GAAA,qGAAA,CAAA,aAAU,AAAD;IACrB,MAAM,QAAQ,uIAAA,CAAA,UAAG,CAAC,IAAI,CAAC;QAAE;IAAI,GAAG,QAAQ,GAAG,CAAC,UAAU,EAAG;QAAE,WAAW;IAAM;IAE5E,0BAA0B;IAC1B,MAAM,qHAAA,CAAA,QAAK,CAAC,GAAG,CAAC,CAAC,cAAc,EAAE,KAAK,EAAE,SAAS,MAAM,MAAM,WAAW;IAExE,OAAO,gIAAA,CAAA,eAAY,CAAC,IAAI,CAAC;QAAE;IAAM;AACrC","debugId":null}}]
+}

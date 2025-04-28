@@ -6,5 +6,5 @@ if (!redisUrl) {
     throw new Error('Missing REDIS_URL environment variable');
 }
 
-export const redis = new Redis(redisUrl);
+export const redis: Redis = new Redis(redisUrl);
 

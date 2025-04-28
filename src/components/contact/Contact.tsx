@@ -1,6 +1,7 @@
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import SocialLinks from "@/components/ui/SocialLinks";
-import ContactForm from "@/components/contact/ContactForm";
+import {ContactForm} from "@/components/contact/ContactForm";
+
 
 export default function Contact () {
     return (
