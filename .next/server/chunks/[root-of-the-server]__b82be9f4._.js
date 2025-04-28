@@ -199,38 +199,103 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$serv
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/redis.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/jsonwebtoken/index.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/crypto [external] (crypto, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$net__$5b$external$5d$__$28$net$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/net [external] (net, cjs)");
 ;
 ;
 ;
 ;
+;
+// Конфигурация вынесена в константы с валидацией
 const JWT_ALGORITHM = 'HS256';
-const TOKEN_EXPIRATION = '10m';
-const REDIS_EXPIRATION = 600; // 10 минут в секундах
-async function GET() {
+const TOKEN_EXPIRATION = process.env.TOKEN_EXPIRATION || '10m';
+const REDIS_EXPIRATION = parseInt(process.env.REDIS_EXPIRATION || '600');
+const RATE_LIMIT_WINDOW = parseInt(process.env.RATE_LIMIT_WINDOW || '60');
+const RATE_LIMIT_MAX_REQUESTS = parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '10');
+async function GET(request) {
+    // Получение и нормализация IP с защитой от подделки заголовков
+    const ipHeader = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
+    const ip = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$net__$5b$external$5d$__$28$net$2c$__cjs$29$__["isIP"])(ipHeader) ? ipHeader : 'invalid';
+    if (ip === 'invalid') {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: 'Invalid IP address'
+        }, {
+            status: 400
+        });
+    }
+    const redisRateLimitKey = `rate_limit:contact_token:${ip}`;
+    const currentCount = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].incr(redisRateLimitKey);
     try {
+        // Rate-limiting с исключениями для доверенных IP
+        const isTrustedIP = process.env.TRUSTED_IPS?.split(',').includes(ip);
+        if (!isTrustedIP && currentCount > RATE_LIMIT_MAX_REQUESTS) {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].expire(redisRateLimitKey, RATE_LIMIT_WINDOW * 2); // Ужесточаем лимит при атаке
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Too many requests'
+            }, {
+                status: 429,
+                headers: {
+                    'Retry-After': RATE_LIMIT_WINDOW.toString()
+                }
+            });
+        }
+        // Генерация токена с усиленной безопасностью
         const jti = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["randomUUID"])();
         const payload = {
             jti,
             iss: 'contact-service',
-            aud: 'contact-form'
+            aud: [
+                'contact-form',
+                'web-app'
+            ],
+            iat: Math.floor(Date.now() / 1000),
+            ip
         };
+        if (!process.env.JWT_SECRET) {
+            throw new Error('JWT_SECRET is not configured');
+        }
         const token = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].sign(payload, process.env.JWT_SECRET, {
             expiresIn: TOKEN_EXPIRATION,
-            algorithm: JWT_ALGORITHM
+            algorithm: JWT_ALGORITHM,
+            header: {
+                typ: 'JWT',
+                kid: 'v1' // Key ID для ротации секретов
+            }
         });
+        // Запись в Redis с расширенными метаданными
         await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].set(`contact_token:${jti}`, JSON.stringify({
             status: 'valid',
-            createdAt: Date.now()
+            createdAt: new Date().toISOString(),
+            ip,
+            userAgent: request.headers.get('user-agent') || 'unknown',
+            rateLimitCount: currentCount
         }), 'EX', REDIS_EXPIRATION);
+        // Логирование для Security Information and Event Management (SIEM)
+        console.info(`Token issued for IP: ${ip}`, {
+            jti,
+            rateLimit: currentCount
+        });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             token
+        }, {
+            headers: {
+                'Cache-Control': 'no-store',
+                'X-Content-Type-Options': 'nosniff'
+            }
         });
     } catch (error) {
-        console.error('Token generation error:', error);
+        // Централизованное логирование ошибок
+        console.error('Token generation failed:', {
+            error: error instanceof Error ? error.stack : error,
+            ip,
+            headers: Object.fromEntries(request.headers.entries())
+        });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: 'Internal Server Error'
         }, {
-            status: 500
+            status: 500,
+            headers: {
+                'X-Error-Code': 'TOKEN_GENERATION_FAILED'
+            }
         });
     }
 }

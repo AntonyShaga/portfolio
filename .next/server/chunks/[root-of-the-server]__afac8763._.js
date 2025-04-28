@@ -193,6 +193,8 @@ process.on('SIGTERM', ()=>{
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
+    "TokenSchema": (()=>TokenSchema),
+    "TokenValidationError": (()=>TokenValidationError),
     "validateContactToken": (()=>validateContactToken)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/redis.ts [app-route] (ecmascript)");
@@ -206,43 +208,53 @@ const TokenSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
 });
 class TokenValidationError extends Error {
     code;
-    constructor(message, code){
-        super(message), this.code = code;
+    statusCode;
+    constructor(message, code, statusCode = 401){
+        super(message), this.code = code, this.statusCode = statusCode;
     }
 }
 async function validateContactToken(req) {
+    // 1. Extract token
     const authHeader = req.headers.get('authorization');
     const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
     if (!token) {
-        throw new TokenValidationError('Token is missing', 'MISSING_TOKEN');
+        throw new TokenValidationError('Token is missing', 'MISSING_TOKEN', 401);
     }
+    // 2. Check config
     const jwtSecret = process.env.JWT_SECRET;
     if (!jwtSecret) {
-        throw new TokenValidationError('JWT_SECRET is not set', 'CONFIG_ERROR');
+        throw new TokenValidationError('JWT_SECRET is not set', 'CONFIG_ERROR', 500);
     }
     try {
+        // 3. Verify JWT
         const decoded = TokenSchema.parse(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].verify(token, jwtSecret));
+        // 4. Check Redis
         const key = `contact_token:${encodeURIComponent(decoded.jti)}`;
         const exists = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].get(key);
         if (!exists) {
-            throw new TokenValidationError('Token expired or invalid', 'INVALID_TOKEN');
+            throw new TokenValidationError('Token expired or invalid', 'INVALID_TOKEN', 401);
         }
+        // 5. Invalidate token
         await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].del(key).catch((err)=>{
-            console.error('Redis delete failed:', err);
+            console.error('Failed to delete token from Redis:', err, {
+                key
+            });
         });
     } catch (error) {
-        if (error instanceof Error) {
-            if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].TokenExpiredError) {
-                throw new TokenValidationError('Token expired', 'TOKEN_EXPIRED');
-            }
-            if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].JsonWebTokenError) {
-                throw new TokenValidationError('Invalid token', 'INVALID_TOKEN');
-            }
-            console.error('Token validation error:', error);
-            throw new TokenValidationError('Validation failed', 'VALIDATION_ERROR');
+        // Handle known errors
+        if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].TokenExpiredError) {
+            throw new TokenValidationError('Token expired', 'TOKEN_EXPIRED', 401);
         }
-        console.error('Unknown error during validation', error);
-        throw new TokenValidationError('Validation failed', 'VALIDATION_ERROR');
+        if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].JsonWebTokenError) {
+            throw new TokenValidationError('Invalid token', 'INVALID_TOKEN', 401);
+        }
+        if (error instanceof __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["z"].ZodError) {
+            console.error('Token payload validation failed:', error.errors);
+            throw new TokenValidationError('Invalid token payload', 'INVALID_PAYLOAD', 401);
+        }
+        // Fallback
+        console.error('Unexpected error:', error);
+        throw new TokenValidationError('Token validation failed', 'VALIDATION_ERROR', 500);
     }
 }
 }}),
