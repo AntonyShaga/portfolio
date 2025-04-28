@@ -7,10 +7,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function handler(req: NextRequest) {
     const data = await req.json();
     const { name, email, message } = data;
-
+    console.log(`Portfolio <${process.env.FROM_EMAIL}>`)
     try {
         const emailResponse = await resend.emails.send({
-            from: process.env.FROM_EMAIL as string,
+            from: `Portfolio <${process.env.FROM_EMAIL}>`,
             to: process.env.TO_EMAIL as string,
             subject: 'Новое сообщение с лендинга',
             html: `
