@@ -10,7 +10,7 @@ async function handler(req: NextRequest) {
 
     try {
         const emailResponse = await resend.emails.send({
-            from: process.env.FROM_EMAIL as string,
+            from: 'Your Name <A@resend.dev>',
             to: process.env.TO_EMAIL as string,
             subject: 'Новое сообщение с лендинга',
             html: `
