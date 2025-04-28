@@ -44,7 +44,7 @@ export function ContactForm() {
             alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
         }
     }
-
+    console.log(`Portfolio <${process.env.FROM_EMAIL}>`)
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
             <input
