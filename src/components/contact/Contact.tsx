@@ -8,7 +8,7 @@ export default function Contact () {
         <section  id="contact" className="py-24  dark:bg-black transition-all duration-300   bg-gray-50 ">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                    <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
+                    <div className="inline-block rounded-lg px-3 py-1 text-sm dark:bg-gray-50  bg-black text-white dark:text-black">
                         Контакты
                     </div>
                     <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Свяжитесь со мной</h2>

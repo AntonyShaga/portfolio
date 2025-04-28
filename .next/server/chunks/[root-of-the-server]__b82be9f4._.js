@@ -167,11 +167,22 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/ioredis/built/index.js [app-route] (ecmascript)");
 ;
-const redisUrl = process.env.REDIS_URL;
+/**
+ * Redis connection URL from environment variables.
+ * @throws {Error} If REDIS_URL is not set.
+ */ const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) {
     throw new Error('Redis configuration error: REDIS_URL is required');
 }
-const redisOptions = {
+/**
+ * Redis client configuration options.
+ * Includes:
+ * - Automatic reconnection with exponential backoff (max 2s delay)
+ * - 20 max retries per request
+ * - 5s connection timeout
+ * - 10s keepalive
+ * - TLS support for 'rediss://' URLs
+ */ const redisOptions = {
     retryStrategy: (times)=>Math.min(times * 50, 2000),
     maxRetriesPerRequest: 20,
     connectTimeout: 5000,
@@ -181,9 +192,12 @@ const redisOptions = {
     } : undefined
 };
 const redis = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"](redisUrl, redisOptions);
+// Connection event listeners
 redis.on('connect', ()=>console.log('✅ Redis connected')).on('ready', ()=>console.log('🚀 Redis ready')).on('error', (err)=>console.error('❌ Redis error:', err)).on('close', ()=>console.warn('🔌 Redis connection closed')).on('reconnecting', ()=>console.log('🔁 Redis reconnecting...'));
-// Graceful shutdown
-process.on('SIGTERM', ()=>{
+/**
+ * Graceful shutdown handler.
+ * Closes Redis connection on SIGTERM signal.
+ */ process.on('SIGTERM', ()=>{
     redis.quit().then(()=>console.log('Redis gracefully terminated'));
 });
 }}),
