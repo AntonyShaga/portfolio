@@ -1,4 +1,3 @@
-/*
 import { NextRequest, NextResponse } from 'next/server';
 import { withContactValidation } from '@/lib/middleware/withContactValidation';
 
@@ -13,4 +12,3 @@ async function handler(req: NextRequest) {
 }
 
 export const POST = withContactValidation(handler);
-*/
