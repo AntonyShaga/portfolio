@@ -3,12 +3,37 @@ import {redis} from '@/lib/redis';
 import jwt from 'jsonwebtoken';
 import {randomUUID} from 'crypto';
 
+const JWT_ALGORITHM = 'HS256';
+const TOKEN_EXPIRATION = '10m';
+const REDIS_EXPIRATION = 600; // 10 минут в секундах
+
 export async function GET() {
-    const jti = randomUUID();
-    const token = jwt.sign({ jti }, process.env.JWT_SECRET!, { expiresIn: '10m' });
 
-    // Сохраняем токен в Redis
-    await redis.set(`contact_token:${jti}`, 'valid', 'EX', 600); // 10 минут
+    try {
+        const jti = randomUUID();
+        const payload = {
+            jti,
+            iss: 'contact-service',
+            aud: 'contact-form'
+        };
 
-    return NextResponse.json({ token });
+        const token = jwt.sign(payload, process.env.JWT_SECRET_KEY!, {
+            expiresIn: TOKEN_EXPIRATION,
+            algorithm: JWT_ALGORITHM,
+        });
+
+
+        await redis.set(`contact_token:${jti}`, JSON.stringify({
+            status: 'valid',
+            createdAt: Date.now()
+        }), 'EX', REDIS_EXPIRATION);
+
+        return NextResponse.json({ token });
+    } catch (error) {
+        console.error('Token generation error:', error);
+        return NextResponse.json(
+            { error: 'Internal Server Error' },
+            { status: 500 }
+        );
+    }
 }
