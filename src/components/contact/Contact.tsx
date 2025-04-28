@@ -6,7 +6,7 @@ import {ContactForm} from "@/components/contact/ContactForm";
 export default function Contact () {
     return (
         <section  id="contact" className="py-24  dark:bg-black transition-all duration-300   bg-gray-50 ">
-            <div className="container px-4 md:px-6">
+            <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
                         Контакты

@@ -163,15 +163,39 @@ module.exports = mod;
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
+    "checkRedisHealth": (()=>checkRedisHealth),
     "redis": (()=>redis)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/ioredis/built/index.js [app-route] (ecmascript)");
 ;
 const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) {
-    throw new Error('Missing REDIS_URL environment variable');
+    throw new Error('Redis configuration error: REDIS_URL is required');
 }
-const redis = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"](redisUrl);
+const redisOptions = {
+    retryStrategy: (times)=>Math.min(times * 50, 2000),
+    maxRetriesPerRequest: 20,
+    connectTimeout: 5000,
+    keepAlive: 10000,
+    tls: redisUrl.startsWith('rediss://') ? {
+        rejectUnauthorized: false
+    } : undefined
+};
+const redis = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"](redisUrl, redisOptions);
+// Логирование
+redis.on('connect', ()=>console.log('✅ Redis connected')).on('ready', ()=>console.log('🚀 Redis ready')).on('error', (err)=>console.error('❌ Redis error:', err)).on('close', ()=>console.warn('🔌 Redis connection closed')).on('reconnecting', ()=>console.log('🔁 Redis reconnecting...'));
+// Graceful shutdown
+process.on('SIGTERM', ()=>{
+    redis.quit().then(()=>console.log('Redis gracefully terminated'));
+});
+async function checkRedisHealth() {
+    try {
+        await redis.ping();
+        return true;
+    } catch  {
+        return false;
+    }
+}
 }}),
 "[project]/src/lib/validateContactToken.ts [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -273,12 +297,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$di
 ;
 ;
 ;
-const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Resend"](process.env.RESEND_API_KEY); // Твой ключ в .env файле
+const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Resend"](process.env.RESEND_API_KEY);
 async function handler(req) {
     const data = await req.json();
     const { name, email, message } = data;
     try {
-        // Отправка письма через Resend
         const emailResponse = await resend.emails.send({
             from: 'Your Name <A@resend.dev>',
             to: 'toxa1381@gmail.com',
@@ -290,15 +313,25 @@ async function handler(req) {
         <p><strong>Сообщение:</strong> ${message}</p>
       `
         });
-        console.log('Письмо отправлено:', emailResponse);
+        // Проверим ответ Resend, если надо
+        if (emailResponse.error) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                success: false,
+                message: 'Ошибка при отправке письма'
+            }, {
+                status: 500
+            });
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            success: true
+            success: true,
+            message: 'Письмо успешно отправлено'
+        }, {
+            status: 200
         });
     } catch (error) {
-        console.error('Ошибка при отправке письма:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
-            error: 'Ошибка отправки письма'
+            message: 'Ошибка сервера'
         }, {
             status: 500
         });
