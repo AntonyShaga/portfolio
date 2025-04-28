@@ -328,9 +328,10 @@ const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$
 async function handler(req) {
     const data = await req.json();
     const { name, email, message } = data;
+    console.log(`Portfolio <${process.env.FROM_EMAIL}>`);
     try {
         const emailResponse = await resend.emails.send({
-            from: process.env.FROM_EMAIL,
+            from: `Portfolio <${process.env.FROM_EMAIL}>`,
             to: process.env.TO_EMAIL,
             subject: 'Новое сообщение с лендинга',
             html: `
