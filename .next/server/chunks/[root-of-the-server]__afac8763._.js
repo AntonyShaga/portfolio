@@ -163,7 +163,6 @@ module.exports = mod;
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "checkRedisHealth": (()=>checkRedisHealth),
     "redis": (()=>redis)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/ioredis/built/index.js [app-route] (ecmascript)");
@@ -182,20 +181,11 @@ const redisOptions = {
     } : undefined
 };
 const redis = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ioredis$2f$built$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"](redisUrl, redisOptions);
-// Логирование
 redis.on('connect', ()=>console.log('✅ Redis connected')).on('ready', ()=>console.log('🚀 Redis ready')).on('error', (err)=>console.error('❌ Redis error:', err)).on('close', ()=>console.warn('🔌 Redis connection closed')).on('reconnecting', ()=>console.log('🔁 Redis reconnecting...'));
 // Graceful shutdown
 process.on('SIGTERM', ()=>{
     redis.quit().then(()=>console.log('Redis gracefully terminated'));
 });
-async function checkRedisHealth() {
-    try {
-        await redis.ping();
-        return true;
-    } catch  {
-        return false;
-    }
-}
 }}),
 "[project]/src/lib/validateContactToken.ts [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -298,23 +288,28 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$di
 ;
 ;
 const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Resend"](process.env.RESEND_API_KEY);
+function generateEmailHtml(data) {
+    return `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+      <h1 style="color: #333;">Новое сообщение с сайта</h1>
+      <p><strong>Имя:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Сообщение:</strong></p>
+      <p>${data.message.replace(/\n/g, '<br>')}</p>
+    </div>
+  `;
+}
 async function handler(req) {
     const data = await req.json();
-    const { name, email, message } = data;
     try {
         const emailResponse = await resend.emails.send({
-            from: 'Your Name <A@resend.dev>',
-            to: 'toxa1381@gmail.com',
+            from: process.env.FROM_EMAIL,
+            to: process.env.TO_EMAIL,
             subject: 'Новое сообщение с лендинга',
-            html: `
-        <h1>Новое сообщение</h1>
-        <p><strong>Имя:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Сообщение:</strong> ${message}</p>
-      `
+            html: generateEmailHtml(data)
         });
-        // Проверим ответ Resend, если надо
         if (emailResponse.error) {
+            console.error('Resend error:', emailResponse.error);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 success: false,
                 message: 'Ошибка при отправке письма'
@@ -329,6 +324,7 @@ async function handler(req) {
             status: 200
         });
     } catch (error) {
+        console.error('Server error:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
             message: 'Ошибка сервера'
