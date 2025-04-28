@@ -330,7 +330,7 @@ async function handler(req) {
     const { name, email, message } = data;
     try {
         const emailResponse = await resend.emails.send({
-            from: process.env.FROM_EMAIL,
+            from: 'Portfolio<contact@resend.dev>',
             to: process.env.TO_EMAIL,
             subject: 'Новое сообщение с лендинга',
             html: `
