@@ -203,18 +203,36 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__
 ;
 ;
 ;
+const JWT_ALGORITHM = 'HS256';
+const TOKEN_EXPIRATION = '10m';
+const REDIS_EXPIRATION = 600; // 10 минут в секундах
 async function GET() {
-    const jti = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["randomUUID"])();
-    const token = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].sign({
-        jti
-    }, process.env.JWT_SECRET, {
-        expiresIn: '10m'
-    });
-    // Сохраняем токен в Redis
-    await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].set(`contact_token:${jti}`, 'valid', 'EX', 600); // 10 минут
-    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-        token
-    });
+    try {
+        const jti = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["randomUUID"])();
+        const payload = {
+            jti,
+            iss: 'contact-service',
+            aud: 'contact-form'
+        };
+        const token = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].sign(payload, process.env.JWT_SECRET_KEY, {
+            expiresIn: TOKEN_EXPIRATION,
+            algorithm: JWT_ALGORITHM
+        });
+        await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$redis$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["redis"].set(`contact_token:${jti}`, JSON.stringify({
+            status: 'valid',
+            createdAt: Date.now()
+        }), 'EX', REDIS_EXPIRATION);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            token
+        });
+    } catch (error) {
+        console.error('Token generation error:', error);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: 'Internal Server Error'
+        }, {
+            status: 500
+        });
+    }
 }
 }}),
 

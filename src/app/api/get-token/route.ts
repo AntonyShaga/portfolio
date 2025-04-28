@@ -17,7 +17,7 @@ export async function GET() {
             aud: 'contact-form'
         };
 
-        const token = jwt.sign(payload, process.env.JWT_SECRET_KEY!, {
+        const token = jwt.sign(payload, process.env.JWT_SECRET!, {
             expiresIn: TOKEN_EXPIRATION,
             algorithm: JWT_ALGORITHM,
         });
