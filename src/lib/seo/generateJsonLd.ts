@@ -14,7 +14,7 @@ const MINIMAL_SCHEMA: JsonLdData = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Developer",
-    url: "https://default-site.com"
+    url: "https://portfolio-inky-six-36.vercel.app"
 };
 
 export function generateJsonLd(lang: 'en' | 'ru'): JsonLdData {
@@ -24,10 +24,10 @@ export function generateJsonLd(lang: 'en' | 'ru'): JsonLdData {
             "@type": "Person",
             name: lang === 'ru' ? 'Антон Шага' : 'Anton Shaga',
             jobTitle: "Frontend Developer",
-            url: "https://yourdomain.com",
+            url: `https://portfolio-inky-six-36.vercel.app/${lang}`,
             sameAs: [
-                "https://github.com/yourprofile",
-                "https://linkedin.com/in/yourprofile"
+                "https://github.com/AntonyShaga",
+                "https://www.linkedin.com/in/anton-shaga-2b4383157/"
             ],
             description: lang === 'ru'
                 ? "Фронтенд-разработчик на Next.js и TypeScript"
@@ -46,7 +46,7 @@ export function generateJsonLd(lang: 'en' | 'ru'): JsonLdData {
         return {
             ...MINIMAL_SCHEMA,
             name: lang === 'ru' ? 'Антон Шага' : 'Anton Shaga',
-            url: `https://yourdomain.com/${lang}`
+            url: `https://portfolio-inky-six-36.vercel.app/${lang}`
         };
     }
 }
