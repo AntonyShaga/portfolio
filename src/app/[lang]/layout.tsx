@@ -1,4 +1,3 @@
-import {Geist, Geist_Mono} from "next/font/google";
 import "../../style/globals.css";
 import {ThemeProvider} from "next-themes";
 import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
@@ -8,21 +7,16 @@ import {notFound} from "next/navigation";
 import {headers} from 'next/headers';
 import {Toaster} from "sonner";
 import {generateJsonLd} from "@/lib/seo/generateJsonLd";
+export { generateMetadata } from "./metadata"
+import {geistMono, geistSans} from "@/lib/fonts";
 
 export async function generateStaticParams() {
     // Статические параметры для языков
     return [{ lang: 'en' }, { lang: 'ru' }];
 }
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+
 
 export default async function RootLayout({
                                              children,
@@ -34,7 +28,7 @@ export default async function RootLayout({
     const langFromHeader = headersList.get('x-current-locale');
     const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
     // Определяем язык
-    const lang = langFromHeader || path?.split('/')[1] || 'ru';
+    const lang = (langFromHeader || path?.split('/')[1] || 'ru') as 'en' | 'ru';
 
     // Если язык не поддерживается
     if (!['en', 'ru'].includes(lang)) {
