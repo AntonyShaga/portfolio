@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const headersList = await headers();
     const lang = headersList.get('x-current-locale') || 'ru';
     const path = headersList.get('x-invoke-path') || '';
-
+    const cleanPath = path.startsWith(`/${lang}`) ? path.replace(`/${lang}`, '') : path;
     const title = {
         ru: "Антон Шага | Frontend-разработчик",
         en: "Anton Shaga | Frontend Developer"
@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: description[lang as 'ru' | 'en'],
         metadataBase: new URL(SITE_URL),
         alternates: {
-            canonical: `${SITE_URL}/${lang}${path}`,
+            canonical: `${SITE_URL}/${lang}${cleanPath}`,
             languages: {
                 'ru': `${SITE_URL}/ru${path}`,
                 'en': `${SITE_URL}/en${path}`,
@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
         openGraph: {
             title: title[lang as 'ru' | 'en'],
             description: description[lang as 'ru' | 'en'],
-            url: `${SITE_URL}/${lang}${path}`,
+            url: `${SITE_URL}/${lang}${cleanPath}`,
             siteName: "Anton Shaga Portfolio",
             images: [{
                 url: DEFAULT_OG_IMAGE,

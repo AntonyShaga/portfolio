@@ -179,6 +179,7 @@ async function generateMetadata() {
     const headersList = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["headers"])();
     const lang = headersList.get('x-current-locale') || 'ru';
     const path = headersList.get('x-invoke-path') || '';
+    const cleanPath = path.startsWith(`/${lang}`) ? path.replace(`/${lang}`, '') : path;
     const title = {
         ru: "Антон Шага | Frontend-разработчик",
         en: "Anton Shaga | Frontend Developer"
@@ -192,7 +193,7 @@ async function generateMetadata() {
         description: description[lang],
         metadataBase: new URL(SITE_URL),
         alternates: {
-            canonical: `${SITE_URL}/${lang}${path}`,
+            canonical: `${SITE_URL}/${lang}${cleanPath}`,
             languages: {
                 'ru': `${SITE_URL}/ru${path}`,
                 'en': `${SITE_URL}/en${path}`
@@ -201,7 +202,7 @@ async function generateMetadata() {
         openGraph: {
             title: title[lang],
             description: description[lang],
-            url: `${SITE_URL}/${lang}${path}`,
+            url: `${SITE_URL}/${lang}${cleanPath}`,
             siteName: "Anton Shaga Portfolio",
             images: [
                 {
