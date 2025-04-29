@@ -779,6 +779,10 @@
     height: calc(var(--spacing) * 10);
   }
 
+  .h-102 {
+    height: calc(var(--spacing) * 102);
+  }
+
   .h-full {
     height: 100%;
   }
@@ -1520,6 +1524,10 @@
 
   .not-italic {
     font-style: normal;
+  }
+
+  .font-stretch-100\% {
+    font-stretch: 100%;
   }
 
   .diagonal-fractions {
