@@ -1,64 +1,68 @@
+// components/ContactForm.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
-import {toast} from "sonner";
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        async function fetchToken() {
-            try {
-                const res = await fetch('/api/get-token');
-                if (!res.ok) {
-                    const errorMessage = res.status === 429
-                        ? 'Слишком много запросов. Попробуйте позже.'
-                        : 'Ошибка при получении токена.';
-
-                    toast.error(errorMessage);
-                    return;
-                }
-
-                const data = await res.json();
-                setToken(data.token);
-            } catch  {
-                toast.error('Сетевая ошибка. Попробуйте позже.');
+    async function getToken() {
+        try {
+            const res = await fetch('/api/get-token');
+            if (!res.ok) {
+                const errorMessage = res.status === 429
+                    ? 'Слишком много запросов. Попробуйте позже.'
+                    : 'Ошибка при получении токена.';
+                toast.error(errorMessage);
+                return null;
             }
+            return (await res.json()).token as string;
+        } catch {
+            toast.error('Сетевая ошибка. Попробуйте позже.');
+            return null;
         }
-
-        fetchToken();
-    }, []);
+    }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        if (!token) {
-            alert('Форма устарела. Пожалуйста обновите страницу.');
-            toast.error('Форма устарела. Пожалуйста обновите страницу.')
-            return;
-        }
-
         setLoading(true);
 
-        const res = await fetch('/api/send-message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify(form),
-        });
+        try {
+            // Всегда получаем токен перед первой отправкой
+            const currentToken = token || await getToken();
+            if (!currentToken) {
+                setLoading(false);
+                return;
+            }
 
-        setLoading(false);
+            const res = await fetch('/api/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentToken}`,
+                },
+                body: JSON.stringify(form),
+            });
 
-        if (res.ok) {
-            alert('Сообщение отправлено!');
-            toast.success('Сообщение отправлено!')
-            setForm({ name: '', email: '', message: '' });
-        } else {
-            alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
-            toast.error('Ошибка отправки сообщения. Попробуйте ещё раз.')
+            if (res.ok) {
+                // Обновляем токен из заголовков
+                const newToken = res.headers.get('X-New-Token');
+                if (newToken) {
+                    setToken(newToken);
+                }
+
+                toast.success('Сообщение отправлено!');
+                setForm({ name: '', email: '', message: '' });
+            } else {
+                toast.error('Ошибка отправки сообщения. Попробуйте ещё раз.');
+            }
+        } catch (error) {
+            toast.error('Сетевая ошибка. Попробуйте позже.');
+        } finally {
+            setLoading(false);
         }
     }
 

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withContactValidation } from '@/lib/middleware/withContactValidation';
 import { Resend } from 'resend';
+import {generateContactToken} from "@/lib/token/generate";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-async function handler(req: NextRequest) {
+async function baseHandler(req: NextRequest) {
     const data = await req.json();
     const { name, email, message } = data;
 
@@ -40,4 +41,14 @@ async function handler(req: NextRequest) {
     }
 }
 
-export const POST = withContactValidation(handler);
+export const POST = withContactValidation(async (req: NextRequest) => {
+    const response = await baseHandler(req);
+
+    if (response.status === 200) {
+        // Используем ту же функцию генерации токена
+        const newToken = await generateContactToken(req);
+        response.headers.set('X-New-Token', newToken);
+    }
+
+    return response;
+})

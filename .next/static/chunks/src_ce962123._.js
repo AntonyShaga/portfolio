@@ -1000,6 +1000,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
+// components/ContactForm.tsx
 __turbopack_context__.s({
     "ContactForm": (()=>ContactForm)
 });
@@ -1020,53 +1021,57 @@ function ContactForm() {
         message: ''
     });
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "ContactForm.useEffect": ()=>{
-            async function fetchToken() {
-                try {
-                    const res = await fetch('/api/get-token');
-                    if (!res.ok) {
-                        const errorMessage = res.status === 429 ? 'Слишком много запросов. Попробуйте позже.' : 'Ошибка при получении токена.';
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(errorMessage);
-                        return;
-                    }
-                    const data = await res.json();
-                    setToken(data.token);
-                } catch  {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
-                }
+    async function getToken() {
+        try {
+            const res = await fetch('/api/get-token');
+            if (!res.ok) {
+                const errorMessage = res.status === 429 ? 'Слишком много запросов. Попробуйте позже.' : 'Ошибка при получении токена.';
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(errorMessage);
+                return null;
             }
-            fetchToken();
+            return (await res.json()).token;
+        } catch  {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
+            return null;
         }
-    }["ContactForm.useEffect"], []);
+    }
     async function handleSubmit(e) {
         e.preventDefault();
-        if (!token) {
-            alert('Форма устарела. Пожалуйста обновите страницу.');
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Форма устарела. Пожалуйста обновите страницу.');
-            return;
-        }
         setLoading(true);
-        const res = await fetch('/api/send-message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(form)
-        });
-        setLoading(false);
-        if (res.ok) {
-            alert('Сообщение отправлено!');
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success('Сообщение отправлено!');
-            setForm({
-                name: '',
-                email: '',
-                message: ''
+        try {
+            // Всегда получаем токен перед первой отправкой
+            const currentToken = token || await getToken();
+            if (!currentToken) {
+                setLoading(false);
+                return;
+            }
+            const res = await fetch('/api/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentToken}`
+                },
+                body: JSON.stringify(form)
             });
-        } else {
-            alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Ошибка отправки сообщения. Попробуйте ещё раз.');
+            if (res.ok) {
+                // Обновляем токен из заголовков
+                const newToken = res.headers.get('X-New-Token');
+                if (newToken) {
+                    setToken(newToken);
+                }
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success('Сообщение отправлено!');
+                setForm({
+                    name: '',
+                    email: '',
+                    message: ''
+                });
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Ошибка отправки сообщения. Попробуйте ещё раз.');
+            }
+        } catch (error) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
+        } finally{
+            setLoading(false);
         }
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1084,7 +1089,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 67,
+                lineNumber: 71,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1098,7 +1103,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 74,
+                lineNumber: 78,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1111,7 +1116,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 81,
+                lineNumber: 85,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1120,17 +1125,17 @@ function ContactForm() {
                 children: loading ? 'Отправка...' : 'Отправить сообщение'
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 87,
+                lineNumber: 91,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactForm.tsx",
-        lineNumber: 66,
+        lineNumber: 70,
         columnNumber: 9
     }, this);
 }
-_s(ContactForm, "L4+mzdP6OrFh3JwzRKYVMsaIdkw=");
+_s(ContactForm, "TtfRQV33xSFCZkK1phy/HrCJMlg=");
 _c = ContactForm;
 var _c;
 __turbopack_context__.k.register(_c, "ContactForm");
