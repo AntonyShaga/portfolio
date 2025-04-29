@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import {toast} from "sonner";
 
 export function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
@@ -9,9 +10,22 @@ export function ContactForm() {
 
     useEffect(() => {
         async function fetchToken() {
-            const res = await fetch('/api/get-token');
-            const data = await res.json();
-            setToken(data.token);
+            try {
+                const res = await fetch('/api/get-token');
+                if (!res.ok) {
+                    const errorMessage = res.status === 429
+                        ? 'Слишком много запросов. Попробуйте позже.'
+                        : 'Ошибка при получении токена.';
+
+                    toast.error(errorMessage);
+                    return;
+                }
+
+                const data = await res.json();
+                setToken(data.token);
+            } catch  {
+                toast.error('Сетевая ошибка. Попробуйте позже.');
+            }
         }
 
         fetchToken();
@@ -21,6 +35,7 @@ export function ContactForm() {
         e.preventDefault();
         if (!token) {
             alert('Форма устарела. Пожалуйста обновите страницу.');
+            toast.error('Форма устарела. Пожалуйста обновите страницу.')
             return;
         }
 
@@ -39,14 +54,16 @@ export function ContactForm() {
 
         if (res.ok) {
             alert('Сообщение отправлено!');
+            toast.success('Сообщение отправлено!')
             setForm({ name: '', email: '', message: '' });
         } else {
             alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
+            toast.error('Ошибка отправки сообщения. Попробуйте ещё раз.')
         }
     }
-    console.log(`Portfolio <${process.env.FROM_EMAIL}>`)
+
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col h-full justify-between">
             <input
                 type="text"
                 placeholder="Ваше имя"

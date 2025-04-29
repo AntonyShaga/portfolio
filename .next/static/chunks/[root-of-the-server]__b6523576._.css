@@ -528,6 +528,10 @@
     }
   }
 
+  .m-0 {
+    margin: calc(var(--spacing) * 0);
+  }
+
   .mx-auto {
     margin-inline: auto;
   }
@@ -854,6 +858,10 @@
 
   .items-center {
     align-items: center;
+  }
+
+  .items-stretch {
+    align-items: stretch;
   }
 
   .justify-between {
@@ -1430,10 +1438,6 @@
 
   .not-italic {
     font-style: normal;
-  }
-
-  .font-stretch-100\% {
-    font-stretch: 100%;
   }
 
   .diagonal-fractions {

@@ -883,7 +883,9 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 function ContactForm() {
@@ -896,9 +898,18 @@ function ContactForm() {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         async function fetchToken() {
-            const res = await fetch('/api/get-token');
-            const data = await res.json();
-            setToken(data.token);
+            try {
+                const res = await fetch('/api/get-token');
+                if (!res.ok) {
+                    const errorMessage = res.status === 429 ? 'Слишком много запросов. Попробуйте позже.' : 'Ошибка при получении токена.';
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(errorMessage);
+                    return;
+                }
+                const data = await res.json();
+                setToken(data.token);
+            } catch  {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
+            }
         }
         fetchToken();
     }, []);
@@ -906,6 +917,7 @@ function ContactForm() {
         e.preventDefault();
         if (!token) {
             alert('Форма устарела. Пожалуйста обновите страницу.');
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Форма устарела. Пожалуйста обновите страницу.');
             return;
         }
         setLoading(true);
@@ -920,6 +932,7 @@ function ContactForm() {
         setLoading(false);
         if (res.ok) {
             alert('Сообщение отправлено!');
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success('Сообщение отправлено!');
             setForm({
                 name: '',
                 email: '',
@@ -927,12 +940,12 @@ function ContactForm() {
             });
         } else {
             alert('Ошибка отправки сообщения. Попробуйте ещё раз.');
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Ошибка отправки сообщения. Попробуйте ещё раз.');
         }
     }
-    console.log(`Portfolio <${process.env.FROM_EMAIL}>`);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
         onSubmit: handleSubmit,
-        className: "flex flex-col gap-4 max-w-md mx-auto",
+        className: "flex flex-col h-full justify-between",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                 type: "text",
@@ -945,7 +958,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 50,
+                lineNumber: 67,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -959,7 +972,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 57,
+                lineNumber: 74,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -972,7 +985,7 @@ function ContactForm() {
                 required: true
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 64,
+                lineNumber: 81,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -981,13 +994,13 @@ function ContactForm() {
                 children: loading ? 'Отправка...' : 'Отправить сообщение'
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 70,
+                lineNumber: 87,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactForm.tsx",
-        lineNumber: 49,
+        lineNumber: 66,
         columnNumber: 9
     }, this);
 }
