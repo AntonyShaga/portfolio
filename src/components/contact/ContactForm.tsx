@@ -1,4 +1,3 @@
-// components/ContactForm.tsx
 'use client';
 
 import { useState } from 'react';
@@ -59,7 +58,7 @@ export function ContactForm() {
             } else {
                 toast.error('Ошибка отправки сообщения. Попробуйте ещё раз.');
             }
-        } catch (error) {
+        } catch {
             toast.error('Сетевая ошибка. Попробуйте позже.');
         } finally {
             setLoading(false);
