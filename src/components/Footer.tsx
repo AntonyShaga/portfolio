@@ -21,7 +21,7 @@ export default async function Footer ({ footer, nav }: IProps) {
                     <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-muted-foreground">
                         <Nav nav={nav} ariaLabel={"Footer navigation"}/>
                     </div>
-                    <div className="text-sm text-gray-300 hover:text-neutral-800 dark:hover:text-white font-medium  transition-colors">
+                    <div className="text-sm text-gray-500 hover:text-neutral-800 dark:text-gray-200 dark:hover:text-white font-medium  transition-colors">
                         © {new Date().getFullYear()}{footer.copyright}
                     </div>
                 </div>
