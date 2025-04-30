@@ -996,9 +996,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$di
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hook-form/dist/index.esm.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$hookform$2f$resolvers$2f$zod$2f$dist$2f$zod$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@hookform/resolvers/zod/dist/zod.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/zod/lib/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/Button.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -1080,11 +1082,11 @@ function ContactForm({ form, feedback }) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         ...register('name'),
                         placeholder: namePlaceholderForm,
-                        className: `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`,
+                        className: `w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none ${errors.name ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}`,
                         "aria-invalid": !!errors.name
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 123,
+                        lineNumber: 124,
                         columnNumber: 17
                     }, this),
                     errors.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1093,13 +1095,13 @@ function ContactForm({ form, feedback }) {
                         children: errors.name.message
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 130,
+                        lineNumber: 131,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 122,
+                lineNumber: 123,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1108,11 +1110,11 @@ function ContactForm({ form, feedback }) {
                         ...register('email'),
                         type: "email",
                         placeholder: emailPlaceholderForm,
-                        className: `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`,
+                        className: `w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none ${errors.name ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}`,
                         "aria-invalid": !!errors.email
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 137,
+                        lineNumber: 138,
                         columnNumber: 17
                     }, this),
                     errors.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1121,13 +1123,13 @@ function ContactForm({ form, feedback }) {
                         children: errors.email.message
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 145,
+                        lineNumber: 146,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 136,
+                lineNumber: 137,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1136,15 +1138,14 @@ function ContactForm({ form, feedback }) {
                         ...register('message'),
                         placeholder: messagePlaceholderForm,
                         className: `
-                        ${errors.message ? 'border-red-500' : 'border-gray-300'}
-                        resize-none focus:border-none
-                        w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                        ${errors.message ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}
+                        resize-none w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none
                     `,
                         "aria-invalid": !!errors.message,
                         rows: 3
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 152,
+                        lineNumber: 153,
                         columnNumber: 17
                     }, this),
                     errors.message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1159,14 +1160,14 @@ function ContactForm({ form, feedback }) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 151,
+                lineNumber: 152,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$Button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 type: "submit",
                 disabled: loading,
-                className: `rounded transition-colors ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`,
                 "aria-busy": loading,
+                variant: "danger",
                 children: loading ? sendingForm : submitForm
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
@@ -1176,7 +1177,7 @@ function ContactForm({ form, feedback }) {
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactForm.tsx",
-        lineNumber: 121,
+        lineNumber: 122,
         columnNumber: 9
     }, this);
 }

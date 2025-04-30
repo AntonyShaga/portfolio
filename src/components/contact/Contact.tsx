@@ -30,14 +30,14 @@ export default function Contact ({contact}:IProps) {
                         viewport={{ once: true }}
                         transition={{ duration: 0.9 }}
                     >
-                        <div className={"rounded-lg border shadow-sm"}>
+                        <div className={"rounded-lg border shadow-sm border-gray-100 dark:border-gray-800"}>
                             <div className={"flex flex-col space-y-1.5 p-6"}>
                                 <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>{titleInfo}</h3>
                                 <p className={"text-sm text-muted-foreground"}>
                                     {subtitleInfo}
                                 </p>
                             </div>
-                            <div className={"p-6 pt-0 space-y-4"}>
+                            <div className={"p-6 pt-0 space-y-8"}>
                                 <div className="flex items-center">
                                     <a href="mailto:alexander@example.com" className="text-muted-foreground hover:text-foreground">
                                         {emailInfo}
@@ -51,7 +51,7 @@ export default function Contact ({contact}:IProps) {
                                 <div className={"flex items-center"}>
                                     <span className="text-muted-foreground">{locationInfo}</span>
                                 </div>
-                                <div className={"pt-4"}>
+                                <div className={"pt-6"}>
                                     <h3 className={"font-medium mb-2"}>{socialsInfo}</h3>
                                     <div className={"flex space-x-4"}>
                                         <SocialLinks/>
@@ -67,7 +67,7 @@ export default function Contact ({contact}:IProps) {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <div className={"rounded-lg border flex flex-col justify-between h-full shadow-sm"}>
+                        <div className={"rounded-lg border shadow-sm border-gray-100 dark:border-gray-800 flex flex-col justify-between h-full"}>
                             <div className={"flex flex-col space-y-1.5 p-6"}>
                                 <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>{titleForm}</h3>
                                 <p className={"text-sm text-muted-foreground"}>

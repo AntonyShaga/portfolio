@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { ContactFeedback, ContactFormI } from "@/types/dictionary";
+import Button from "@/components/ui/Button";
 
 interface IProps {
     form: ContactFormI;
@@ -123,7 +124,7 @@ export function ContactForm({ form, feedback }: IProps) {
                 <input
                     {...register('name')}
                     placeholder={namePlaceholderForm}
-                    className={ `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+                    className={ `w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none ${errors.name ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}`}
                     aria-invalid={!!errors.name}
                 />
                 {errors.name && (
@@ -138,7 +139,7 @@ export function ContactForm({ form, feedback }: IProps) {
                     {...register('email')}
                     type="email"
                     placeholder={emailPlaceholderForm}
-                    className={`w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none ${errors.name ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}`}
                     aria-invalid={!!errors.email}
                 />
                 {errors.email && (
@@ -153,9 +154,8 @@ export function ContactForm({ form, feedback }: IProps) {
                     {...register('message')}
                     placeholder={messagePlaceholderForm}
                     className={`
-                        ${errors.message ? 'border-red-500' : 'border-gray-300'}
-                        resize-none focus:border-none
-                        w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                        ${errors.message ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}
+                        resize-none w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none
                     `}
                     aria-invalid={!!errors.message}
                     rows={3}
@@ -167,18 +167,14 @@ export function ContactForm({ form, feedback }: IProps) {
                 )}
             </div>
 
-            <button
+            <Button
                 type="submit"
                 disabled={loading}
-                className={`rounded transition-colors ${
-                    loading
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-blue-600 hover:bg-blue-700 text-white'
-                }`}
                 aria-busy={loading}
+                variant={"danger"}
             >
                 {loading ? sendingForm : submitForm}
-            </button>
+            </Button>
         </form>
     );
 }

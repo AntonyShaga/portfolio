@@ -22,7 +22,7 @@ const ExperienceCard = ({items,ariaLabel}:IProps) => {
 
                     aria-labelledby={`exp-title-${index}`}
                 >
-                    <div className="rounded-lg border shadow-sm border-gray-200">
+                    <div className="rounded-lg border shadow-sm  border-gray-100 dark:border-gray-800 ">
                         <div className="p-6">
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                                 <div>
