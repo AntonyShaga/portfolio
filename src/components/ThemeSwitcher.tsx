@@ -1,9 +1,10 @@
 'use client';
 
-import {AnimatePresence, motion} from 'framer-motion';
+import {AnimatePresence} from 'framer-motion';
 import dynamic, {DynamicOptions} from 'next/dynamic';
 import {useThemeAnimation} from "@/hooks/useThemeAnimation";
 import Button from "@/components/ui/Button";
+import MotionWrapper from "@/components/ui/MotionWrapper";
 
 type DynamicIconOptions = DynamicOptions<{ className?: string }>;
 
@@ -65,13 +66,13 @@ const {mounted,isDark,isAnimating,toggleTheme, resolvedTheme} = useThemeAnimatio
             active={isAnimating}
         >
             <AnimatePresence mode="wait" initial={false}>
-                <motion.span
+                <MotionWrapper as={"span"}
                     key={resolvedTheme}
                     suppressHydrationWarning
                     {...ANIMATION_PROPS}
                 >
                     {!mounted ? <FallbackIcon /> : (isDark ? <SunIcon className="h-6 w-6"/> : <MoonIcon className="h-6 w-6"/>)}
-                </motion.span>
+                </MotionWrapper>
             </AnimatePresence>
         </Button>
     );

@@ -15,7 +15,7 @@ export default function Nav ( { ariaLabel ,nav }:IProps)  {
                 <Link
                     key={index}
                     href={item.href}
-                    className="text-sm text-gray-500 hover:text-neutral-800 dark:hover:text-white font-medium  transition-colors"
+                    className="text-sm text-gray-300 hover:text-neutral-800 dark:hover:text-white font-medium  transition-colors"
                 >
                     {item.name}
                 </Link>

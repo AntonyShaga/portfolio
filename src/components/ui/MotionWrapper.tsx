@@ -9,6 +9,7 @@ interface MotionWrapperProps extends MotionProps {
     variants?: Variants;
     transition?: Transition;
     className?: string;
+    suppressHydrationWarning?: boolean;
 }
 
 
@@ -17,12 +18,14 @@ const MotionWrapper = ({
                            children,
                            as = 'div',
                            className = '',
+                           suppressHydrationWarning,
                            ...rest
                        }: MotionWrapperProps) => {
     const Component = motion[as as keyof typeof motion] as ElementType;
 
     return (
         <Component
+            suppressHydrationWarning={suppressHydrationWarning}
             className={className}
             {...rest}
         >
