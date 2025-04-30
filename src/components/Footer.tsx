@@ -1,12 +1,15 @@
 import SocialLinks from "@/components/ui/SocialLinks";
+import {NavigationLabels} from "@/types/dictionary";
+import Nav from "@/components/header/Nav";
 
 interface IProps {
     footer:{
         copyright: string;
     }
+    nav:NavigationLabels
 }
 
-export default async function Footer ({ footer }: IProps) {
+export default async function Footer ({ footer, nav }: IProps) {
 
     return (
         <footer className=" transition-all duration-300  py-12">
@@ -16,7 +19,7 @@ export default async function Footer ({ footer }: IProps) {
                        <SocialLinks/>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-muted-foreground">
-
+                        <Nav nav={nav} ariaLabel={"Footer navigation"}/>
                     </div>
                     <div className="text-sm text-muted-foreground">
                         © {new Date().getFullYear()}{footer.copyright}

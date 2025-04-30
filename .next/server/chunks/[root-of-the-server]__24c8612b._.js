@@ -408,20 +408,31 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$token$2f$gener
 ;
 ;
 const resend = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$resend$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Resend"](process.env.RESEND_API_KEY);
-async function baseHandler(req) {
+/**
+ * Processes raw contact form submission (without token validation)
+ * @param {NextRequest} req - Request containing:
+ *   - name: string
+ *   - email: string (valid email format)
+ *   - message: string
+ * @returns {Promise<NextResponse>} Response with:
+ *   - success: boolean
+ *   - message: string (user-friendly status)
+ *   - status: 200|500
+ * @throws {Error} Only for unexpected Resend API failures
+ */ async function baseHandler(req) {
     const data = await req.json();
     const { name, email, message } = data;
     try {
         const emailResponse = await resend.emails.send({
             from: `Portfolio <contact@resend.dev>`,
             to: process.env.TO_EMAIL,
-            subject: 'Новое сообщение с лендинга',
+            subject: 'New message from landing page',
             html: `
-        <h1>Новое сообщение</h1>
-        <p><strong>Имя:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Сообщение:</strong> ${message}</p>
-      `
+                <h1>New message</h1>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Message:</strong> ${message}</p>
+            `
         });
         if (emailResponse.error) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -449,7 +460,6 @@ async function baseHandler(req) {
 const POST = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$middleware$2f$withContactValidation$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["withContactValidation"])(async (req)=>{
     const response = await baseHandler(req);
     if (response.status === 200) {
-        // Используем ту же функцию генерации токена
         const newToken = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$token$2f$generate$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["generateContactToken"])(req);
         response.headers.set('X-New-Token', newToken);
     }

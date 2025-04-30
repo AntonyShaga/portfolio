@@ -36,7 +36,7 @@ export default async function Home() {
         <Skills skills={dict.skills}/>
         <Experience experience={dict.experience}/>
         <Contact/>
-        <Footer footer={dict.footer} />
+        <Footer footer={dict.footer } nav={dict.navigation} />
     </main>
   );
 }

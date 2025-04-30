@@ -287,7 +287,6 @@ async function generateContactToken(req) {
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-// app/api/get-token/route.ts
 __turbopack_context__.s({
     "GET": (()=>GET)
 });
@@ -310,16 +309,27 @@ async function GET(request) {
         });
     } catch (error) {
         console.error('Token generation failed:', error);
-        if (error.message === 'Too many token generation requests') {
+        // Проверяем, является ли ошибка объектом Error
+        if (error instanceof Error) {
+            // Обрабатываем rate limit ошибку
+            if (error.message === 'Too many token generation requests') {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: 'Too many requests'
+                }, {
+                    status: 429,
+                    headers: {
+                        'Retry-After': __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$token$2f$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["tokenConfig"].rateLimitWindow.toString()
+                    }
+                });
+            }
+            // Обрабатываем другие известные ошибки
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Too many requests'
+                error: error.message || 'Token generation failed'
             }, {
-                status: 429,
-                headers: {
-                    'Retry-After': __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$token$2f$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["tokenConfig"].rateLimitWindow.toString()
-                }
+                status: error.statusCode || 500
             });
         }
+        // Фолбэк для неизвестных ошибок
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: 'Internal Server Error'
         }, {
