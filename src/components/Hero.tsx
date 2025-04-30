@@ -18,17 +18,37 @@ const Hero = ({hero}:IProps)=>{
                 <div className="grid gap-6 lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_300px]">
                     <div className="flex flex-col justify-center space-y-4">
                         <div className="space-y-2">
-                            <MotionWrapper as={"h1"}  className="max-w-[700px] w-full md:text-xl">
+                            <MotionWrapper
+                                as={"h1"}
+                                className="max-w-[700px] w-full md:text-xl"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                                transition={{ delay: 0 }}
+                            >
                                 <div  className="text-3xl font-bold w-full flex flex-col tracking-tighter sm:text-5xl xl:text-6xl/none">
                                     {name}
                                     <span className={"flex"}>{title}</span>
                                 </div>
                             </MotionWrapper>
-                            <MotionWrapper className="max-w-[600px] md:text-xl" as={"p"} transition={{delay:0.1}}>
+                            <MotionWrapper
+                                className="max-w-[600px] md:text-xl"
+                                as={"p"}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                                transition={{ delay: 0.1 }}
+                            >
                                 {description}
                             </MotionWrapper>
                         </div>
-                        <MotionWrapper className="flex flex-col gap-2 min-[400px]:flex-row" transition={{delay:0.2}}>
+                        <MotionWrapper
+                            className="flex flex-col gap-2 min-[400px]:flex-row"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                            transition={{ delay: 0.2 }}
+                        >
                             <Button className={'h-10 px-8 transition-all duration-300'} asChild variant={"danger"}>
                                 <Link href="#contact" aria-label={`${contactButton} (Contact Section)`}>
                                     {contactButton}

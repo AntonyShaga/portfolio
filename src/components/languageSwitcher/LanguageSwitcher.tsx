@@ -47,8 +47,9 @@ export default function LanguageSwitcher({ currentLang }: { currentLang: string 
                 {isOpen && (
                     <MotionWrapper
                         className="absolute right-0 mt-2 dark:rounded-md   rounded-md  shadow-lg z-10"
-                        initial={{ opacity: 0, y: -5 }}
-                        exit={{ opacity: 0, y: -5 }}
+                        initial={{ opacity: 0, y: -5 }}  // Начальное состояние (невидимо)
+                        animate={{ opacity: 1, y: 0 }}   // Состояние анимации (появляется)
+                        exit={{ opacity: 0, y: -5 }}     // Работает только с AnimatePresence
                         transition={{ duration: 0.15 }}
                     >
                         <LanguageList languages={languages} currentLang={currentLang} onChange={handleChange}/>

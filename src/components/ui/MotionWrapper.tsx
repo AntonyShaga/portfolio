@@ -11,21 +11,10 @@ interface MotionWrapperProps extends MotionProps {
     className?: string;
 }
 
-const fadeInUp: Variants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-};
 
-const defaultTransition: Transition = {
-    duration: 0.5,
-};
 
 const MotionWrapper = ({
                            children,
-                           variants = fadeInUp,
-                           initial = 'initial',
-                           animate = 'animate',
-                           transition = defaultTransition,
                            as = 'div',
                            className = '',
                            ...rest
@@ -34,10 +23,6 @@ const MotionWrapper = ({
 
     return (
         <Component
-            variants={variants}
-            initial={initial}
-            animate={animate}
-            transition={transition}
             className={className}
             {...rest}
         >

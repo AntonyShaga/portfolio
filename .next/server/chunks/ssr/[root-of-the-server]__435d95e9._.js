@@ -564,32 +564,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 'use client';
 ;
 ;
-const fadeInUp = {
-    initial: {
-        opacity: 0,
-        y: 20
-    },
-    animate: {
-        opacity: 1,
-        y: 0
-    }
-};
-const defaultTransition = {
-    duration: 0.5
-};
-const MotionWrapper = ({ children, variants = fadeInUp, initial = 'initial', animate = 'animate', transition = defaultTransition, as = 'div', className = '', ...rest })=>{
+const MotionWrapper = ({ children, as = 'div', className = '', ...rest })=>{
     const Component = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"][as];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Component, {
-        variants: variants,
-        initial: initial,
-        animate: animate,
-        transition: transition,
         className: className,
         ...rest,
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/ui/MotionWrapper.tsx",
-        lineNumber: 36,
+        lineNumber: 25,
         columnNumber: 9
     }, this);
 };
@@ -761,6 +744,10 @@ function LanguageSwitcher({ currentLang }) {
                         opacity: 0,
                         y: -5
                     },
+                    animate: {
+                        opacity: 1,
+                        y: 0
+                    },
                     exit: {
                         opacity: 0,
                         y: -5
@@ -774,7 +761,7 @@ function LanguageSwitcher({ currentLang }) {
                         onChange: handleChange
                     }, void 0, false, {
                         fileName: "[project]/src/components/languageSwitcher/LanguageSwitcher.tsx",
-                        lineNumber: 54,
+                        lineNumber: 55,
                         columnNumber: 25
                     }, this)
                 }, void 0, false, {
@@ -894,52 +881,41 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2
 ;
 ;
 ;
-/**
- * Form validation schema using Zod
- * @constant
- * @type {z.ZodObject}
- * @property {z.ZodString} name - 2-50 characters
- * @property {z.ZodString} email - Valid email format, max 100 chars
- * @property {z.ZodString} message - 10-1000 characters
- */ const formSchema = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["object"])({
-    name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().min(2, 'Имя слишком короткое (минимум 2 символа)').max(50, 'Имя слишком длинное (максимум 50 символов)'),
-    email: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().email('Введите корректный email').max(100, 'Email слишком длинный'),
-    message: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().min(10, 'Сообщение слишком короткое (минимум 10 символов)').max(1000, 'Сообщение слишком длинное (максимум 1000 символов)')
-});
-function ContactForm() {
+function ContactForm({ form, feedback }) {
     const [token, setToken] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    /**
-     * React Hook Form initialization
-     * @type {UseFormReturn<FormData>}
-     */ const { register, handleSubmit, reset, formState: { errors } } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useForm"])({
+    const { sendingForm, emailPlaceholderForm, submitForm, namePlaceholderForm, messagePlaceholderForm, formErrors: { messageTooLong, nameTooLong, nameTooShort, messageTooShort, emailTooLong, emailInvalid } } = form;
+    const { feedbackToken, success, network, fail } = feedback;
+    const formSchema = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["object"])({
+            name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().min(2, nameTooShort).max(50, nameTooLong),
+            email: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().email(emailInvalid).max(100, emailTooLong),
+            message: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["string"])().min(10, messageTooShort).max(1000, messageTooLong)
+        }), [
+        nameTooShort,
+        nameTooLong,
+        emailInvalid,
+        emailTooLong,
+        messageTooShort,
+        messageTooLong
+    ]);
+    const { register, handleSubmit, reset, formState: { errors } } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useForm"])({
         resolver: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$hookform$2f$resolvers$2f$zod$2f$dist$2f$zod$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["zodResolver"])(formSchema)
     });
-    /**
-     * Fetches new JWT token from API
-     * @async
-     * @function
-     * @returns {Promise<string|null>} Token string or null on failure
-     */ async function getToken() {
+    const getToken = async ()=>{
         try {
             const res = await fetch('/api/get-token');
             if (!res.ok) {
-                const errorMessage = res.status === 429 ? 'Слишком много запросов. Попробуйте позже.' : 'Ошибка при получении токена.';
+                const errorMessage = res.status === 429 ? feedbackToken.rateLimit : feedbackToken.fail;
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(errorMessage);
                 return null;
             }
             return (await res.json()).token;
         } catch  {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(network); // Используем переданное сообщение об ошибке сети
             return null;
         }
-    }
-    /**
-     * Handles form submission
-     * @async
-     * @function
-     * @param {FormData} data - Validated form data
-     */ const onSubmit = async (data)=>{
+    };
+    const onSubmit = async (data)=>{
         setLoading(true);
         try {
             const currentToken = token || await getToken();
@@ -958,13 +934,13 @@ function ContactForm() {
             if (res.ok) {
                 const newToken = res.headers.get('X-New-Token');
                 if (newToken) setToken(newToken);
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success('Сообщение отправлено!');
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success(success);
                 reset();
             } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Ошибка отправки сообщения. Попробуйте ещё раз.');
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(fail);
             }
         } catch  {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Сетевая ошибка. Попробуйте позже.');
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(network);
         } finally{
             setLoading(false);
         }
@@ -977,27 +953,27 @@ function ContactForm() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         ...register('name'),
-                        placeholder: "Ваше имя",
-                        className: errors.name ? 'border-red-500' : '',
+                        placeholder: namePlaceholderForm,
+                        className: `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`,
                         "aria-invalid": !!errors.name
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 126,
+                        lineNumber: 123,
                         columnNumber: 17
                     }, this),
                     errors.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-red-500 text-sm",
+                        className: " text-red-500 text-sm",
                         role: "alert",
                         children: errors.name.message
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 133,
+                        lineNumber: 130,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 125,
+                lineNumber: 122,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1005,12 +981,12 @@ function ContactForm() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         ...register('email'),
                         type: "email",
-                        placeholder: "Ваш Email",
-                        className: errors.email ? 'border-red-500' : '',
+                        placeholder: emailPlaceholderForm,
+                        className: `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`,
                         "aria-invalid": !!errors.email
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 140,
+                        lineNumber: 137,
                         columnNumber: 17
                     }, this),
                     errors.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1019,26 +995,31 @@ function ContactForm() {
                         children: errors.email.message
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 148,
+                        lineNumber: 145,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 139,
+                lineNumber: 136,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
                         ...register('message'),
-                        placeholder: "Ваше сообщение",
-                        className: errors.message ? 'border-red-500' : '',
-                        "aria-invalid": !!errors.message
+                        placeholder: messagePlaceholderForm,
+                        className: `
+                        ${errors.message ? 'border-red-500' : 'border-gray-300'}
+                        resize-none focus:border-none
+                        w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                    `,
+                        "aria-invalid": !!errors.message,
+                        rows: 3
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 155,
-                        columnNumber: 9
+                        lineNumber: 152,
+                        columnNumber: 17
                     }, this),
                     errors.message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-red-500 text-sm",
@@ -1046,30 +1027,30 @@ function ContactForm() {
                         children: errors.message.message
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactForm.tsx",
-                        lineNumber: 162,
+                        lineNumber: 164,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 154,
+                lineNumber: 151,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 type: "submit",
                 disabled: loading,
-                className: loading ? 'opacity-50 cursor-not-allowed' : '',
+                className: `rounded transition-colors ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`,
                 "aria-busy": loading,
-                children: loading ? 'Отправка...' : 'Отправить сообщение'
+                children: loading ? sendingForm : submitForm
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactForm.tsx",
-                lineNumber: 168,
+                lineNumber: 170,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactForm.tsx",
-        lineNumber: 124,
+        lineNumber: 121,
         columnNumber: 9
     }, this);
 }

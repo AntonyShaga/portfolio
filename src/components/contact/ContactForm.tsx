@@ -1,52 +1,61 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { ContactFeedback, ContactFormI } from "@/types/dictionary";
 
-/**
- * Form validation schema using Zod
- * @constant
- * @type {z.ZodObject}
- * @property {z.ZodString} name - 2-50 characters
- * @property {z.ZodString} email - Valid email format, max 100 chars
- * @property {z.ZodString} message - 10-1000 characters
- */
-const formSchema = z.object({
-    name: z.string()
-        .min(2, 'Имя слишком короткое (минимум 2 символа)')
-        .max(50, 'Имя слишком длинное (максимум 50 символов)'),
-    email: z.string()
-        .email('Введите корректный email')
-        .max(100, 'Email слишком длинный'),
-    message: z.string()
-        .min(10, 'Сообщение слишком короткое (минимум 10 символов)')
-        .max(1000, 'Сообщение слишком длинное (максимум 1000 символов)')
-});
+interface IProps {
+    form: ContactFormI;
+    feedback: ContactFeedback;
+}
 
-type FormData = z.infer<typeof formSchema>;
-
-/**
- * Secure contact form component with JWT token validation
- * @component
- * @description Handles form submission with client-side validation,
- * token management, and error handling
- *
- * @example
- * <ContactForm />
- *
- * @returns {JSX.Element} Accessible contact form with validation
- */
-export function ContactForm() {
+export function ContactForm({ form, feedback }: IProps) {
     const [token, setToken] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    /**
-     * React Hook Form initialization
-     * @type {UseFormReturn<FormData>}
-     */
+    const {
+        sendingForm,
+        emailPlaceholderForm,
+        submitForm,
+        namePlaceholderForm,
+        messagePlaceholderForm,
+        formErrors: {
+            messageTooLong,
+            nameTooLong,
+            nameTooShort,
+            messageTooShort,
+            emailTooLong,
+            emailInvalid
+        }
+    } = form;
+
+    const {
+        feedbackToken,
+        success,
+        network,
+        fail
+    } = feedback;
+
+    const formSchema = useMemo(() =>
+            z.object({
+                name: z.string()
+                    .min(2, nameTooShort)
+                    .max(50, nameTooLong),
+                email: z.string()
+                    .email(emailInvalid)
+                    .max(100, emailTooLong),
+                message: z.string()
+                    .min(10, messageTooShort)
+                    .max(1000, messageTooLong)
+            }),
+        [nameTooShort, nameTooLong, emailInvalid, emailTooLong, messageTooShort, messageTooLong]
+    );
+
+    type FormData = z.infer<typeof formSchema>;
+
     const {
         register,
         handleSubmit,
@@ -56,35 +65,23 @@ export function ContactForm() {
         resolver: zodResolver(formSchema)
     });
 
-    /**
-     * Fetches new JWT token from API
-     * @async
-     * @function
-     * @returns {Promise<string|null>} Token string or null on failure
-     */
-    async function getToken() {
+    const getToken = async () => {
         try {
             const res = await fetch('/api/get-token');
             if (!res.ok) {
                 const errorMessage = res.status === 429
-                    ? 'Слишком много запросов. Попробуйте позже.'
-                    : 'Ошибка при получении токена.';
+                    ? feedbackToken.rateLimit
+                    : feedbackToken.fail;
                 toast.error(errorMessage);
                 return null;
             }
             return (await res.json()).token as string;
         } catch {
-            toast.error('Сетевая ошибка. Попробуйте позже.');
+            toast.error(network); // Используем переданное сообщение об ошибке сети
             return null;
         }
-    }
+    };
 
-    /**
-     * Handles form submission
-     * @async
-     * @function
-     * @param {FormData} data - Validated form data
-     */
     const onSubmit = async (data: FormData) => {
         setLoading(true);
 
@@ -108,13 +105,13 @@ export function ContactForm() {
                 const newToken = res.headers.get('X-New-Token');
                 if (newToken) setToken(newToken);
 
-                toast.success('Сообщение отправлено!');
+                toast.success(success);
                 reset();
             } else {
-                toast.error('Ошибка отправки сообщения. Попробуйте ещё раз.');
+                toast.error(fail);
             }
         } catch {
-            toast.error('Сетевая ошибка. Попробуйте позже.');
+            toast.error(network);
         } finally {
             setLoading(false);
         }
@@ -122,15 +119,15 @@ export function ContactForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full justify-between">
-            <div>
+            <div >
                 <input
                     {...register('name')}
-                    placeholder="Ваше имя"
-                    className={errors.name ? 'border-red-500' : ''}
+                    placeholder={namePlaceholderForm}
+                    className={ `w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
                     aria-invalid={!!errors.name}
                 />
                 {errors.name && (
-                    <p className="text-red-500 text-sm" role="alert">
+                    <p className=" text-red-500 text-sm" role="alert">
                         {errors.name.message}
                     </p>
                 )}
@@ -140,8 +137,8 @@ export function ContactForm() {
                 <input
                     {...register('email')}
                     type="email"
-                    placeholder="Ваш Email"
-                    className={errors.email ? 'border-red-500' : ''}
+                    placeholder={emailPlaceholderForm}
+                    className={`w-full border p-1 rounded-md focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
                     aria-invalid={!!errors.email}
                 />
                 {errors.email && (
@@ -152,12 +149,17 @@ export function ContactForm() {
             </div>
 
             <div>
-        <textarea
-            {...register('message')}
-            placeholder="Ваше сообщение"
-            className={errors.message ? 'border-red-500' : ''}
-            aria-invalid={!!errors.message}
-        />
+                <textarea
+                    {...register('message')}
+                    placeholder={messagePlaceholderForm}
+                    className={`
+                        ${errors.message ? 'border-red-500' : 'border-gray-300'}
+                        resize-none focus:border-none
+                        w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                    `}
+                    aria-invalid={!!errors.message}
+                    rows={3}
+                />
                 {errors.message && (
                     <p className="text-red-500 text-sm" role="alert">
                         {errors.message.message}
@@ -168,10 +170,14 @@ export function ContactForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className={loading ? 'opacity-50 cursor-not-allowed' : ''}
+                className={`rounded transition-colors ${
+                    loading
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-blue-600 hover:bg-blue-700 text-white'
+                }`}
                 aria-busy={loading}
             >
-                {loading ? 'Отправка...' : 'Отправить сообщение'}
+                {loading ? sendingForm : submitForm}
             </button>
         </form>
     );

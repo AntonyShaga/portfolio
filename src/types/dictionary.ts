@@ -6,6 +6,7 @@ export interface AppDictionary {
     skills: SkillsSection;
     experience: ExperienceSection;
     projects: ProjectsSection;
+    contact: ContactSection;
     footer: FooterContent;
     toast: ToastMessages;
 }
@@ -80,7 +81,58 @@ export interface ToastMessages {
     downloadError: string;
 }
 
+export interface ContactSection {
+    sectionTitle: string;
+    contactTitle: string;
+    description: string;
+    info: ContactInfo;
+    form: ContactFormI;
+    feedback: ContactFeedback;
+}
+
 // --- Items ---
+
+
+export interface ContactInfo {
+    titleInfo: string;
+    subtitleInfo: string;
+    emailInfo: string;
+    phoneInfo: string;
+    locationInfo: string;
+    socialsInfo: string;
+}
+
+
+export interface ContactFormI {
+    titleForm: string;
+    subtitleForm: string;
+    namePlaceholderForm: string;
+    emailPlaceholderForm: string;
+    messagePlaceholderForm: string;
+    submitForm: string;
+    sendingForm: string;
+    formErrors:ContactFormErrors
+}
+
+export interface ContactFormErrors {
+    nameTooShort: string;
+    nameTooLong: string;
+    emailInvalid: string;
+    emailTooLong: string;
+    messageTooShort: string;
+    messageTooLong: string;
+}
+
+export interface ContactFeedback {
+    success: string;
+    fail: string;
+    network: string;
+    feedbackToken: {
+        fail: string;
+        rateLimit: string;
+    };
+}
+
 
 export interface ExperienceItem {
     title: string;

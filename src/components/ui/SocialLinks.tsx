@@ -37,10 +37,18 @@ const socials:SocialLink[] = [
 const SocialLinks = () => (
     <MotionWrapper
         className="flex items-center gap-4 mt-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
         transition={{ delay: 0.3 }}
     >
         {socials.map(({ href, Icon, label, delay }) => (
-            <MotionWrapper key={label} transition={{ delay }}>
+            <MotionWrapper
+                key={label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                transition={{ delay }}>
                 <Link
                     aria-label={label}
                     href={href}

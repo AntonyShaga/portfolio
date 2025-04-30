@@ -1,20 +1,26 @@
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import SocialLinks from "@/components/ui/SocialLinks";
 import {ContactForm} from "@/components/contact/ContactForm";
+import {ContactSection} from "@/types/dictionary";
 
+interface IProps {
+    contact:ContactSection
+}
 
-export default function Contact () {
+export default function Contact ({contact}:IProps) {
+    const {contactTitle,sectionTitle,description,form,info,feedback} = contact
+    const {locationInfo,titleInfo,phoneInfo,socialsInfo,subtitleInfo,emailInfo} = info
+    const {titleForm,subtitleForm} =form
     return (
         <section  id="contact" className="py-24  dark:bg-black transition-all duration-300   bg-gray-50 ">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="inline-block rounded-lg px-3 py-1 text-sm dark:bg-gray-50  bg-black text-white dark:text-black">
-                        Контакты
+                        {sectionTitle}
                     </div>
-                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Свяжитесь со мной</h2>
+                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">{contactTitle}</h2>
                     <p className="max-w-[700px] text-muted-foreground md:text-lg">
-                        Если у вас есть вопросы или предложения о сотрудничестве, не стесняйтесь связаться со мной.
-                        Я открыт для новых возможностей и проектов.
+                        {description}
                     </p>
                 </div>
                 <div className="grid gap-6 mt-12 md:grid-cols-2">
@@ -22,31 +28,31 @@ export default function Contact () {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.9 }}
                     >
                         <div className={"rounded-lg border shadow-sm"}>
                             <div className={"flex flex-col space-y-1.5 p-6"}>
-                                <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>Контактная информация</h3>
+                                <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>{titleInfo}</h3>
                                 <p className={"text-sm text-muted-foreground"}>
-                                    Вы можете связаться со мной любым удобным способом
+                                    {subtitleInfo}
                                 </p>
                             </div>
                             <div className={"p-6 pt-0 space-y-4"}>
                                 <div className="flex items-center">
                                     <a href="mailto:alexander@example.com" className="text-muted-foreground hover:text-foreground">
-                                        alexander@example.com
+                                        {emailInfo}
                                     </a>
                                 </div>
                                 <div className="flex items-center">
                                     <a href="tel:+79123456789" className="text-muted-foreground hover:text-foreground">
-                                        345-67-89
+                                        {phoneInfo}
                                     </a>
                                 </div>
                                 <div className={"flex items-center"}>
-                                    <span className="text-muted-foreground"> Мариуполь, Украина</span>
+                                    <span className="text-muted-foreground">{locationInfo}</span>
                                 </div>
                                 <div className={"pt-4"}>
-                                    <h3 className={"font-medium mb-2"}>Социальные сети</h3>
+                                    <h3 className={"font-medium mb-2"}>{socialsInfo}</h3>
                                     <div className={"flex space-x-4"}>
                                         <SocialLinks/>
                                     </div>
@@ -63,13 +69,13 @@ export default function Contact () {
                     >
                         <div className={"rounded-lg border flex flex-col justify-between h-full shadow-sm"}>
                             <div className={"flex flex-col space-y-1.5 p-6"}>
-                                <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>Контактная информация</h3>
+                                <h3 className={"text-2xl font-semibold leading-none tracking-tight"}>{titleForm}</h3>
                                 <p className={"text-sm text-muted-foreground"}>
-                                    Вы можете связаться со мной любым удобным способом
+                                    {subtitleForm}
                                 </p>
                             </div>
                             <div className={"p-6 pt-0 h-full space-y-4"}>
-                                <ContactForm/>
+                                <ContactForm feedback={feedback} form={form} />
                             </div>
                         </div>
                     </MotionWrapper>
