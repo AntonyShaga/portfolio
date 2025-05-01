@@ -19,13 +19,13 @@ export default async function Home() {
 
     const dict = await getDictionary(lang as 'en' | 'ru')
 
-    const {skills,footer,contact,hero,header,about,experience,projects}=dict
+    const {skills,footer,contact,hero,header,about,experience,projects,toast}=dict
 
   return (
     <main className="min-h-screen bg-background">
-        <Header lang={lang as 'en' | 'ru'} header={header}  />
+        <Header lang={lang as 'en' | 'ru'} header={header} toast={toast} />
         <Hero hero={hero}/>
-        <About about={about}/>
+        <About about={about} toast={toast}/>
         <Project projects={projects}/>
         <Skills skills={skills}/>
         <Experience experience={experience}/>

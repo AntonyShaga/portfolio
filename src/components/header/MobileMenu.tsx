@@ -2,17 +2,20 @@
 
 import {useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
-import DownloadResumeButton from "@/components/DownloadResumeButton";
+import DownloadResumeButton from "@/components/resumeButton/DownloadResumeButton";
 import MotionWrapper from "@/components/ui/MotionWrapper";
+import {ToastMessages} from "@/types/dictionary";
 
 export default function MobileMenu({
                                        open,
                                        onClose,
                                        children,
+                                       toast,
                                    }: {
     open: boolean;
     onClose: () => void;
     children: React.ReactNode;
+    toast:ToastMessages
 }) {
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +61,7 @@ export default function MobileMenu({
                     <div className="container mx-auto px-4 py-4 z-49">
                         {children}
                         <div className="pt-4">
-                            <DownloadResumeButton />
+                            <DownloadResumeButton  toastErr={toast}/>
                         </div>
                     </div>
                 </MotionWrapper>

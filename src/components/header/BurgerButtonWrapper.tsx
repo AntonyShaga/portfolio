@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import BurgerButton from './BurgerButton';
 import MobileMenu from './MobileMenu';
+import {ToastMessages} from "@/types/dictionary";
 
-export default function BurgerButtonWrapper({ navContent }: { navContent: React.ReactNode }) {
+export default function BurgerButtonWrapper({ navContent, toast }: { navContent: React.ReactNode , toast:ToastMessages}) {
     const [open, setOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -14,7 +15,7 @@ export default function BurgerButtonWrapper({ navContent }: { navContent: React.
     return (
         <>
             <BurgerButton open={open} onClickAction={toggleMenu} />
-            <MobileMenu open={open} onClose={toggleMenu}>
+            <MobileMenu open={open} onClose={toggleMenu} toast={toast} >
                 {navContent}
             </MobileMenu>
         </>

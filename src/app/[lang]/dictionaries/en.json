@@ -163,6 +163,7 @@
     "loading": "Loading resume...",
     "success": "Resume loaded successfully!",
     "error": "Failed to load the file. Please try again later.",
-    "downloadError": "Download error"
+    "downloadError": "Download error",
+    "resume": "Resume"
   }
 }

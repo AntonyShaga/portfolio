@@ -79,6 +79,7 @@ export interface ToastMessages {
     success: string;
     error: string;
     downloadError: string;
+    resume: string;
 }
 
 export interface ContactSection {

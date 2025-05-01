@@ -3,16 +3,17 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import LanguageSwitcher from "@/components/languageSwitcher/LanguageSwitcher";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 import Nav from "@/components/header/Nav";
-import DownloadResumeButton from "@/components/DownloadResumeButton";
-import {HeaderContent} from "@/types/dictionary";
+import DownloadResumeButton from "@/components/resumeButton/DownloadResumeButton";
+import {HeaderContent, ToastMessages} from "@/types/dictionary";
 import BurgerButtonWrapper from "@/components/header/BurgerButtonWrapper";
 
 interface IProps {
     header: HeaderContent
+    toast:ToastMessages
     lang: 'en' | 'ru'
 }
 
-export default function Header({header, lang}: IProps) {
+export default function Header({header, lang,toast}: IProps) {
     const {logo, name} = header
 
     return (
@@ -37,10 +38,10 @@ export default function Header({header, lang}: IProps) {
                         <LanguageSwitcher currentLang={lang} />
                         <ThemeSwitcher />
                         <div className="hidden  lg:block">
-                            <DownloadResumeButton />
+                            <DownloadResumeButton toastErr={toast} />
                         </div>
                         <div className={"lg:hidden  rounded-md bg-gray-100 dark:bg-black"}>
-                            <BurgerButtonWrapper navContent={<Nav ariaLabel="Mobile navigation" />} />
+                            <BurgerButtonWrapper navContent={<Nav ariaLabel="Mobile navigation" />} toast={toast} />
                         </div>
                     </div>
                 </div>

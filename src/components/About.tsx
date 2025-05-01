@@ -1,12 +1,13 @@
-import DownloadResumeButton from "@/components/DownloadResumeButton";
-import {AboutSection} from "@/types/dictionary";
+import DownloadResumeButton from "@/components/resumeButton/DownloadResumeButton";
+import {AboutSection, ToastMessages} from "@/types/dictionary";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 
 interface IProps {
     about:AboutSection
+    toast:ToastMessages
 }
 
-export default function  About ({about}:IProps) {
+export default function  About ({about,toast}:IProps) {
     const {education,headline,story,text,sectionTitle,certificates} = about
     const {title,university,degree} = education
     return (
@@ -30,7 +31,7 @@ export default function  About ({about}:IProps) {
                             {story}
                         </p>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                            <DownloadResumeButton />
+                            <DownloadResumeButton toastErr={toast}/>
                         </div>
                     </MotionWrapper>
                     <MotionWrapper

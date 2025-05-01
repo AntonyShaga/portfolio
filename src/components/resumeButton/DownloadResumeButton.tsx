@@ -1,14 +1,18 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useMemo, useState } from 'react';
-import { toast } from 'sonner';
+import {usePathname} from 'next/navigation';
+import {useMemo, useState} from 'react';
+import {toast} from 'sonner';
 import Button from "@/components/ui/Button";
-import { useDictionary } from "@/app/i18n/DictionaryContext";
+import {ToastMessages} from "@/types/dictionary";
 
-export default function DownloadResumeButton() {
+interface IProps {
+    toastErr:ToastMessages
+}
+export default function DownloadResumeButton({toastErr}: IProps) {
+const {resume,downloadError,error,success,loading} = toastErr
+
     const pathname = usePathname();
-    const dict = useDictionary();
 
     const locale = useMemo(() => {
         const parts = pathname.split('/');
@@ -22,17 +26,17 @@ export default function DownloadResumeButton() {
 
     const fileName = fileNames[locale] || fileNames.en;
 
-    const [loading, setLoading] = useState(false);
+    const [loadingSet, setLoadingSet] = useState(false);
 
     const handleDownload = async () => {
-        if (loading) return;
+        if (loadingSet) return;
 
-        setLoading(true);
-        const toastId = toast.loading(dict.toast.loading);
+        setLoadingSet(true);
+        const toastId = toast.loading(loading);
 
         try {
             const response = await fetch(fileName);
-            if (!response.ok) throw new Error(dict.toast.downloadError);
+            if (!response.ok) throw new Error(error);
 
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
@@ -45,13 +49,13 @@ export default function DownloadResumeButton() {
             window.URL.revokeObjectURL(url);
 
             await new Promise(resolve => setTimeout(resolve, 700));
-            toast.success(dict.toast.success, { id: toastId });
+            toast.success(success, { id: toastId });
         } catch (error) {
             await new Promise(resolve => setTimeout(resolve, 500));
-            const errorMessage = error instanceof Error ? error.message : dict.toast.downloadError;
+            const errorMessage = error instanceof Error ? error.message : downloadError;
             toast.error(errorMessage, { id: toastId });
         } finally {
-            setLoading(false);
+            setLoadingSet(false);
         }
     };
 
@@ -59,9 +63,9 @@ export default function DownloadResumeButton() {
         <Button
             onClick={handleDownload}
             variant="danger"
-            disabled={loading}
+            disabled={loadingSet}
         >
-            {dict.navigation.resume}
+            {resume}
         </Button>
     );
 }
