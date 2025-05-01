@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import {useEffect, useRef} from 'react';
+import {AnimatePresence} from 'framer-motion';
 import DownloadResumeButton from "@/components/DownloadResumeButton";
 import MotionWrapper from "@/components/ui/MotionWrapper";
 
