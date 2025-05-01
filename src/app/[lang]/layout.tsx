@@ -1,7 +1,5 @@
 import "../../style/globals.css";
 import {ThemeProvider} from "next-themes";
-import {DictionaryProvider} from "@/app/i18n/DictionaryContext";
-import {getDictionary} from '@/app/i18n/get-dictionary';
 import React from "react";
 import {Toaster} from "sonner";
 import {generateJsonLd} from "@/lib/seo/generateJsonLd";
@@ -21,7 +19,6 @@ export default async function RootLayout({
 }) {
     const lang = await getLangFromHeaders()
 
-    const dict = await getDictionary(lang as 'en' | 'ru');
     // Генерируем JSON-LD для SEO
     const jsonLd = generateJsonLd(lang as 'en' | 'ru');
 
@@ -35,10 +32,8 @@ export default async function RootLayout({
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <DictionaryProvider dict={dict}>
-                {children}
-                <Toaster />
-            </DictionaryProvider>
+            {children}
+            <Toaster />
         </ThemeProvider>
         </body>
         </html>
