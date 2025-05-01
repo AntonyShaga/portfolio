@@ -1,32 +1,40 @@
-'use client'
+'use client';
 
 import { motion, MotionProps, Variants, Transition } from 'framer-motion';
-import {ElementType, JSX, ReactNode} from 'react';
+import {
+    ElementType,
+    ReactNode,
+    forwardRef,
+    ComponentPropsWithoutRef,
+    ForwardedRef
+} from 'react';
 
-interface MotionWrapperProps extends MotionProps {
+type MotionWrapperProps<T extends keyof HTMLElementTagNameMap> = {
+    as?: T;
     children: ReactNode;
-    as?: keyof JSX.IntrinsicElements;
-    variants?: Variants;
-    transition?: Transition;
     className?: string;
     suppressHydrationWarning?: boolean;
-}
+    variants?: Variants;
+    transition?: Transition;
+} & MotionProps & ComponentPropsWithoutRef<T>;
 
-
-
-const MotionWrapper = ({
-                           children,
-                           as = 'div',
-                           className = '',
-                           suppressHydrationWarning,
-                           ...rest
-                       }: MotionWrapperProps) => {
-    const Component = motion[as as keyof typeof motion] as ElementType;
+const MotionWrapper = <T extends keyof HTMLElementTagNameMap = 'div'>(
+    {
+        as = 'div' as T,
+        children,
+        className = '',
+        suppressHydrationWarning,
+        ...rest
+    }: MotionWrapperProps<T>,
+    ref: ForwardedRef<HTMLElementTagNameMap[T]>
+) => {
+    const Component = motion[as] as ElementType;
 
     return (
         <Component
-            suppressHydrationWarning={suppressHydrationWarning}
+            ref={ref}
             className={className}
+            suppressHydrationWarning={suppressHydrationWarning}
             {...rest}
         >
             {children}
@@ -34,4 +42,4 @@ const MotionWrapper = ({
     );
 };
 
-export default MotionWrapper;
+export default forwardRef(MotionWrapper);

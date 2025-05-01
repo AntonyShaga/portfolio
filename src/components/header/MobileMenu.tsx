@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import DownloadResumeButton from "@/components/DownloadResumeButton";
+import MotionWrapper from "@/components/ui/MotionWrapper";
 
 export default function MobileMenu({
                                        open,
@@ -40,21 +42,27 @@ export default function MobileMenu({
         };
     }, [open, onClose]);
 
-    if (!open) return null;
-
     return (
-        <div
-            ref={menuRef}
-            role="dialog"
-            aria-modal="true"
-            className="fixed top-16 left-0 right-0 transition-all duration-300 bg-white dark:bg-black dark:text-white text-black shadow-lg"
-        >
-            <div className="container mx-auto px-4 py-4">
-                {children}
-                <div className="pt-4">
-                    <DownloadResumeButton />
-                </div>
-            </div>
-        </div>
+        <AnimatePresence>
+            {open && (
+                <MotionWrapper
+                    ref={menuRef}
+                    role="dialog"
+                    aria-modal="true"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="fixed top-16 left-0 right-0 bg-white dark:bg-black dark:text-white text-black shadow-lg z-50"
+                >
+                    <div className="container mx-auto px-4 py-4">
+                        {children}
+                        <div className="pt-4">
+                            <DownloadResumeButton />
+                        </div>
+                    </div>
+                </MotionWrapper>
+            )}
+        </AnimatePresence>
     );
 }
