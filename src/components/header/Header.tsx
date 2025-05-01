@@ -39,7 +39,7 @@ export default function Header({header, lang}: IProps) {
                         <div className="hidden  lg:block">
                             <DownloadResumeButton />
                         </div>
-                        <div className={"lg:hidden bg-gray-100"}>
+                        <div className={"lg:hidden  rounded-md bg-gray-100 dark:bg-black"}>
                             <BurgerButtonWrapper navContent={<Nav ariaLabel="Mobile navigation" />} />
                         </div>
                     </div>
