@@ -32,3 +32,26 @@ Production-grade single-page portfolio website with SSR/CSR, animations, theme s
 ```bash
 git clone https://github.com/AntonyShaga/portfolio.git
 cd portfolio
+```
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+3. Start development server:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+Open http://localhost:3000 in your browser.
+
+📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
