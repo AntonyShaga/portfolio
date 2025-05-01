@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import type { Metadata } from 'next';
-const SITE_URL = "https://yourdomain.com";
+const SITE_URL = "https://portfolio-inky-six-36.vercel.app";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
 export async function generateMetadata(): Promise<Metadata> {
     const headersList = await headers();
