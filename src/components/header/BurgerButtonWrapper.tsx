@@ -7,10 +7,14 @@ import MobileMenu from './MobileMenu';
 export default function BurgerButtonWrapper({ navContent }: { navContent: React.ReactNode }) {
     const [open, setOpen] = useState(false);
 
+    const toggleMenu = () => {
+        setOpen(!open);
+    };
+
     return (
         <>
-            <BurgerButton open={open} onClick={() => setOpen(!open)} />
-            <MobileMenu open={open} onClose={() => setOpen(false)}>
+            <BurgerButton open={open} onClickAction={toggleMenu} />
+            <MobileMenu open={open} onClose={toggleMenu}>
                 {navContent}
             </MobileMenu>
         </>
