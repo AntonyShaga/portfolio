@@ -36,10 +36,10 @@ export default function Header({header, lang}: IProps) {
                     <div className="flex items-center gap-3">
                         <LanguageSwitcher currentLang={lang} />
                         <ThemeSwitcher />
-                        <div className="hidden lg:block">
+                        <div className="hidden  lg:block">
                             <DownloadResumeButton />
                         </div>
-                        <div className={"lg:hidden"}>
+                        <div className={"lg:hidden bg-gray-100"}>
                             <BurgerButtonWrapper navContent={<Nav ariaLabel="Mobile navigation" />} />
                         </div>
                     </div>
