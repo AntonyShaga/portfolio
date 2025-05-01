@@ -53,9 +53,9 @@ export default function MobileMenu({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="fixed top-16 left-0 right-0 bg-white dark:bg-black dark:text-white text-black shadow-lg z-50"
+                    className="fixed top-16 left-0 right-0 bg-white dark:bg-black transition-all duration-200 dark:text-white text-black shadow-lg "
                 >
-                    <div className="container mx-auto px-4 py-4">
+                    <div className="container mx-auto px-4 py-4 z-49">
                         {children}
                         <div className="pt-4">
                             <DownloadResumeButton />

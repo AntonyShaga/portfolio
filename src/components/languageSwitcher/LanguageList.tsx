@@ -8,7 +8,7 @@ type Props = {
 
 export default function LanguageList({ languages, onChange, currentLang }: Props) {
     return (
-        <ul className="p-[10px] dark:bg-neutral-900 bg-white dark:rounded-md dark:text-white" role="listbox" tabIndex={-1} >
+        <ul className="p-[10px] dark:bg-neutral-900 bg-white dark:rounded-md  dark:text-white"   role="listbox" tabIndex={-1} >
             {languages.map((lang) => (
                 <li className={`flex items-center gap-2 px-2 py-2 rounded-md transition dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-800 cursor-pointer  ${
                     lang.code === currentLang
