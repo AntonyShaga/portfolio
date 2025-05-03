@@ -22,6 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
         title,
         description,
         metadataBase: new URL(SITE_URL),
+        icons: {
+            icon: '/favicon.svg', // ✅ favicon
+            shortcut: '/favicon.ico', // ✅ fallback
+        },
         alternates: {
             canonical: `${SITE_URL}/${lang}${cleanPath}`,
             languages: {

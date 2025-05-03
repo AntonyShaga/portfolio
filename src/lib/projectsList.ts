@@ -1,6 +1,7 @@
 import {ProjectItem} from "@/types/dictionary";
 
 export const getProjectsList = (dict: ProjectItem[]): ProjectItem[] => {
+
     return dict.map((el) => ({
         title: el.title,
         description: el.description,

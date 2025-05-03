@@ -75,6 +75,18 @@
           "Работа с системами контроля версий (Git)",
           "Изучение и внедрение новых технологий и библиотек"
         ]
+      },
+      {
+        "title": "Frontend-разработчик (Open Source проект)",
+        "company": "Личный проект",
+        "period": "2025",
+        "description": [
+          "Разработал профессиональное портфолио с качеством production-уровня и открытым исходным кодом",
+          "Стек технологий: Next.js (App Router), TypeScript, Tailwind CSS с SSR и поддержкой интернационализации",
+          "Реализовал ключевые функции: мультиязычный интерфейс, переключение темной/светлой темы, плавные анимации и адаптивную верстку",
+          "Достиг максимальных показателей Lighthouse (100/100/100/100) благодаря оптимизации производительности, SEO и доступности",
+          "Задеплоил проект на Vercel и опубликовал исходный код на GitHub для сообщества"
+        ]
       }
     ]
   },
@@ -110,6 +122,16 @@
         "tags": ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
         "demoUrl": "https://example.com",
         "repoUrl": "https://github.com",
+        "buttonCode": "Код",
+        "buttonDemo": "Демо"
+      },
+      {
+        "title": "Портфолио разработчика",
+        "description": "Open-source сайт-портфолио с мультиязычностью, темами, SSR и высокой оптимизацией. Реализован на продакшен-уровне с использованием лучших практик.",
+        "image": "/screenshots/profile-desktop-ru.avif",
+        "tags": ["Next.js", "TypeScript", "Tailwind CSS", "i18n", "SSR", "App Router"],
+        "demoUrl": "https://portfolio-inky-six-36.vercel.app",
+        "repoUrl": "https://github.com/AntonyShaga/portfolio",
         "buttonCode": "Код",
         "buttonDemo": "Демо"
       }

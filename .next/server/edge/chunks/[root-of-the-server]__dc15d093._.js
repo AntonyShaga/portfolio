@@ -59,7 +59,7 @@ function middleware(request) {
 }
 const config = {
     matcher: [
-        '/((?!_next|api|favicon.ico|.*\\..*).*)'
+        '/((?!_next|api|favicon.svg|.*\\..*).*)'
     ]
 };
 }}),

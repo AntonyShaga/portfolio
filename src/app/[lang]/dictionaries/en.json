@@ -75,6 +75,18 @@
           "Working with version control systems (Git)",
           "Exploring and adopting new technologies and libraries"
         ]
+      },
+      {
+        "title": "Frontend Developer (Open Source Project)",
+        "company": "Personal Initiative",
+        "period": "2025",
+        "description": [
+          "Designed and developed a professional portfolio website with production-grade quality and open-source code availability",
+          "Built with modern web technologies: Next.js (App Router), TypeScript, Tailwind CSS, with server-side rendering and internationalization support",
+          "Implemented key features including multilingual UI, dark/light mode toggle, smooth animations, and fully responsive layouts",
+          "Achieved perfect Lighthouse scores (100/100/100/100) through performance optimization, SEO best practices, and accessibility compliance",
+          "Deployed the project on Vercel platform and published source code on GitHub for community contributions"
+        ]
       }
     ]
   },
@@ -112,6 +124,16 @@
         "tags": ["React", "Firebase", "Tailwind CSS", "Redux", "React Query"],
         "demoUrl": "https://example.com",
         "repoUrl": "https://github.com",
+        "buttonCode": "Code",
+        "buttonDemo": "Demo"
+      },
+      {
+        "title": "Developer Portfolio",
+        "description": "Open-source portfolio website with multi-language support, themes, SSR, and high optimization. Implemented at production-level using best practices.",
+        "image": "/screenshots/profile-desktop-en.avif",
+        "tags": ["Next.js", "TypeScript", "Tailwind CSS", "i18n", "SSR", "App Router"],
+        "demoUrl": "https://portfolio-inky-six-36.vercel.app",
+        "repoUrl": "https://github.com/AntonyShaga/portfolio",
         "buttonCode": "Code",
         "buttonDemo": "Demo"
       }
