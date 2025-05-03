@@ -129,7 +129,7 @@
         "title": "Портфолио разработчика",
         "description": "Open-source сайт-портфолио с мультиязычностью, темами, SSR и высокой оптимизацией. Реализован на продакшен-уровне с использованием лучших практик.",
         "image": "/screenshots/profile-desktop-ru.avif",
-        "tags": ["Next.js", "TypeScript", "Tailwind CSS", "i18n", "SSR", "App Router"],
+        "tags": ["Next.js","TypeScript","Tailwind CSS", "i18n", "SSR", "App Router", "Redis","Resend", "React", "Server Components", "Vercel"],
         "demoUrl": "https://portfolio-inky-six-36.vercel.app",
         "repoUrl": "https://github.com/AntonyShaga/portfolio",
         "buttonCode": "Код",
