@@ -7,6 +7,8 @@ export const baseStyles =
 const variantStyles: Record<Variant, string> = {
     default:
         "bg-gray-100 text-black dark:bg-neutral-800 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700",
+    ghost:
+        "bg-transparent hover:bg-gray-100 dark:hover:bg-neutral-800 text-black dark:text-white",
     reverseColor :
         "bg-black text-white dark:bg-gray-100 dark:text-black hover:bg-neutral-700 dark:hover:bg-gray-200",
 };
@@ -14,6 +16,7 @@ const variantStyles: Record<Variant, string> = {
 
 const variantStylesActive: Record<Variant, string> = {
     default: "bg-gray-100 text-black dark:bg-neutral-800 dark:text-white",
+    ghost: "bg-transparent text-black dark:text-white",
     reverseColor: "bg-black text-white dark:bg-gray-100 dark:text-black",
 };
 
