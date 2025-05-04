@@ -78,7 +78,7 @@ export function ContactForm({ form, feedback }: IProps) {
             }
             return (await res.json()).token as string;
         } catch {
-            toast.error(network); // Используем переданное сообщение об ошибке сети
+            toast.error(network);
             return null;
         }
     };
@@ -119,7 +119,7 @@ export function ContactForm({ form, feedback }: IProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full justify-between">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full justify-between gap-2">
             <div >
                 <input
                     {...register('name')}
