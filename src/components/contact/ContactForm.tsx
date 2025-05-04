@@ -171,7 +171,7 @@ export function ContactForm({ form, feedback }: IProps) {
                 type="submit"
                 disabled={loading}
                 aria-busy={loading}
-                variant={"danger"}
+                variant={"reverseColor"}
             >
                 {loading ? sendingForm : submitForm}
             </Button>
