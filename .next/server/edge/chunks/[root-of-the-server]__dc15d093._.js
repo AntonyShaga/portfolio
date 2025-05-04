@@ -36,30 +36,32 @@ const locales = [
 const defaultLocale = 'en';
 function getLocale(request) {
     const acceptLanguage = request.headers.get('accept-language');
-    const lang = acceptLanguage?.split(',')?.[0]?.split('-')[0];
+    const lang = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
     return locales.includes(lang || '') ? lang : defaultLocale;
 }
 function middleware(request) {
     const { pathname } = request.nextUrl;
+    // Пропускаем технические пути
     if (pathname.startsWith('/_next') || pathname.startsWith('/api') || PUBLIC_FILE.test(pathname)) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
-    // если уже есть язык в пути — ничего не делаем
+    // Если уже есть язык в пути — добавим заголовок и пропустим
     const matchedLocale = locales.find((locale)=>pathname.startsWith(`/${locale}`));
     if (matchedLocale) {
-        // добавим заголовок, чтобы layout мог прочитать
         const response = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
         response.headers.set('x-current-locale', matchedLocale);
         return response;
     }
+    // Определяем язык браузера
     const locale = getLocale(request);
+    console.log('Redirecting to locale:', locale);
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
 }
 const config = {
     matcher: [
-        '/((?!_next|api|favicon.svg|.*\\..*).*)'
+        '/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*)'
     ]
 };
 }}),

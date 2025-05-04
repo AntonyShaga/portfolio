@@ -6,13 +6,14 @@ const defaultLocale = 'en';
 
 function getLocale(request: NextRequest): string {
     const acceptLanguage = request.headers.get('accept-language');
-    const lang = acceptLanguage?.split(',')?.[0]?.split('-')[0];
+    const lang = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
     return locales.includes(lang || '') ? lang! : defaultLocale;
 }
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
+    // Пропускаем технические пути
     if (
         pathname.startsWith('/_next') ||
         pathname.startsWith('/api') ||
@@ -21,24 +22,28 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // если уже есть язык в пути — ничего не делаем
+    // Если уже есть язык в пути — добавим заголовок и пропустим
     const matchedLocale = locales.find((locale) =>
         pathname.startsWith(`/${locale}`)
     );
     if (matchedLocale) {
-        // добавим заголовок, чтобы layout мог прочитать
         const response = NextResponse.next();
         response.headers.set('x-current-locale', matchedLocale);
         return response;
     }
 
+    // Определяем язык браузера
     const locale = getLocale(request);
+    console.log('Redirecting to locale:', locale);
+
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
-
     return NextResponse.redirect(url);
 }
 
 export const config = {
-    matcher: ['/((?!_next|api|favicon.svg|.*\\..*).*)'],
+    matcher: [
+        '/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*)',
+    ],
 };
+

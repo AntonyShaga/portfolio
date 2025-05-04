@@ -11,8 +11,8 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!_next|api|favicon.svg|.*\\..*).*){(\\\\.json)}?",
-          "originalSource": "/((?!_next|api|favicon.svg|.*\\..*).*)"
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*){(\\\\.json)}?",
+          "originalSource": "/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*)"
         }
       ],
       "wasm": [],
