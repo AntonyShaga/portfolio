@@ -21,7 +21,7 @@ const projects = getProjectsList(project)
                     key={`${project.title}-${index}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -100px 0px" }} // Добавляем margin для раннего срабатывания
+                    viewport={{ once: true, margin: "0px 0px -100px 0px" }}
                     transition={{
                         duration: 0.5,
                         delay: index * 0.05,
@@ -75,7 +75,7 @@ const projects = getProjectsList(project)
                             <Button
                                 size="sm"
                                 asChild
-                                variant="danger"
+                                variant="reverseColor"
                                 className="flex-1"
                                 aria-label={`Посмотреть демо проекта ${project.title}`}
                             >

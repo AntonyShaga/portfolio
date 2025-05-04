@@ -1,2 +1,2 @@
-export type Variant = "default" | "ghost" | "reverseColor";
+export type Variant = "default" | "ghost" | "outline" | "reverseColor";
 export type Size = "sm" | "md" | "lg";
