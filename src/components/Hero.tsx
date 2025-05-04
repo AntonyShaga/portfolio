@@ -49,7 +49,7 @@ const Hero = ({hero}:IProps)=>{
                             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
                             transition={{ delay: 0.2 }}
                         >
-                            <Button className={'h-10 px-8 transition-all duration-300'} asChild variant={"danger"}>
+                            <Button className={'h-10 px-8 transition-all duration-300'} asChild variant={"reverseColor"}>
                                 <Link href="#contact" aria-label={`${contactButton} (Contact Section)`}>
                                     {contactButton}
                                 </Link>

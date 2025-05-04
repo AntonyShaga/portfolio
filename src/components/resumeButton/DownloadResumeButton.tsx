@@ -62,7 +62,7 @@ const {resume,downloadError,error,success,loading} = toastErr
     return (
         <Button
             onClick={handleDownload}
-            variant="danger"
+            variant="reverseColor"
             disabled={loadingSet}
         >
             {resume}

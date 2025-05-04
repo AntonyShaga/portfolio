@@ -40,7 +40,7 @@ type ButtonAsLink = BaseProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'd
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-export default function Button({
+export default function     Button({
                                    children,
                                    className,
                                    variant = 'default',
