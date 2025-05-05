@@ -68,7 +68,7 @@ describe('GET /api/contact/token', () => {
     });
 
     it('should return custom statusCode if present in AppError', async () => {
-        const error = new Error('Custom error') as any;
+        const error = new Error('Custom error') as Error & { statusCode?: number };
         error.statusCode = 418; // I'm a teapot ☕
         (generateContactToken as jest.Mock).mockRejectedValueOnce(error);
 
