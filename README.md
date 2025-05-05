@@ -1,57 +1,82 @@
-# 🌐 Portfolio Landing Page — Next.js 15 + TailwindCSS
+# 🌐 Modern Portfolio — Next.js 15 + Tailwind CSS
 
-Production-grade single-page portfolio website with SSR/CSR, animations, theme switching, multi-language support, and secured contact form.
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15.0.0-blue)](https://nextjs.org)
+[![Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black)](https://portfolio-inky-six-36.vercel.app)
 
-[🔗 Live Demo](https://portfolio-inky-six-36.vercel.app/ru) | [📂 Source Code](https://github.com/AntonyShaga/portfolio)
+Production-grade portfolio website with cutting-edge features and optimizations.
+
+[🔗 Live Demo](https://portfolio-inky-six-36.vercel.app/) | [📂 Source Code](https://github.com/AntonyShaga/portfolio) | [📝 Report Issue](https://github.com/AntonyShaga/portfolio/issues)
 
 ## ✨ Key Features
 
-- ⚡ High Performance (SSR/SSG)
-- 🌙 Theme Switching (Dark/Light Mode)
-- 🌍 Multi-language Support (i18n)
-- ✉️ Secured Contact Form with JWT & Redis
-- 🎨 Animations with Framer Motion
-- 📱 Fully Responsive Design
-- 🔒 Form Validation with Zod
+- ⚡ **Blazing Fast Performance** (SSR/SSG + ISR)
+- 🌙 **Smart Theme System** (Dark/Light + OS preference)
+- 🌍 **i18n Ready** (Multi-language support out of the box)
+- ✉️ **Secure Contact Form** (JWT + Redis rate limiting)
+- 🎨 **Butter Smooth Animations** (Framer Motion)
+- 📱 **Mobile-First Responsive** (Perfect on all devices)
+- 🔒 **Type-Safe Validation** (Zod + React Hook Form)
 
-## 🚀 Tech Stack
+## 🛠 Tech Stack
 
-- [Next.js 15 (App Router)](https://nextjs.org/) - SSR/SSG
-- [React 19](https://react.dev/) - UI Library
-- [Tailwind CSS 4](https://tailwindcss.com/) - Styling
-- [TypeScript](https://www.typescriptlang.org/) - Type Safety
-- [Framer Motion](https://www.framer.com/motion/) - Animations
-- [React Hook Form + Zod](https://react-hook-form.com/) - Forms & Validation
-- [JWT + Redis](https://github.com/luin/ioredis) - Form Protection
-- [Next Themes](https://github.com/pacocoursey/next-themes) - Theme Management
-- [Resend](https://resend.com/) - Email Delivery
+| Category        | Technologies                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| Framework       | [Next.js 15 (App Router)](https://nextjs.org/)                              |
+| UI Library      | [React 19](https://react.dev/)                                              |
+| Styling         | [Tailwind CSS 4](https://tailwindcss.com/) + CSS Modules                    |
+| Type Safety     | [TypeScript 5](https://www.typescriptlang.org/)                             |
+| Animations      | [Framer Motion](https://www.framer.com/motion/)                             |
+| Forms           | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)   |
+| Security        | [JWT](https://jwt.io/) + [Redis](https://redis.io/)                         |
+| Email           | [Resend](https://resend.com/) + React Email                                 |
 
-## 📦 Installation
+## 🏆 Performance Highlights
 
-1. Clone the repository:
+![Desktop Lighthouse](/public/screenshots/lighthouse-desktop.webp)
+
+*Desktop: Performance 100 • Accessibility 100 • Best Practices 100*
+
+![Mobile Lighthouse](/public/screenshots/lighthouse-mobile.webp)
+
+*Mobile: Performance 95 • Accessibility 100 • SEO 100*
+
+## ⚙️ Configuration
+
+Create `.env.local` file:
+
+```env
+REDIS_URL=redis://default:password@host:port
+
+JWT_SECRET=your_64_char_secure_key
+
+RESEND_API_KEY=re_your_api_key_here
+
+FROM_EMAIL=verified@domain.com
+
+TO_EMAIL=your@email.com
+```
+
+⚠️ Important: Never commit real credentials! Add .env* to .gitignore
+
 ```bash
+# 1. Clone repo
 git clone https://github.com/AntonyShaga/portfolio.git
 cd portfolio
-```
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-3. Start development server:
-```bash
+
+# 2. Install deps (recommended)
+npm ci
+
+# 3. Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 Open http://localhost:3000 in your browser.
 
-📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+📜 License
 
+MIT © Antony Shaga
+
+⭐ Star this project |
+💬 Discuss ideas |
+🔄 Contribute
