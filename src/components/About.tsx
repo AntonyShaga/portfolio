@@ -1,6 +1,7 @@
 import DownloadResumeButton from "@/components/resumeButton/DownloadResumeButton";
 import {AboutSection, ToastMessages} from "@/types/dictionary";
 import MotionWrapper from "@/components/ui/MotionWrapper";
+import Link from "next/link";
 
 interface IProps {
     about:AboutSection
@@ -49,16 +50,12 @@ export default function  About ({about,toast}:IProps) {
                         <h3 className="text-xl font-bold mt-6">{certificates}</h3>
                         <div className="space-y-2">
                             <div className="rounded-lg border p-4 bg-white dark:text-black">
-                                <h4 className="font-semibold">Advanced React and Redux</h4>
-                                <p className="text-sm ">Udemy, 2020</p>
-                            </div>
-                            <div className="rounded-lg border p-4 bg-white dark:text-black">
-                                <h4 className="font-semibold">TypeScript Professional</h4>
-                                <p className="text-sm ">Frontend Masters, 2021</p>
-                            </div>
-                            <div className="rounded-lg border p-4 bg-white dark:text-black">
-                                <h4 className="font-semibold">Next.js Advanced Features</h4>
-                                <p className="text-sm">Vercel, 2022</p>
+                                <h4 className="font-semibold">Legacy JavaScript Algorithms and Data Structures Certification</h4>
+                                <p className="text-sm ">
+                                    <Link target={"_blank"} href={'https://freecodecamp.org/certification/AntonyShaga/javascript-algorithms-and-data-structures'}>
+                                        FreeCodecamp Developer Certification on May 13 2024
+                                    </Link>
+                                </p>
                             </div>
                         </div>
                     </MotionWrapper>
