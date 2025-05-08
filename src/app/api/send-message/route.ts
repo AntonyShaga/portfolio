@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withContactValidation } from '@/lib/middleware/withContactValidation';
 import { Resend } from 'resend';
-import { generateContactToken } from "@/lib/token/generate";
+import { generateContactToken } from '@/lib/token/generate';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -18,39 +18,36 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  * @throws {Error} Only for unexpected Resend API failures
  */
 async function baseHandler(req: NextRequest) {
-    const data = await req.json();
-    const { name, email, message } = data;
+  const data = await req.json();
+  const { name, email, message } = data;
 
-    try {
-        const emailResponse = await resend.emails.send({
-            from: `Portfolio <contact@resend.dev>`,
-            to: process.env.TO_EMAIL as string,
-            subject: 'New message from landing page',
-            html: `
+  try {
+    const emailResponse = await resend.emails.send({
+      from: `Portfolio <contact@resend.dev>`,
+      to: process.env.TO_EMAIL as string,
+      subject: 'New message from landing page',
+      html: `
                 <h1>New message</h1>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Message:</strong> ${message}</p>
             `,
-        });
+    });
 
-        if (emailResponse.error) {
-            return NextResponse.json(
-                { success: false, message: 'Ошибка при отправке письма' },
-                { status: 500 }
-            );
-        }
-
-        return NextResponse.json(
-            { success: true, message: 'Письмо успешно отправлено' },
-            { status: 200 }
-        );
-    } catch {
-        return NextResponse.json(
-            { success: false, message: 'Ошибка сервера' },
-            { status: 500 }
-        );
+    if (emailResponse.error) {
+      return NextResponse.json(
+        { success: false, message: 'Ошибка при отправке письма' },
+        { status: 500 },
+      );
     }
+
+    return NextResponse.json(
+      { success: true, message: 'Письмо успешно отправлено' },
+      { status: 200 },
+    );
+  } catch {
+    return NextResponse.json({ success: false, message: 'Ошибка сервера' }, { status: 500 });
+  }
 }
 
 /**
@@ -76,12 +73,12 @@ async function baseHandler(req: NextRequest) {
  *   - X-New-Token header (on success)
  */
 export const POST = withContactValidation(async (req: NextRequest) => {
-    const response = await baseHandler(req);
+  const response = await baseHandler(req);
 
-    if (response.status === 200) {
-        const newToken = await generateContactToken(req);
-        response.headers.set('X-New-Token', newToken);
-    }
+  if (response.status === 200) {
+    const newToken = await generateContactToken(req);
+    response.headers.set('X-New-Token', newToken);
+  }
 
-    return response;
+  return response;
 });

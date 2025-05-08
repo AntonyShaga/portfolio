@@ -5,45 +5,33 @@ const locales = ['en', 'ru'];
 const defaultLocale = 'en';
 
 function getLocale(request: NextRequest): string {
-    const acceptLanguage = request.headers.get('accept-language');
-    const lang = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
-    return locales.includes(lang || '') ? lang! : defaultLocale;
+  const acceptLanguage = request.headers.get('accept-language');
+  const lang = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
+  return locales.includes(lang || '') ? lang! : defaultLocale;
 }
 
 export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
-    // Пропускаем технические пути
-    if (
-        pathname.startsWith('/_next') ||
-        pathname.startsWith('/api') ||
-        PUBLIC_FILE.test(pathname)
-    ) {
-        return NextResponse.next();
-    }
+  if (pathname.startsWith('/_next') || pathname.startsWith('/api') || PUBLIC_FILE.test(pathname)) {
+    return NextResponse.next();
+  }
 
-    // Если уже есть язык в пути — добавим заголовок и пропустим
-    const matchedLocale = locales.find((locale) =>
-        pathname.startsWith(`/${locale}`)
-    );
-    if (matchedLocale) {
-        const response = NextResponse.next();
-        response.headers.set('x-current-locale', matchedLocale);
-        return response;
-    }
+  const matchedLocale = locales.find((locale) => pathname.startsWith(`/${locale}`));
+  if (matchedLocale) {
+    const response = NextResponse.next();
+    response.headers.set('x-current-locale', matchedLocale);
+    return response;
+  }
 
-    // Определяем язык браузера
-    const locale = getLocale(request);
-    console.log('Redirecting to locale:', locale);
+  const locale = getLocale(request);
+  console.log('Redirecting to locale:', locale);
 
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}${pathname}`;
-    return NextResponse.redirect(url);
+  const url = request.nextUrl.clone();
+  url.pathname = `/${locale}${pathname}`;
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-    matcher: [
-        '/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*)',
-    ],
+  matcher: ['/((?!_next|api|favicon.ico|favicon.svg|.*\\..*).*)'],
 };
-
