@@ -77,6 +77,6 @@ Open http://localhost:3000 in your browser.
 
 MIT © Antony Shaga
 
-⭐ Star this project |
-💬 Discuss ideas |
-🔄 Contribute
+[⭐ Star this project](https://github.com/AntonyShaga/portfolio/stargazers) |
+[💬 Discuss ideas](https://github.com/AntonyShaga/portfolio/discussions) |
+[🔄 Contribute](https://github.com/AntonyShaga/portfolio/blob/main/CONTRIBUTING.md)
