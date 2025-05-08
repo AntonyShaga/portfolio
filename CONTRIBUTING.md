@@ -8,7 +8,7 @@ Thank you for your interest in contributing! 🛠️
 - 🐛 Report issues in the [Issues](https://github.com/AntonyShaga/portfolio/issues) tab
 - 💡 Share ideas in [Discussions](https://github.com/AntonyShaga/portfolio/discussions)
 - 🧪 Suggest improvements (open a Pull Request)
-- 🌍 Help with translations (i18n support coming soon)
+- 🌍 Help with translations 
 
 ## Code Guidelines
 

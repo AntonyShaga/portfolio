@@ -79,4 +79,4 @@ MIT © Antony Shaga
 
 [⭐ Star this project](https://github.com/AntonyShaga/portfolio/stargazers) |
 [💬 Discuss ideas](https://github.com/AntonyShaga/portfolio/discussions) |
-[🔄 Contribute](https://github.com/AntonyShaga/portfolio/blob/main/CONTRIBUTING.md)
+[🔄 Contribute](https://github.com/AntonyShaga/portfolio/blob/master/CONTRIBUTING.md)
