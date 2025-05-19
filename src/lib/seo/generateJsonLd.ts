@@ -17,20 +17,26 @@ const MINIMAL_SCHEMA: JsonLdData = {
 
 export function generateJsonLd(lang: 'en' | 'ru' | 'uk'): JsonLdData {
   try {
+    const name = lang === 'ru' ? 'Антон Шага' : lang === 'uk' ? 'Антон Шага' : 'Anton Shaga';
+
+    const description =
+      lang === 'ru'
+        ? 'Фронтенд-разработчик на Next.js и TypeScript'
+        : lang === 'uk'
+          ? 'Фронтенд-розробник на Next.js та TypeScript'
+          : 'Frontend developer specializing in Next.js and TypeScript';
+
     const jsonLd: JsonLdData = {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: lang === 'ru' ? 'Антон Шага' : 'Anton Shaga',
+      name,
       jobTitle: 'Frontend Developer',
       url: `https://portfolio-inky-six-36.vercel.app/${lang}`,
       sameAs: [
         'https://github.com/AntonyShaga',
         'https://www.linkedin.com/in/anton-shaga-2b4383157/',
       ],
-      description:
-        lang === 'ru'
-          ? 'Фронтенд-разработчик на Next.js и TypeScript'
-          : 'Frontend developer specializing in Next.js and TypeScript',
+      description,
     };
 
     if (!jsonLd.name || !jsonLd.url) {
@@ -43,7 +49,7 @@ export function generateJsonLd(lang: 'en' | 'ru' | 'uk'): JsonLdData {
 
     return {
       ...MINIMAL_SCHEMA,
-      name: lang === 'ru' ? 'Антон Шага' : 'Anton Shaga',
+      name: lang === 'ru' ? 'Антон Шага' : lang === 'uk' ? 'Антон Шага' : 'Anton Shaga',
       url: `https://portfolio-inky-six-36.vercel.app/${lang}`,
     };
   }

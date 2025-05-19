@@ -21,16 +21,17 @@
   },
   "about": {
     "sectionTitle": "About Me",
-    "headline": "Frontend Developer with 2 Years of Experience",
-    "text": "Hi! I'm Anton, a frontend developer from Mariupol. I specialize in creating modern web applications using React, Next.js, and TypeScript.",
+    "headline": "Frontend Developer Growing with Every Project",
+    "text": "Hi! My name is Anton, I’m a junior frontend developer from Mariupol. I’m passionate about creating modern web interfaces using Next.js, TypeScript, and Tailwind CSS. I’m constantly learning new technologies and applying them in real projects to grow as a developer.",
     "education": {
       "title": "Education",
-      "university": "Mariupol State University",
-      "degree": "Master of Computer Science, 2018"
+      "university": "Mariupol Professional Metallurgical Lyceum",
+      "degree": "Professional education in electrical work — where my technical path began and now continues in web development"
     },
     "certificates": "Certificates",
-    "story": "My journey into development started 2 years ago. Since then, I've worked on various projects — from small landing pages to large-scale enterprise applications. I strive to create intuitive, accessible, and performant interfaces."
+    "story": "My journey in web development started about a year ago. Since then, I have built my own portfolio and continue to improve it by adding new features and refining the architecture. I’m interested in modern approaches such as App Router, tRPC, TypeScript typing, authentication, and working with external APIs. I focus on writing clean and understandable code and creating convenient and fast interfaces. I’m actively developing my skills and aiming to join a team where I can keep learning and contribute."
   },
+
   "skills": {
     "sectionTitle": "Skills",
     "stackTitle": "Tech Stack",
