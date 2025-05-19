@@ -11,6 +11,7 @@ import ChevronIcon from '@/icons/ChevronIcon';
 const languages: Language[] = [
   { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
+  { code: 'ua', name: 'Ukrainian', nativeName: 'Українська', flag: '🇺🇦' },
 ];
 
 export default function LanguageSwitcher({ currentLang }: { currentLang: string }) {

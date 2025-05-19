@@ -7,7 +7,7 @@ export async function getLangFromHeaders(): Promise<string> {
   const path = headersList.get('x-invoke-path') || headersList.get('x-matched-path') || '';
   const lang = langFromHeader || path.split('/')[1];
 
-  if (!['en', 'ru'].includes(lang || '')) {
+  if (!['en', 'ru', 'ua'].includes(lang || '')) {
     notFound();
   }
 

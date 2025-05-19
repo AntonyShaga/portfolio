@@ -31,7 +31,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 const PUBLIC_FILE = /\.(.*)$/;
 const locales = [
     'en',
-    'ru'
+    'ru',
+    'ua'
 ];
 const defaultLocale = 'en';
 function getLocale(request) {
