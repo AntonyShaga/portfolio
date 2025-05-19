@@ -100,6 +100,5 @@ export async function generateContactToken(req: NextRequest): Promise<string> {
     'EX',
     tokenConfig.redisExpiration,
   );
-
   return token;
 }
