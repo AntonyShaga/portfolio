@@ -10,7 +10,7 @@ import BurgerButtonWrapper from '@/components/header/BurgerButtonWrapper';
 interface IProps {
   header: HeaderContent;
   toast: ToastMessages;
-  lang: 'en' | 'ru' | 'ua';
+  lang: 'en' | 'ru' | 'uk';
 }
 
 export default function Header({ header, lang, toast }: IProps) {

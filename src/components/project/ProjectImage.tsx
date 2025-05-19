@@ -10,6 +10,7 @@ const ProjectImage = ({ project }: { project: ProjectItem }) => {
         src={project.image}
         alt={`Превью проекта: ${project.title}`}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform hover:scale-105"
         placeholder={isSvgPlaceholder ? 'empty' : 'blur'}
         blurDataURL={isSvgPlaceholder ? undefined : project.image}

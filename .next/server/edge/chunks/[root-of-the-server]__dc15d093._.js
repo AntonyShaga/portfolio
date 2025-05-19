@@ -32,7 +32,7 @@ const PUBLIC_FILE = /\.(.*)$/;
 const locales = [
     'en',
     'ru',
-    'ua'
+    'uk'
 ];
 const defaultLocale = 'en';
 function getLocale(request) {

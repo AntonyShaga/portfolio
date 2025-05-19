@@ -9,13 +9,13 @@ import { getLangFromHeaders } from '@/lib/getLangFromHeaders';
 export { generateMetadata } from './metadata';
 
 export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'ru' }, { lang: 'ua' }];
+  return [{ lang: 'en' }, { lang: 'ru' }, { lang: 'uk' }];
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = await getLangFromHeaders();
 
-  const jsonLd = generateJsonLd(lang as 'en' | 'ru' | 'ua');
+  const jsonLd = generateJsonLd(lang as 'en' | 'ru' | 'uk');
 
   return (
     <html lang={lang} suppressHydrationWarning>

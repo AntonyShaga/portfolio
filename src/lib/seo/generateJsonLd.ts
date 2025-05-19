@@ -15,7 +15,7 @@ const MINIMAL_SCHEMA: JsonLdData = {
   url: 'https://portfolio-inky-six-36.vercel.app',
 };
 
-export function generateJsonLd(lang: 'en' | 'ru' | 'ua'): JsonLdData {
+export function generateJsonLd(lang: 'en' | 'ru' | 'uk'): JsonLdData {
   try {
     const jsonLd: JsonLdData = {
       '@context': 'https://schema.org',

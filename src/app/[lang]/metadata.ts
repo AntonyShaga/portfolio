@@ -1,22 +1,29 @@
 import { headers } from 'next/headers';
 import type { Metadata } from 'next';
+
 const SITE_URL = 'https://portfolio-inky-six-36.vercel.app';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = headersList.get('x-current-locale') || 'ru';
   const path = headersList.get('x-invoke-path') || '';
   const cleanPath = path.startsWith(`/${lang}`) ? path.replace(`/${lang}`, '') : path;
 
-  const title = {
+  const titleMap = {
     ru: 'Антон Шага | Frontend-разработчик',
     en: 'Anton Shaga | Frontend Developer',
-  }[lang as 'en' | 'ru'];
+    uk: 'Антон Шага | Фронтенд-розробник',
+  };
 
-  const description = {
+  const descriptionMap = {
     ru: 'Создаю современные веб-приложения на Next.js и TypeScript',
     en: 'Building modern web apps with Next.js and TypeScript',
-  }[lang as 'en' | 'ru'];
+    uk: 'Створюю сучасні веб-застосунки з використанням Next.js та TypeScript',
+  };
+
+  const title = titleMap[lang as keyof typeof titleMap] ?? titleMap.ru;
+  const description = descriptionMap[lang as keyof typeof descriptionMap] ?? descriptionMap.ru;
 
   return {
     title,
@@ -31,6 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: {
         ru: `${SITE_URL}/ru${path}`,
         en: `${SITE_URL}/en${path}`,
+        uk: `${SITE_URL}/ua${path}`,
       },
     },
     openGraph: {
@@ -46,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
           alt: title,
         },
       ],
-      locale: lang === 'ru' ? 'ru_RU' : 'en_US',
+      locale: lang === 'ru' ? 'ru_RU' : lang === 'uk' ? 'uk_UA' : 'en_US',
       type: 'website',
     },
     twitter: {

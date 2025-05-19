@@ -10,19 +10,19 @@ import Contact from '@/components/contact/Contact';
 import { getLangFromHeaders } from '@/lib/getLangFromHeaders';
 
 export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'ru' }, { lang: 'ua' }];
+  return [{ lang: 'en' }, { lang: 'ru' }, { lang: 'uk' }];
 }
 
 export default async function Home() {
   const lang = await getLangFromHeaders();
 
-  const dict = await getDictionary(lang as 'en' | 'ru' | 'ua');
+  const dict = await getDictionary(lang as 'en' | 'ru' | 'uk');
 
   const { skills, footer, contact, hero, header, about, experience, projects, toast } = dict;
 
   return (
     <main className="min-h-screen bg-background">
-      <Header lang={lang as 'en' | 'ru' | 'ua'} header={header} toast={toast} />
+      <Header lang={lang as 'en' | 'ru' | 'uk'} header={header} toast={toast} />
       <Hero hero={hero} />
       <About about={about} toast={toast} />
       <Project projects={projects} />
