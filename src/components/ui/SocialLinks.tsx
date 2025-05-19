@@ -15,19 +15,19 @@ interface SocialLink {
 
 const socials: SocialLink[] = [
   {
-    href: 'https://github.com',
+    href: 'https://github.com/AntonyShaga',
     Icon: Git,
     label: 'GitHub',
     delay: 0.4,
   },
   {
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/shaga.anton/',
     Icon: Facebook,
     label: 'Facebook',
     delay: 0.5,
   },
   {
-    href: 'https://linkedin.com',
+    href: 'https://www.linkedin.com/in/anton-shaga-2b4383157/',
     Icon: Linkedin,
     label: 'Linkedin',
     delay: 0.6,
