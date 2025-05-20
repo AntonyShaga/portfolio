@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { ContactFeedback, ContactFormI } from '@/types/dictionary';
-import Button from '@/components/ui/Button';
-import TextInput from '@/components/contact/TextInput';
+import ContactFormUI from '@/components/contact/ContactFormUI';
 
 interface IProps {
   form: ContactFormI;
@@ -19,13 +18,6 @@ export function ContactForm({ form, feedback }: IProps) {
   const [loading, setLoading] = useState(false);
 
   const {
-    sendingForm,
-    emailPlaceholderForm,
-    submitForm,
-    namePlaceholderForm,
-    messagePlaceholderForm,
-    subtitleForm,
-    titleForm,
     formErrors: {
       messageTooLong,
       nameTooLong,
@@ -74,7 +66,7 @@ export function ContactForm({ form, feedback }: IProps) {
     }
   };
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = handleSubmit(async (data: FormData) => {
     setLoading(true);
 
     try {
@@ -107,49 +99,15 @@ export function ContactForm({ form, feedback }: IProps) {
     } finally {
       setLoading(false);
     }
-  };
+  });
 
   return (
-    <div
-      className={
-        'rounded-lg border shadow-sm border-gray-100 dark:border-gray-800 flex flex-col justify-between h-full'
-      }
-    >
-      <div className={'flex flex-col space-y-1.5 p-6'}>
-        <h3 className={'text-2xl font-semibold leading-none tracking-tight'}>{titleForm}</h3>
-        <p className={'text-sm text-muted-foreground'}>{subtitleForm}</p>
-      </div>
-      <div className={'p-6 pt-0 h-full space-y-4'}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col h-full justify-between gap-2"
-        >
-          <TextInput name={'name'} placeholder={namePlaceholderForm} register={register} />
-
-          <TextInput name={'email'} placeholder={emailPlaceholderForm} register={register} />
-          <div>
-            <textarea
-              {...register('message')}
-              placeholder={messagePlaceholderForm}
-              className={`
-                        ${errors.message ? 'border-red-500' : 'border-gray-100 dark:border-gray-800'}
-                        resize-none w-full border p-1  rounded-md focus:border-neutral-400 focus:outline-none
-                    `}
-              aria-invalid={!!errors.message}
-              rows={3}
-            />
-            {errors.message && (
-              <p className="text-red-500 text-sm" role="alert">
-                {errors.message.message}
-              </p>
-            )}
-          </div>
-
-          <Button type="submit" disabled={loading} aria-busy={loading} variant={'reverseColor'}>
-            {loading ? sendingForm : submitForm}
-          </Button>
-        </form>
-      </div>
-    </div>
+    <ContactFormUI
+      register={register}
+      errors={errors}
+      loading={loading}
+      form={form}
+      onSubmit={onSubmit}
+    />
   );
 }
