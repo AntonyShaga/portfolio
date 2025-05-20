@@ -1,109 +1,38 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { ContactFeedback, ContactFormI } from '@/types/dictionary';
 import ContactFormUI from '@/components/contact/ContactFormUI';
 import { sendMessage } from '@/app/api/messageService';
 import { getToken } from '@/app/api/tokenService';
+import { ContactFormData, createContactFormSchema } from '@/types/contactFormSchema';
 
-interface IProps {
+interface ContactFormProps {
   form: ContactFormI;
   feedback: ContactFeedback;
 }
 
-export function ContactForm({ form, feedback }: IProps) {
+export function ContactForm({ form, feedback }: ContactFormProps) {
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const {
-    formErrors: {
-      messageTooLong,
-      nameTooLong,
-      nameTooShort,
-      messageTooShort,
-      emailTooLong,
-      emailInvalid,
-    },
-  } = form;
-
   const { feedbackToken, success, network, fail } = feedback;
 
-  const formSchema = useMemo(
-    () =>
-      z.object({
-        name: z.string().min(2, nameTooShort).max(50, nameTooLong),
-        email: z.string().email(emailInvalid).max(100, emailTooLong),
-        message: z.string().min(10, messageTooShort).max(1000, messageTooLong),
-      }),
-    [nameTooShort, nameTooLong, emailInvalid, emailTooLong, messageTooShort, messageTooLong],
-  );
-
-  type FormData = z.infer<typeof formSchema>;
+  const formSchema = useMemo(() => createContactFormSchema(form), [form]);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(formSchema),
+    mode: 'onTouched',
   });
 
-  /*const getToken = async () => {
-    try {
-      const res = await fetch('/api/get-token');
-      if (!res.ok) {
-        const errorMessage = res.status === 429 ? feedbackToken.rateLimit : feedbackToken.fail;
-        toast.error(errorMessage);
-        return null;
-      }
-      return (await res.json()).token as string;
-    } catch {
-      toast.error(network);
-      return null;
-    }
-  };
-
-  const onSubmit = handleSubmit(async (data: FormData) => {
-    setLoading(true);
-
-    try {
-      const currentToken = token || (await getToken());
-      if (!currentToken) {
-        setLoading(false);
-        return;
-      }
-
-      const res = await fetch('/api/send-message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${currentToken}`,
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (res.ok) {
-        const newToken = res.headers.get('X-New-Token');
-        if (newToken) setToken(newToken);
-
-        toast.success(success);
-        reset();
-      } else {
-        toast.error(fail);
-      }
-    } catch {
-      toast.error(network);
-    } finally {
-      setLoading(false);
-    }
-  });*/
-
-  const onSubmit = handleSubmit(async (data: FormData) => {
+  const onSubmit = handleSubmit(async (data: ContactFormData) => {
     setLoading(true);
 
     const currentToken = token || (await getToken(feedbackToken, network));
