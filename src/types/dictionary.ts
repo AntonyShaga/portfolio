@@ -99,6 +99,7 @@ export interface ContactInfo {
   emailInfo: string;
   phoneInfo: string;
   locationInfo: string;
+  messengersInfo: string;
   socialsInfo: string;
 }
 

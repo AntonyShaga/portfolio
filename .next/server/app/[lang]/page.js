@@ -8,8 +8,8 @@ runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_client_components_fo
 runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_client_components_unauthorized-error_c8949b27.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_01ba9e80._.js");
 runtime.loadChunk("server/chunks/ssr/[root-of-the-server]__8759b978._.js");
-runtime.loadChunk("server/chunks/ssr/src_app_[lang]_dictionaries_30c79602._.js");
-runtime.loadChunk("server/chunks/ssr/_8716d560._.js");
+runtime.loadChunk("server/chunks/ssr/src_app_[lang]_dictionaries_9a4cbcdb._.js");
+runtime.loadChunk("server/chunks/ssr/_0d745a22._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_next_9e68f3e5._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_si_index_mjs_dd28d936._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_lib_b806b5fe._.js");

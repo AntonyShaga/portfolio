@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
     uk: 'Створюю сучасні веб-застосунки з використанням Next.js та TypeScript',
   };
 
-  const title = titleMap[lang as keyof typeof titleMap] ?? titleMap.ru;
-  const description = descriptionMap[lang as keyof typeof descriptionMap] ?? descriptionMap.ru;
+  const title = titleMap[lang as keyof typeof titleMap] ?? titleMap.en;
+  const description = descriptionMap[lang as keyof typeof descriptionMap] ?? descriptionMap.en;
 
   return {
     title,
