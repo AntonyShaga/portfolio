@@ -7,6 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { ContactFeedback, ContactFormI } from '@/types/dictionary';
 import ContactFormUI from '@/components/contact/ContactFormUI';
+import { sendMessage } from '@/app/api/messageService';
+import { getToken } from '@/app/api/tokenService';
 
 interface IProps {
   form: ContactFormI;
@@ -51,7 +53,7 @@ export function ContactForm({ form, feedback }: IProps) {
     resolver: zodResolver(formSchema),
   });
 
-  const getToken = async () => {
+  /*const getToken = async () => {
     try {
       const res = await fetch('/api/get-token');
       if (!res.ok) {
@@ -99,6 +101,24 @@ export function ContactForm({ form, feedback }: IProps) {
     } finally {
       setLoading(false);
     }
+  });*/
+
+  const onSubmit = handleSubmit(async (data: FormData) => {
+    setLoading(true);
+
+    const currentToken = token || (await getToken(feedbackToken, network));
+    if (!currentToken) {
+      setLoading(false);
+      return;
+    }
+
+    const result = await sendMessage(data, currentToken, { success, fail, network });
+    if (result.success) {
+      if (result.newToken) setToken(result.newToken);
+      reset();
+    }
+
+    setLoading(false);
   });
 
   return (
