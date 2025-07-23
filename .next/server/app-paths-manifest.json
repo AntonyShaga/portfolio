@@ -1,7 +1,5 @@
 {
   "/[lang]/page": "app/[lang]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/get-token/route": "app/api/get-token/route.js",
-  "/api/send-message/route": "app/api/send-message/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }

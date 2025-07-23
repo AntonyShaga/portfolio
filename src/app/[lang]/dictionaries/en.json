@@ -70,7 +70,7 @@
         "description": "Open-source portfolio website with multi-language support, themes, SSR, and high optimization. Implemented at production-level using best practices.",
         "image": "/screenshots/profile-desktop-en.avif",
         "tags": ["Next.js","TypeScript","Tailwind CSS", "i18n", "SSR", "App Router", "Redis","Resend", "React", "Server Components", "Vercel"],
-        "demoUrl": "https://portfolio-inky-six-36.vercel.app",
+        "demoUrl": "https://www.shaga.dev/",
         "repoUrl": "https://github.com/AntonyShaga/portfolio",
         "buttonCode": "Code",
         "buttonDemo": "Demo"
