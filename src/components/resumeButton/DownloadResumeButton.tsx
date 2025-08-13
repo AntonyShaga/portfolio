@@ -20,7 +20,7 @@ export default function DownloadResumeButton({ toastErr }: IProps) {
   }, [pathname]);
 
   const fileNames: Record<string, string> = {
-    en: '/resume/Anton-Resume-en.pdf',
+    en: '/resume/Anton-Shaga-Resume-en.pdf',
     ru: '/resume/Anton-Resume-ru.pdf',
     uk: '/resume/Anton-Resume-uk.pdf',
   };
