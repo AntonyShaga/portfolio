@@ -55,6 +55,19 @@
           "Achieved perfect Lighthouse scores (100/100/100/100) through performance optimization, SEO best practices, and accessibility compliance",
           "Deployed the project on Vercel platform and published source code on GitHub for community contributions"
         ]
+      },
+      {
+        "title": "Full-stack Developer (Authentication System)",
+        "company": "Personal Project",
+        "period": "2025",
+        "description": [
+          "Developed a modular, production-level, open-source authentication system",
+          "Used the stack: Next.js (App Router), tRPC, TypeScript, Prisma (PostgreSQL), Redis, JWT, Resend, Tailwind CSS",
+          "Implemented key features: registration, login, email verification, resend email, refresh tokens, secure cookies, spam protection, and cooldown",
+          "Implemented two-factor authentication (TOTP and Email), OAuth (Google, GitHub), and PKCE",
+          "Optimized security through rate limiting, server-side validation (Zod), and access control",
+          "Deployed the project on Vercel with a DB on Railway and published the source code on GitHub for the community"
+        ]
       }
     ]
   },
@@ -72,6 +85,32 @@
         "tags": ["Next.js","TypeScript","Tailwind CSS", "i18n", "SSR", "App Router", "Redis","Resend", "React", "Server Components", "Vercel"],
         "demoUrl": "https://www.shaga.dev/",
         "repoUrl": "https://github.com/AntonyShaga/portfolio",
+        "buttonCode": "Code",
+        "buttonDemo": "Demo"
+      },
+      {
+        "title": "Modular Authentication System",
+        "description": "A full-featured, modern authentication system built on the Next.js App Router with support for JWT, 2FA (TOTP and email codes), OAuth (Google, GitHub), validation, spam protection, and secure session management.",
+        "image": "/screenshots/auth-system.avif",
+        "tags": [
+          "Next.js",
+          "TypeScript",
+          "tRPC",
+          "Prisma",
+          "PostgreSQL",
+          "Redis",
+          "JWT",
+          "2FA",
+          "OAuth",
+          "Argon2",
+          "Zod",
+          "Resend",
+          "SSR",
+          "shadcn/ui",
+          "App Router"
+        ],
+        "demoUrl": "https://booking-notes-chat.vercel.app/",
+        "repoUrl": "https://github.com/AntonyShaga/booking-notes-chat",
         "buttonCode": "Code",
         "buttonDemo": "Demo"
       }
